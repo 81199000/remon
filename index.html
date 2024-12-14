@@ -223,6 +223,11 @@
             color: #f3f4f6;
         }
 
+        /* Logo 暗黑模式样式 */
+        .dark img[alt="REMON Logo"] {
+            filter: brightness(0) invert(1);
+        }
+
         .dark header {
             /* 导航栏背景微调，增加透明度 */
             background-color: rgba(17, 24, 39, 0.85);
@@ -368,6 +373,10 @@
                 <button type="button" class="nav-button" data-section="features" data-i18n="nav.features">特性</button>
                 <button type="button" class="nav-button" data-section="technical" data-i18n="nav.technical">技术优势</button>
                 <button type="button" class="nav-button" data-section="about" data-i18n="nav.about">关于我们</button>
+                <!-- 暗黑模式切换按钮移到语言切换前面 -->
+                <button type="button" id="darkModeToggle" class="nav-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="切换暗黑模式">
+                    <i class="fas fa-sun dark:fa-moon" aria-hidden="true"></i>
+                </button>
                 <!-- 语言切换下拉菜单 -->
                 <div class="language-dropdown" id="languageDropdown">
                     <button type="button" class="globe-icon-wrapper" aria-label="切换语言" aria-expanded="false" aria-controls="languageDropdownContent">
@@ -409,10 +418,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- 暗黑模式切换按钮移到最后 -->
-                <button type="button" id="darkModeToggle" class="nav-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="切换暗黑模式">
-                    <i class="fas fa-sun dark:fa-moon" aria-hidden="true"></i>
-                </button>
             </div>
             <button class="md:hidden p-2" id="menuToggle">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -425,6 +430,11 @@
             <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" data-section="features" data-i18n="nav.features">特性</button>
             <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" data-section="technical" data-i18n="nav.technical">技术优势</button>
             <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" data-section="about" data-i18n="nav.about">关于我们</button>
+            <!-- 暗黑模式切换按钮 -->
+            <button type="button" id="mobileDarkModeToggle" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <i class="fas fa-sun dark:fa-moon mr-2" aria-hidden="true"></i>
+                <span data-i18n="nav.darkMode">切换暗黑模式</span>
+            </button>
             <!-- 移动端语言切换 -->
             <div class="px-4 py-2">
                 <div class="flex items-center space-x-2">
@@ -441,11 +451,6 @@
                     </select>
                 </div>
             </div>
-            <!-- 暗黑模式切换按钮移到最后 -->
-            <button type="button" id="mobileDarkModeToggle" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                <i class="fas fa-sun dark:fa-moon mr-2" aria-hidden="true"></i>
-                <span data-i18n="nav.darkMode">切换暗黑模式</span>
-            </button>
         </div>
     </header>
 
@@ -1040,49 +1045,81 @@
                 e.stopPropagation();
             });
 
-            // 初始化暗黑模式
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                updateDarkModeIcon(true);
-            } else {
-                document.documentElement.classList.remove('dark');
-                updateDarkModeIcon(false);
+            // 检查系统暗黑模式和时间
+            function shouldEnableDarkMode() {
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const currentHour = new Date().getHours();
+                const isNightTime = currentHour <= 6 || currentHour >= 18; // 晚上6点到早上6点
+                return systemPrefersDark || isNightTime;
             }
 
-            // 暗黑模式切换函数
-            function toggleDarkMode() {
-                const isDark = document.documentElement.classList.toggle('dark');
-                localStorage.theme = isDark ? 'dark' : 'light';
-                updateDarkModeIcon(isDark);
-            }
-
-            // 更新图标函数
-            function updateDarkModeIcon(isDark) {
-                const icons = $('#darkModeToggle i, #mobileDarkModeToggle i');
+            // 更新暗黑模式状态和按钮文本
+            function updateDarkMode(isDark) {
                 if (isDark) {
-                    icons.removeClass('fa-sun').addClass('fa-moon');
+                    document.documentElement.classList.add('dark');
                 } else {
-                    icons.removeClass('fa-moon').addClass('fa-sun');
+                    document.documentElement.classList.remove('dark');
+                }
+                updateDarkModeButtonText(isDark);
+                localStorage.theme = isDark ? 'dark' : 'light';
+            }
+
+            // 更新按钮文本
+            function updateDarkModeButtonText(isDark) {
+                const buttonText = isDark ? 'nav.lightMode' : 'nav.darkMode';
+                const icon = isDark ? 'fa-sun' : 'fa-moon';
+                
+                // 更新桌面端按钮
+                $('#darkModeToggle')
+                    .attr('aria-label', i18next.t(buttonText))
+                    .html(`<i class="fas ${icon}" aria-hidden="true"></i>`);
+                
+                // 更新移动端按钮
+                $('#mobileDarkModeToggle')
+                    .html(`<i class="fas ${icon} mr-2" aria-hidden="true"></i><span data-i18n="${buttonText}"></span>`);
+                
+                // 重新应用本地化
+                $('[data-i18n]').localize();
+            }
+
+            // 初始化暗黑模式
+            function initDarkMode() {
+                const savedTheme = localStorage.theme;
+                if (savedTheme) {
+                    // 如果用户手动设置过主题，优先使用保存的设置
+                    updateDarkMode(savedTheme === 'dark');
+                } else {
+                    // 否则根据系统设置和时间自动判断
+                    updateDarkMode(shouldEnableDarkMode());
                 }
             }
+
+            // 监听系统暗黑模式变化
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!localStorage.theme) {
+                    // 只有用户没有手动设置主题时才自动跟随系统
+                    updateDarkMode(shouldEnableDarkMode());
+                }
+            });
+
+            // 定时检查夜间模式
+            function checkNightMode() {
+                if (!localStorage.theme) {
+                    updateDarkMode(shouldEnableDarkMode());
+                }
+            }
+
+            // 每分钟检查一次是否需要切换模式
+            setInterval(checkNightMode, 60000);
 
             // 绑定点击事件
             $('#darkModeToggle, #mobileDarkModeToggle').on('click', function() {
-                toggleDarkMode();
+                const isDark = !document.documentElement.classList.contains('dark');
+                updateDarkMode(isDark);
             });
 
-            // 监听系统主题变化
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (!localStorage.theme) {
-                    if (e.matches) {
-                        document.documentElement.classList.add('dark');
-                        updateDarkModeIcon(true);
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                        updateDarkModeIcon(false);
-                    }
-                }
-            });
+            // 初始化
+            initDarkMode();
         });
     </script>
 </body>
