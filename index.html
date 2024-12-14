@@ -504,6 +504,25 @@
         button[type="submit"]:active {
             transform: translateY(1px);
         }
+
+        /* 产品区域背景色 */
+        #products, #hinges {
+            background-color: #f8f9fa;
+        }
+
+        .dark #products, .dark #hinges {
+            background-color: #1a1f2d;
+        }
+
+        /* 产品卡片在暗黑模式下的背景色调整 */
+        .dark .product-card {
+            background-color: #1f2937;
+            border: 1px solid rgba(75, 85, 99, 0.2);
+        }
+
+        .dark .product-card:hover {
+            border-color: rgba(75, 85, 99, 0.4);
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
@@ -850,7 +869,7 @@
                     <div class="md:w-1/2 md:pl-8">
                         <h3 class="text-2xl font-semibold mb-4" data-i18n="technical.subtitle">精密工艺，卓越品质</h3>
                         <p class="text-lg mb-4" data-i18n="technical.description">
-                            我们的不锈钢铰链采用先进的工程设计和精密制工艺。每一个零件都经过严格的质量控制，确保产品的耐用性和稳定性。
+                            我们的不锈钢铰链采用先进的工程设计和精密��工艺。每一个零件都经过严格的质量控制，确保产品的耐用性和稳定性。
                         </p>
                         <ul class="list-disc list-inside space-y-2">
                             <li data-i18n="[html]technical.features.0">高强度不锈钢材质，抗腐蚀性强</li>
