@@ -47,6 +47,22 @@
             -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             z-index: 50;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* 向上滚动时显示，向下滚动时隐藏 */
+        header.nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        /* 滚动一定距离后改变导航栏样式 */
+        header.nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark header.nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.98);
         }
 
         nav {
@@ -123,10 +139,16 @@
             z-index: 1001;
             border: 1px solid #e5e7eb;
             padding: 4px 0;
+            transform-origin: top right;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: scale(0.95);
+            opacity: 0;
         }
 
         .language-dropdown-content.show {
             display: block;
+            transform: scale(1);
+            opacity: 1;
         }
 
         .language-option {
@@ -139,7 +161,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s ease, transform 0.2s ease;
             color: #4B5563;
             -webkit-user-select: none;
             user-select: none;
@@ -149,6 +171,7 @@
 
         .language-option:hover {
             background-color: #f3f4f6;
+            transform: translateX(5px);
         }
 
         .language-option:focus {
@@ -359,6 +382,128 @@
         .dark button[type="submit"]:hover {
             background-color: #2563eb;
         }
+
+        /* Hero 区域文字渐入动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #hero h1 {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        #hero h2 {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        #hero img {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        #hero p {
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        /* 产品卡片悬停动画 */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .product-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 产品图片悬停效果 */
+        .product-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 特性图标动画 */
+        @keyframes iconPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .feature-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .feature-icon:hover {
+            animation: iconPulse 1s infinite;
+        }
+
+        /* 滚动显示动画 */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 暗黑模式切换动画 */
+        .dark-mode-transition {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 图标旋转动画 */
+        #darkModeToggle i, #mobileDarkModeToggle i {
+            transition: transform 0.5s ease;
+        }
+
+        #darkModeToggle:hover i, #mobileDarkModeToggle:hover i {
+            transform: rotate(180deg);
+        }
+
+        /* 表单输入框动画 */
+        input, textarea {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            transform: translateY(-2px);
+        }
+
+        /* 提交按钮动画 */
+        button[type="submit"] {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(1px);
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
@@ -521,7 +666,7 @@
                 <h2 class="text-3xl font-semibold text-center mb-8" data-i18n="products.hinges">缓冲铰链列产品</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- 铰链产品 1 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/817 固装 冷轧钢.webp" alt="817 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.817.name">型号: 817</h3>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.817.type">固装</span></p>
@@ -529,7 +674,7 @@
                         <p data-i18n="products.hinges_list.817.desc">这款铰链具有良好的强度和耐用性，适合各种家具应用。</p>
                     </div>
                     <!-- 产品 2 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/817QH 固装 冷轧钢 枪黑.webp" alt="817QH 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.817QH.name">型号: 817QH</h3>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.817QH.type">固装</span></p>
@@ -538,7 +683,7 @@
                         <p data-i18n="products.hinges_list.817QH.desc">这款铰链采用枪黑色冷轧钢，外观美观，适合现代家居风格。</p>
                     </div>
                     <!-- 产品 3 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/818 自卸 冷轧钢.webp" alt="818 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.818.name">型号: 818</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.818.type">自卸</span></p>
@@ -546,7 +691,7 @@
                         <p data-i18n="products.hinges_list.818.desc">这款铰链设计方便使用，确保耐性和稳定。</p>
                     </div>
                     <!-- 产品 4 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/818QH 自卸 冷轧钢 枪黑.webp" alt="818QH 自卸 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.818QH.name">型号: 818QH</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.818QH.type">自卸</span></p>
@@ -555,7 +700,7 @@
                         <p data-i18n="products.hinges_list.818QH.desc">这款铰链结合美观与实用，适合多种家具。</p>
                     </div>
                     <!-- 产品 5 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/827 二段力 固装 冷轧钢.webp" alt="827 二段力 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.827.name">型号: 827</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827.feature">二段力</span></p>
@@ -564,7 +709,7 @@
                         <p data-i18n="products.hinges_list.827.desc">这款铰链提供更好的支撑力，适合重型门板使用。</p>
                     </div>
                     <!-- 产品 6 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/827QH  二段力  固装 冷轧钢 枪黑.webp" alt="827QH 二段力 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.827QH.name">型号: 827QH</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827QH.feature">二段力</span></p>
@@ -574,8 +719,8 @@
                         <p data-i18n="products.hinges_list.827QH.desc">这款铰链兼具美观与功能，适合各种家具。</p>
                     </div>
                     <!-- 产品 7 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <img src="./TP/CP/828 二段力 自卸 冷轧钢.webp" alt="828 二段 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
+                        <img src="./TP/CP/828 二段力 自卸 冷轧钢.webp" alt="828 二段力 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.828.name">型号: 828</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.828.feature">二段力</span></p>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.828.type">自卸</span></p>
@@ -583,7 +728,7 @@
                         <p data-i18n="products.hinges_list.828.desc">这款铰链确保顺畅的开合体验，适合多种应用场景。</p>
                     </div>
                     <!-- 产品 8 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/828QH 二段力 自卸 冷轧钢.webp" alt="828QH 二段力 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.828QH.name">型号: 828QH</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.828QH.feature">二段力</span></p>
@@ -592,7 +737,7 @@
                         <p data-i18n="products.hinges_list.828QH.desc">这款铰链结合二段力设计，适合多种应用场景。</p>
                     </div>
                     <!-- 产品 9 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/912 自卸 不锈钢 精抛光.webp" alt="912 自卸 不锈钢 精抛光" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.912.name">型号: 912</h3>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.912.type">自卸</span></p>
@@ -601,7 +746,7 @@
                         <p data-i18n="products.hinges_list.912.desc">这款铰链采用不锈钢材质，精抛光处理，确保耐用性和美观性</p>
                     </div>
                     <!-- 产品 10 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/913 固装 不锈钢 精抛光.webp" alt="913 固装 不锈钢 精抛光" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.913.name">型号: 913</h3>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.913.type">固装</span></p>
@@ -610,7 +755,7 @@
                         <p data-i18n="products.hinges_list.913.desc">这款铰链适合各种家具，确保稳定性和耐用性。</p>
                     </div>
                     <!-- 产品 11 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/922 二段力 自卸 不锈钢 精抛光.webp" alt="922 二段力 自卸 不锈钢 精抛光" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.922.name">型号: 922</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.922.feature">二段力</span></p>
@@ -620,7 +765,7 @@
                         <p data-i18n="products.hinges_list.922.desc">这款铰链确保顺畅的开合体验，适合高档家具。</p>
                     </div>
                     <!-- 产品 12 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/923 二段力固装 不锈钢 精抛光.webp" alt="923 二段力固装 不锈钢 精抛光" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.923.name">型号: 923</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.923.feature">二段力</span></p>
@@ -630,7 +775,7 @@
                         <p data-i18n="products.hinges_list.923.desc">这款铰链适合重型门板使用，确保稳定性和耐用性。</p>
                     </div>
                     <!-- 产品 13 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="M1 三段力 功能可选 固装 自卸" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.M1.name">型号: M1</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M1.feature">三段力</span></p>
@@ -639,7 +784,7 @@
                         <p data-i18n="products.hinges_list.M1.desc">这款铰链设计灵活，适合多种应用场景。</p>
                     </div>
                     <!-- 产品 14 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md product-card">
                         <img src="./TP/CP/M2 三段力 功能可选 自卸 三维可调 材质可选 不锈钢 冷轧钢.webp" alt="M2 三段力 功能可选 自卸" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.M2.name">型号: M2</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M2.feature">三段力</span></p>
@@ -1120,6 +1265,47 @@
 
             // 初始化
             initDarkMode();
+
+            // 导航栏滚动效果
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // 导航栏隐藏/显示
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.classList.add('nav-hidden');
+                } else {
+                    header.classList.remove('nav-hidden');
+                }
+                
+                // 导航栏样式变化
+                if (scrollTop > 50) {
+                    header.classList.add('nav-scrolled');
+                } else {
+                    header.classList.remove('nav-scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            // 滚动显示动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
