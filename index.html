@@ -215,13 +215,152 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* 修改暗黑模式样式 */
+        .dark body {
+            /* 使用更柔和的深色背景 */
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+
+        .dark header {
+            /* 导航栏背景微调，增加透明度 */
+            background-color: rgba(17, 24, 39, 0.85);
+            border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+        }
+
+        .dark .nav-button {
+            /* 导航按钮颜色调整 */
+            color: #e5e7eb;
+        }
+
+        .dark .nav-button:hover {
+            color: #ffffff;
+            background-color: rgba(75, 85, 99, 0.2);
+        }
+
+        /* 修改卡片和背景颜色 */
+        .dark .bg-white {
+            /* 使用更深的背景色 */
+            background-color: #1f2937;
+        }
+
+        .dark .text-gray-900 {
+            color: #f3f4f6;
+        }
+
+        .dark .shadow-md {
+            /* 调整阴影效果 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 
+                        0 2px 4px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark #features,
+        .dark #technical {
+            /* 特性和技术部分的背景色 */
+            background-color: #111827;
+        }
+
+        .dark .language-dropdown-content {
+            /* 语言下拉菜单样式优化 */
+            background-color: #1f2937;
+            border-color: #374151;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark .language-option {
+            color: #f3f4f6;
+        }
+
+        .dark .language-option:hover {
+            background-color: #374151;
+        }
+
+        .dark .globe-icon-wrapper {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #f3f4f6;
+        }
+
+        .dark .globe-icon-wrapper:hover {
+            background-color: #374151;
+        }
+
+        .dark #mobileMenu {
+            background-color: #1f2937;
+            border-top: 1px solid rgba(75, 85, 99, 0.3);
+        }
+
+        .dark #mobileLangSelect {
+            background-color: #1f2937;
+            color: #f3f4f6;
+            border-color: #374151;
+        }
+
+        .dark footer {
+            /* 页脚样式优化 */
+            background-color: #0f172a;
+            border-top: 1px solid rgba(75, 85, 99, 0.2);
+        }
+
+        .dark input,
+        .dark textarea {
+            /* 表单元素样式优化 */
+            background-color: #1f2937;
+            color: #f3f4f6;
+            border-color: #374151;
+        }
+
+        .dark input:focus,
+        .dark textarea:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        /* 产品卡片悬停效果 */
+        .dark .product-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .dark .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 特性图标背景色调整 */
+        .dark .bg-blue-100 {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .dark .bg-green-100 {
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+
+        .dark .bg-red-100 {
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+
+        .dark .bg-yellow-100 {
+            background-color: rgba(245, 158, 11, 0.1);
+        }
+
+        /* 按钮样式优化 */
+        .dark button[type="submit"] {
+            background-color: #3b82f6;
+            transition: background-color 0.2s;
+        }
+
+        .dark button[type="submit"]:hover {
+            background-color: #2563eb;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
     <header>
         <nav class="container mx-auto px-4 flex justify-between items-center nav-height">
             <a href="#" class="flex items-center z-[52]">
-                <img src="./TP/日明.png" alt="REMON Logo" class="h-12 w-auto">
+                <img src="./TP/日明.png" alt="REMON Logo" class="h-12 w-auto transition-all duration-200">
                 <span class="sr-only">REMON</span>
             </a>
             <div class="hidden md:flex items-center space-x-8 z-[52]">
@@ -270,6 +409,10 @@
                         </button>
                     </div>
                 </div>
+                <!-- 暗黑模式切换按钮移到最后 -->
+                <button type="button" id="darkModeToggle" class="nav-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="切换暗黑模式">
+                    <i class="fas fa-sun dark:fa-moon" aria-hidden="true"></i>
+                </button>
             </div>
             <button class="md:hidden p-2" id="menuToggle">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -277,11 +420,11 @@
                 </svg>
             </button>
         </nav>
-        <div class="md:hidden bg-white py-2 hidden" id="mobileMenu">
-            <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100" data-section="products" data-i18n="nav.products">产品</button>
-            <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100" data-section="features" data-i18n="nav.features">特性</button>
-            <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100" data-section="technical" data-i18n="nav.technical">技术优势</button>
-            <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100" data-section="about" data-i18n="nav.about">关于我们</button>
+        <div class="md:hidden bg-white dark:bg-gray-800 py-2 hidden" id="mobileMenu">
+            <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" data-section="products" data-i18n="nav.products">产品</button>
+            <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" data-section="features" data-i18n="nav.features">特性</button>
+            <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" data-section="technical" data-i18n="nav.technical">技术优势</button>
+            <button type="button" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" data-section="about" data-i18n="nav.about">关于我们</button>
             <!-- 移动端语言切换 -->
             <div class="px-4 py-2">
                 <div class="flex items-center space-x-2">
@@ -298,6 +441,11 @@
                     </select>
                 </div>
             </div>
+            <!-- 暗黑模式切换按钮移到最后 -->
+            <button type="button" id="mobileDarkModeToggle" class="nav-button block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <i class="fas fa-sun dark:fa-moon mr-2" aria-hidden="true"></i>
+                <span data-i18n="nav.darkMode">切换暗黑模式</span>
+            </button>
         </div>
     </header>
 
@@ -390,7 +538,7 @@
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.818.name">型号: 818</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.818.type">自卸</span></p>
                         <p><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.818.material">冷轧钢</span></p>
-                        <p data-i18n="products.hinges_list.818.desc">这款铰链设计方便使用，确耐性和稳定。</p>
+                        <p data-i18n="products.hinges_list.818.desc">这款铰链设计方便使用，确保耐性和稳定。</p>
                     </div>
                     <!-- 产品 4 -->
                     <div class="bg-white p-6 rounded-lg shadow-md">
@@ -468,7 +616,7 @@
                     </div>
                     <!-- 产品 12 -->
                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <img src="./TP/CP/923 二段力固装 不锈钢 精抛光.webp" alt="923 二段力固装 不锈�� 精抛光" class="w-full h-auto object-contain mb-4">
+                        <img src="./TP/CP/923 二段力固装 不锈钢 精抛光.webp" alt="923 二段力固装 不锈钢 精抛光" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.923.name">型号: 923</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.923.feature">二段力</span></p>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.923.type">固装</span></p>
@@ -890,6 +1038,50 @@
             // 移动端菜单内的点击事件阻止冒泡
             $('#mobileMenu').on('click', function(e) {
                 e.stopPropagation();
+            });
+
+            // 初始化暗黑模式
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                updateDarkModeIcon(true);
+            } else {
+                document.documentElement.classList.remove('dark');
+                updateDarkModeIcon(false);
+            }
+
+            // 暗黑模式切换函数
+            function toggleDarkMode() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.theme = isDark ? 'dark' : 'light';
+                updateDarkModeIcon(isDark);
+            }
+
+            // 更新图标函数
+            function updateDarkModeIcon(isDark) {
+                const icons = $('#darkModeToggle i, #mobileDarkModeToggle i');
+                if (isDark) {
+                    icons.removeClass('fa-sun').addClass('fa-moon');
+                } else {
+                    icons.removeClass('fa-moon').addClass('fa-sun');
+                }
+            }
+
+            // 绑定点击事件
+            $('#darkModeToggle, #mobileDarkModeToggle').on('click', function() {
+                toggleDarkMode();
+            });
+
+            // 监听系统主题变化
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!localStorage.theme) {
+                    if (e.matches) {
+                        document.documentElement.classList.add('dark');
+                        updateDarkModeIcon(true);
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        updateDarkModeIcon(false);
+                    }
+                }
             });
         });
     </script>
