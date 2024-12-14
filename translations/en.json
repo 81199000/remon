@@ -4,7 +4,9 @@
     "products": "Products",
     "features": "Features",
     "technical": "Technical",
-    "about": "About"
+    "about": "About",
+    "darkMode": "Switch to Dark Mode",
+    "lightMode": "Switch to Light Mode"
   },
   "hero": {
     "title1": "Empowering Home Living",
@@ -182,10 +184,10 @@
     ]
   },
   "about": {
-    "title": "About Guangdong Remon Hardware Products Co., Ltd.",
-    "content1": "Founded in 1986, Guangdong Remon is a manufacturing enterprise focused on cabinet door hardware. Since its establishment, Remon has always adhered to the corporate philosophy of \"Quality First, Excellence Pursuit,\" committed to meeting customer needs with superior quality standards. The company's main products include hinges and slide rails, widely used in various household and industrial fields.",
-    "content2": "We firmly believe that only through continuous innovation can we lead industry progress. Over the years, Remon has continuously invested in R&D, constantly introducing hardware products with innovative features, becoming a driver of industry technological innovation. Through persistent pursuit of craftsmanship and strict quality control, Guangdong Remon has won high recognition and trust from domestic and international customers.",
-    "content3": "Looking to the future, Guangdong Remon will continue to adhere to the development direction of \"High Standards, High Pursuit,\" continuously improving product and service levels, committed to providing better quality hardware solutions for global customers and promoting sustainable industry development and progress."
+    "title": "About Guangdong Remon Hardware Industrial Co., Ltd.",
+    "content1": "Guangdong Remon Hardware Industrial Co., Ltd., established in 1986, is a professional enterprise specializing in the research and development, production, and sales of furniture hardware accessories. Since its establishment, we have always adhered to the philosophy of 'Quality First, Innovation Development,' committed to providing high-quality products and excellent service to our customers.",
+    "content2": "We possess advanced production equipment and a professional technical team, with products covering multiple series including slide rails and hinges. Through continuous technological innovation and process improvement, our products have won a good reputation in the market.",
+    "content3": "The company focuses on product quality management and has established a comprehensive quality control system. We look forward to establishing long-term cooperative relationships with you, developing together, and creating the future."
   },
   "contact": {
     "title": "Business Inquiry",
