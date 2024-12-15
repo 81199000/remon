@@ -1129,14 +1129,31 @@
         // 初始化时预加载所有翻译
         async function preloadTranslations() {
             try {
-                await Promise.all(languages.map(async (lang) => {
-                    const response = await fetch(`./translations/${lang}.json`);
-                    translations[lang] = await response.json();
-                }));
+                const loadPromises = languages.map(async (lang) => {
+                    try {
+                        const response = await fetch(`./translations/${lang}.json`, {
+                            method: 'GET',
+                            headers: {
+                                'Cache-Control': 'no-cache',
+                                'Pragma': 'no-cache'
+                            }
+                        });
+                        if (!response.ok) {
+                            throw new Error(`Failed to load ${lang} translation`);
+                        }
+                        translations[lang] = await response.json();
+                        console.log(`Loaded ${lang} translation`);
+                    } catch (error) {
+                        console.error(`Error loading ${lang} translation:`, error);
+                        return null;
+                    }
+                });
+
+                await Promise.all(loadPromises);
                 console.log('All translations loaded');
                 initI18next();
             } catch (error) {
-                console.error('Error loading translations:', error);
+                console.error('Error in preloadTranslations:', error);
             }
         }
 
@@ -1147,19 +1164,13 @@
                 .use(i18nextBrowserLanguageDetector)
                 .init({
                     fallbackLng: 'zh-CN',
-                    debug: false, // 关闭调试模式以提升性能
-                    resources: translations, // 使用预加载的翻译
+                    debug: true, // 临时开启调试模式以便排查问题
+                    resources: translations,
                     backend: {
                         loadPath: './translations/{{lng}}.json',
-                        requestOptions: {
-                            cache: 'default', // 启用浏览器缓存
-                            headers: {
-                                'Content-Type': 'application/json; charset=utf-8'
-                            }
-                        }
                     },
-                    load: 'currentOnly', // 只加载当前语言
-                    preload: languages, // 预加载所有语言
+                    load: 'currentOnly',
+                    preload: languages,
                     returnObjects: true,
                     interpolation: {
                         escapeValue: false
@@ -1169,6 +1180,9 @@
                         useOptionsAttr: true
                     });
                     updateLanguageUI();
+                    console.log('i18next initialized with language:', i18next.language);
+                }).catch(function(error) {
+                    console.error('Error initializing i18next:', error);
                 });
         }
 
@@ -1180,15 +1194,28 @@
             $('.language-option').on('click', function(e) {
                 e.preventDefault();
                 const lang = $(this).data('lang');
+                console.log('Language option clicked:', lang);
+                
                 if (lang && lang !== i18next.language) {
                     const $button = $(this);
-                    $button.addClass('loading'); // 添加加载状态
+                    $button.addClass('loading');
                     
-                    i18next.changeLanguage(lang).then(function() {
-                        updateLanguageUI();
-                        $('.language-dropdown-content').removeClass('show');
+                    // 确保语言资源已加载
+                    if (translations[lang]) {
+                        console.log('Changing language to:', lang);
+                        i18next.changeLanguage(lang).then(function() {
+                            console.log('Language changed successfully to:', lang);
+                            updateLanguageUI();
+                            $('.language-dropdown-content').removeClass('show');
+                            $button.removeClass('loading');
+                        }).catch(function(error) {
+                            console.error('Error changing language:', error);
+                            $button.removeClass('loading');
+                        });
+                    } else {
+                        console.error('Translation not found for:', lang);
                         $button.removeClass('loading');
-                    });
+                    }
                 } else {
                     $('.language-dropdown-content').removeClass('show');
                 }
@@ -1197,32 +1224,51 @@
             // 移动端语言切换优化
             $('#mobileLangSelect').on('change', function() {
                 const lang = $(this).val();
+                console.log('Mobile language select changed to:', lang);
+                
                 if (lang !== i18next.language) {
                     const $select = $(this);
-                    $select.prop('disabled', true); // 禁用选择框
+                    $select.prop('disabled', true);
                     
-                    i18next.changeLanguage(lang).then(function() {
-                        updateLanguageUI();
+                    if (translations[lang]) {
+                        i18next.changeLanguage(lang).then(function() {
+                            console.log('Mobile language changed successfully to:', lang);
+                            updateLanguageUI();
+                            $select.prop('disabled', false);
+                        }).catch(function(error) {
+                            console.error('Error changing mobile language:', error);
+                            $select.prop('disabled', false);
+                        });
+                    } else {
+                        console.error('Translation not found for mobile:', lang);
                         $select.prop('disabled', false);
-                    });
+                    }
                 }
             });
 
             // 更新UI函数优化
             function updateLanguageUI() {
+                console.log('Updating UI for language:', i18next.language);
+                
                 // 使用 requestAnimationFrame 优化性能
                 requestAnimationFrame(() => {
-                    $('[data-i18n]').localize();
-                    
-                    // 更新选中状态
-                    $('.language-option .fa-check').addClass('opacity-0');
-                    $(`.language-option[data-lang="${i18next.language}"] .fa-check`).removeClass('opacity-0');
-                    
-                    // 更新移动端选择框
-                    $('#mobileLangSelect').val(i18next.language);
-                    
-                    // 更新文档方向（针对阿拉伯语）
-                    document.documentElement.setAttribute('dir', i18next.language === 'ar' ? 'rtl' : 'ltr');
+                    try {
+                        $('[data-i18n]').localize();
+                        
+                        // 更新选中状态
+                        $('.language-option .fa-check').addClass('opacity-0');
+                        $(`.language-option[data-lang="${i18next.language}"] .fa-check`).removeClass('opacity-0');
+                        
+                        // 更新移动端选择框
+                        $('#mobileLangSelect').val(i18next.language);
+                        
+                        // 更新文档方向（针对阿拉伯语）
+                        document.documentElement.setAttribute('dir', i18next.language === 'ar' ? 'rtl' : 'ltr');
+                        
+                        console.log('UI updated successfully');
+                    } catch (error) {
+                        console.error('Error updating UI:', error);
+                    }
                 });
             }
 
