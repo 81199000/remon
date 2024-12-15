@@ -274,19 +274,21 @@
             color: #f3f4f6;
         }
 
-        /* 删除所有 Logo 相关的暗黑模式滤镜样式 */
-        /* 删除这些行
-        .dark img[alt="REMON Logo"] {
-            filter: brightness(0) invert(1);
-        } */
-
-        /* 确保暗黑模式下白色 Logo 正确显示 */
-        .dark .logo-dark {
+        /* Logo 切换相关样式 */
+        .logo-light {
             display: block !important;
+        }
+
+        .logo-dark {
+            display: none !important;
         }
 
         .dark .logo-light {
             display: none !important;
+        }
+
+        .dark .logo-dark {
+            display: block !important;
         }
 
         .dark header {
@@ -552,7 +554,7 @@
             background-color: #1a1f2d;
         }
 
-        /* ���品卡片在暗黑模式下的背景色调整 */
+        /* 产品卡片在暗黑模式下的背景色调整 */
         .dark .product-card {
             background-color: #1f2937;
             border: 1px solid rgba(75, 85, 99, 0.2);
@@ -728,7 +730,7 @@
                     </div>
                     <!-- 产品 2 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                        <img src="./TP/CP/滑轨/不锈钢静音三节轨.webp" alt="不锈钢静音三节轨" class="w-full h-auto object-contain mb-4">
+                        <img src="./TP/CP/滑轨/不锈钢静音三节轨.webp" alt="���锈钢静音三节轨" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-semibold mb-2" data-i18n="products.slides.stainless_steel.name">不锈钢静音三节轨</h3>
                         <p><span data-i18n="products.dimensions">尺寸可选</span>：<span data-i18n="products.slides.stainless_steel.dimensions">4515, 4512</span></p>
                         <p><span data-i18n="products.colors">颜色可选</span>：<span data-i18n="products.slides.stainless_steel.colors">电泳黑, 镀彩锌</span></p>
@@ -748,7 +750,7 @@
                         <h3 class="text-xl font-semibold mb-2" data-i18n="products.slides.black_silent.name">黑色静音三节轨</h3>
                         <p><span data-i18n="products.dimensions">尺寸可选</span>：<span data-i18n="products.slides.black_silent.dimensions">4515, 4512</span></p>
                         <p><span data-i18n="products.colors">颜色可选</span>：<span data-i18n="products.slides.black_silent.colors">电泳黑, 镀彩锌</span></p>
-                        <p data-i18n="products.slides.black_silent.desc">这款滑轨设计为三节结构，确保顺畅的滑动体验，适合各种柜门使用。</p>
+                        <p data-i18n="products.slides.black_silent.desc">这款滑轨设计为三节结构，确保顺畅滑动体验，适合各种柜门使用。</p>
                     </div>
                 </div>
             </div>

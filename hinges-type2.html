@@ -15,6 +15,23 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Logo 切换相关样式 */
+        .logo-light {
+            display: block;
+        }
+
+        .logo-dark {
+            display: none;
+        }
+
+        :root[class~="dark"] .logo-light {
+            display: none;
+        }
+
+        :root[class~="dark"] .logo-dark {
+            display: block;
+        }
+
         /* 继承主页的样式 */
         .product-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -25,7 +42,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .dark .product-card:hover {
+        :root[class~="dark"] .product-card:hover {
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
@@ -52,74 +69,110 @@
             transform: translateY(0);
         }
 
-        .dark .back-button {
+        :root[class~="dark"] .back-button {
             background-color: #2563eb;
         }
 
         /* 暗黑模式样式 */
-        .dark body {
+        :root[class~="dark"] body {
             background-color: #111827;
             color: #f3f4f6;
         }
 
-        .dark .bg-white {
+        :root[class~="dark"] .bg-white {
             background-color: #1f2937;
         }
 
-        .dark .text-gray-900 {
+        :root[class~="dark"] .text-gray-900 {
             color: #f3f4f6;
         }
 
-        .dark .border-gray-200 {
+        :root[class~="dark"] .text-gray-600 {
+            color: #9ca3af;
+        }
+
+        :root[class~="dark"] .border-gray-200 {
             border-color: #374151;
+        }
+
+        /* 导航栏样式 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 50;
+            transition: background-color 0.3s ease;
+        }
+
+        :root[class~="dark"] header {
+            background-color: rgba(17, 24, 39, 0.95);
+        }
+
+        .nav-height {
+            height: 60px;
         }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-center mb-8" data-i18n="products.hinges_categories.type2">二段力液压铰链</h1>
-        <p class="text-lg text-center mb-12 max-w-3xl mx-auto" data-i18n="products.hinges_categories.type2_desc">适用于中重型门板，具有更强的支撑力</p>
+    <!-- 导航栏 -->
+    <header>
+        <nav class="container mx-auto px-4 flex justify-between items-center nav-height">
+            <a href="index.html" class="flex items-center z-[52]">
+                <img src="./TP/日明.png" alt="REMON Logo" class="logo-light h-12 w-auto transition-all duration-200">
+                <img src="./TP/日明-白色.png" alt="REMON Logo White" class="logo-dark h-12 w-auto transition-all duration-200">
+                <span class="sr-only">REMON</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <div class="container mx-auto px-4 pt-24 pb-8">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white" data-i18n="products.hinges_categories.type2">二段力液压铰链</h1>
+        <p class="text-lg text-center mb-12 max-w-3xl mx-auto text-gray-600 dark:text-gray-400" data-i18n="products.hinges_categories.type2_desc">开门随时定位静音，关门缓冲静音铰链系列</p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- 产品 1 -->
-            <div class="bg-white p-6 rounded-lg shadow-md product-card">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
                 <img src="./TP/CP/铰链/二段力液压铰链/827 二段力 固装 冷轧钢.webp" alt="827 二段力 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
-                <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.827.name">型号: 827</h3>
-                <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827.feature">二段力</span></p>
-                <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.827.type">固装</span></p>
-                <p><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.827.material">冷轧钢</span></p>
-                <p data-i18n="products.hinges_list.827.desc">这款铰链提供更好的支撑力，适合重型门板使用。</p>
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.827.name">型号: 827</h3>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827.feature">二段力</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.827.type">固装</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.827.material">冷轧钢</span></p>
+                <p class="text-gray-600 dark:text-gray-400" data-i18n="products.hinges_list.827.desc">这款铰链提供更好的支撑力，适合重型门板使用。</p>
             </div>
 
             <!-- 产品 2 -->
-            <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                <img src="./TP/CP/铰链/二段力液压铰链/827QH  二段力  固装 冷轧钢 枪黑.webp" alt="827QH 二段力 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
-                <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.827QH.name">型号: 827QH</h3>
-                <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827QH.feature">二段力</span></p>
-                <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.827QH.type">固装</span></p>
-                <p><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.827QH.material">冷轧钢</span></p>
-                <p><span data-i18n="products.common_labels.color">颜色：</span><span data-i18n="products.hinges_list.827QH.color">枪黑</span></p>
-                <p data-i18n="products.hinges_list.827QH.desc">这款铰链兼具美观与功能，适合各种家具。</p>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
+                <img src="./TP/CP/铰链/二段力液压铰链/827QH 二段力 固装 冷轧钢 枪黑.webp" alt="827QH 二段力 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.827QH.name">型号: 827QH</h3>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827QH.feature">二段力</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.827QH.type">固装</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.827QH.material">冷轧钢</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.color">颜色：</span><span data-i18n="products.hinges_list.827QH.color">枪黑</span></p>
+                <p class="text-gray-600 dark:text-gray-400" data-i18n="products.hinges_list.827QH.desc">这款铰链兼具美观与功能，适合各种家具。</p>
             </div>
 
             <!-- 产品 3 -->
-            <div class="bg-white p-6 rounded-lg shadow-md product-card">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
                 <img src="./TP/CP/铰链/二段力液压铰链/828 二段力 自卸 冷轧钢.webp" alt="828 二段力 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
-                <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.828.name">型号: 828</h3>
-                <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.828.feature">二段力</span></p>
-                <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.828.type">自卸</span></p>
-                <p><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.828.material">冷轧钢</span></p>
-                <p data-i18n="products.hinges_list.828.desc">这款铰链确保顺畅的开合体验，适合多种应用场景。</p>
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.828.name">型号: 828</h3>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.828.feature">二段力</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.828.type">自卸</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.828.material">冷轧钢</span></p>
+                <p class="text-gray-600 dark:text-gray-400" data-i18n="products.hinges_list.828.desc">这款铰链确保顺畅的开合体验，适合多种应用场景。</p>
             </div>
 
             <!-- 产品 4 -->
-            <div class="bg-white p-6 rounded-lg shadow-md product-card">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
                 <img src="./TP/CP/铰链/二段力液压铰链/828QH 二段力 自卸 冷轧钢.webp" alt="828QH 二段力 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
-                <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.828QH.name">型号: 828QH</h3>
-                <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.828QH.feature">二段力</span></p>
-                <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.828QH.type">自卸</span></p>
-                <p><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.828QH.material">冷轧钢</span></p>
-                <p data-i18n="products.hinges_list.828QH.desc">这款铰链结合二段力设计，适合多种应用场景。</p>
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.828QH.name">型号: 828QH</h3>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.828QH.feature">二段力</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.828QH.type">自卸</span></p>
+                <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.828QH.material">冷轧钢</span></p>
+                <p class="text-gray-600 dark:text-gray-400" data-i18n="products.hinges_list.828QH.desc">这款铰链结合二段力设计，适合多种应用场景。</p>
             </div>
         </div>
     </div>
@@ -141,21 +194,49 @@
                     loadPath: './translations/{{lng}}.json'
                 }
             }).then(function() {
-                // 初始化 jquery-i18next
                 jqueryI18next.init(i18next, $, {
                     useOptionsAttr: true
                 });
-                
-                // 更新UI
                 $('[data-i18n]').localize();
             });
 
-        // 检查系统暗黑模式
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
+        // 同步暗黑模式状态
+        function updateTheme() {
+            const isDark = localStorage.theme === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
         }
+
+        // 监听主题变化
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+        
+        // 监听localStorage变化
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'theme') {
+                updateTheme();
+            }
+        });
+
+        // 初始化主题
+        updateTheme();
+
+        // 处理图片路径
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[src*="/TP/"]');
+            images.forEach(img => {
+                const originalSrc = img.getAttribute('src');
+                if (originalSrc) {
+                    // 移除开头的 ./ 如果存在
+                    const cleanPath = originalSrc.replace(/^\.\//, '');
+                    img.src = cleanPath;
+                }
+            });
+        });
     </script>
 </body>
 </html> 
