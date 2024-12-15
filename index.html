@@ -7,6 +7,11 @@
     <!-- 先加载 jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- i18next 相关库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.10/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/1.3.1/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -1035,6 +1040,79 @@
     <script>
         $(document).ready(function() {
             console.log('DOM loaded');
+
+            // 初始化i18next
+            i18next
+                .use(i18nextHttpBackend)
+                .use(i18nextBrowserLanguageDetector)
+                .init({
+                    fallbackLng: 'zh-CN',
+                    debug: true,
+                    backend: {
+                        loadPath: './translations/{{lng}}.json'
+                    }
+                }).then(function() {
+                    // 初始化 jquery-i18next
+                    jqueryI18next.init(i18next, $, {
+                        useOptionsAttr: true
+                    });
+                    
+                    // 更新UI
+                    updateLanguageUI();
+                });
+
+            // 语言切换按钮点击事件
+            $('.language-option').on('click', function(e) {
+                e.preventDefault();
+                const lang = $(this).data('lang');
+                if (lang) {
+                    i18next.changeLanguage(lang).then(function() {
+                        updateLanguageUI();
+                        $('.language-dropdown-content').removeClass('show');
+                    });
+                }
+            });
+
+            // 移动端语言切换
+            $('#mobileLangSelect').on('change', function() {
+                const lang = $(this).val();
+                i18next.changeLanguage(lang).then(updateLanguageUI);
+            });
+
+            // 更新UI函数
+            function updateLanguageUI() {
+                $('[data-i18n]').localize();
+                
+                // 更新选中状态
+                $('.language-option .fa-check').addClass('opacity-0');
+                $(`.language-option[data-lang="${i18next.language}"] .fa-check`).removeClass('opacity-0');
+                
+                // 更新移动端选择框
+                $('#mobileLangSelect').val(i18next.language);
+                
+                // 更新文档方向（针对阿拉伯语）
+                if (i18next.language === 'ar') {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                }
+            }
+
+            // 语言下拉菜单切换
+            $('.globe-icon-wrapper').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('.language-dropdown-content').toggleClass('show');
+                $('.language-dropdown').toggleClass('active');
+            });
+
+            // 点击页面其他地方关闭下拉菜单
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.language-dropdown').length) {
+                    $('.language-dropdown-content').removeClass('show');
+                    $('.language-dropdown').removeClass('active');
+                }
+            });
 
             // 检查系统暗黑模式和时间
             function shouldEnableDarkMode() {
