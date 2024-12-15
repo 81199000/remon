@@ -30,11 +30,32 @@
             cursor: pointer;
             font-size: 1rem;
             color: #4B5563;
-            transition: color 0.2s;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease, left 0.3s ease;
         }
 
         .nav-button:hover {
-            color: #1F2937;
+            color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-button:active {
+            transform: scale(0.95);
         }
 
         /* 导航栏样式 */
@@ -47,7 +68,9 @@
             -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             z-index: 50;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        background-color 0.3s ease,
+                        box-shadow 0.3s ease;
         }
 
         /* 向上滚动时显示，向下滚动时隐藏 */
@@ -58,11 +81,12 @@
         /* 滚动一定距离后改变导航栏样式 */
         header.nav-scrolled {
             background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .dark header.nav-scrolled {
             background-color: rgba(17, 24, 39, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         nav {
@@ -96,24 +120,28 @@
             border-radius: 4px;
             background-color: #fff;
             border: 1px solid #e5e7eb;
-            transition: all 0.2s;
+            transition: transform 0.3s ease, background-color 0.3s ease;
             cursor: pointer;
             outline: none;
             z-index: 1000;
         }
 
         .globe-icon-wrapper:hover {
-            background-color: #f3f4f6;
+            transform: translateY(-2px);
         }
 
-        .globe-icon-wrapper:focus {
-            outline: 2px solid #3b82f6;
-            outline-offset: 2px;
+        .globe-icon-wrapper:active {
+            transform: translateY(1px);
         }
 
         .globe-icon {
             font-size: 1.25rem;
             color: #4B5563;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .globe-icon-wrapper:hover .globe-icon {
+            transform: rotate(360deg);
         }
 
         .dropdown-arrow {
@@ -474,11 +502,11 @@
 
         /* 图标旋转动画 */
         #darkModeToggle i, #mobileDarkModeToggle i {
-            transition: transform 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         #darkModeToggle:hover i, #mobileDarkModeToggle:hover i {
-            transform: rotate(180deg);
+            transform: rotate(360deg) scale(1.1);
         }
 
         /* 表单输入框动画 */
@@ -523,13 +551,49 @@
         .dark .product-card:hover {
             border-color: rgba(75, 85, 99, 0.4);
         }
+
+        /* 波纹效果样式 */
+        .nav-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* 暗黑模式波纹效果适配 */
+        .dark .nav-button::after {
+            background: #60a5fa;
+        }
+
+        .dark .nav-button:hover {
+            color: #60a5fa;
+        }
+
+        .dark .ripple {
+            background: rgba(96, 165, 250, 0.3);
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
     <header>
         <nav class="container mx-auto px-4 flex justify-between items-center nav-height">
             <a href="#" class="flex items-center z-[52]">
-                <img src="./TP/日明.png" alt="REMON Logo" class="h-12 w-auto transition-all duration-200">
+                <img src="./TP/日明.png" alt="REMON Logo" class="h-12 w-auto transition-all duration-200 block dark:hidden">
+                <img src="./TP/日明-白色.png" alt="REMON Logo" class="h-12 w-auto transition-all duration-200 hidden dark:block">
                 <span class="sr-only">REMON</span>
             </a>
             <div class="hidden md:flex items-center space-x-8 z-[52]">
@@ -720,7 +784,7 @@
                     </div>
                     <!-- 产品 5 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                        <img src="./TP/CP/827 二段力 固装 冷轧钢.webp" alt="827 二段力 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
+                        <img src="./TP/CP/827 二段力 固装 冷轧钢.webp" alt="827 二段力 固装 冷轧���" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.827.name">型号: 827</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827.feature">二段力</span></p>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.827.type">固装</span></p>
@@ -795,7 +859,7 @@
                     </div>
                     <!-- 产品 13 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                        <img src="./TP/CP/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="M1 三段力 功能可选 固装 自卸" class="w-full h-auto object-contain mb-4">
+                        <img src="./TP/CP/M1 三��力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="M1 三段力 功能可选 固装 自卸" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.M1.name">型号: M1</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M1.feature">三段力</span></p>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.M1.type">固装/自卸</span></p>
@@ -895,34 +959,12 @@
 
     <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
-            <div class="max-w-lg mx-auto">
-                <h3 class="text-xl font-semibold mb-4 text-center" data-i18n="contact.title">合作咨询</h3>
-                <form id="contactForm" class="space-y-4 px-2 sm:px-4">
-                    <div>
-                        <label for="name" class="block mb-1 text-sm sm:text-base" data-i18n="contact.name">姓名</label>
-                        <input type="text" id="name" name="name" required
-                            class="w-full px-2 py-1 sm:px-3 sm:py-2 text-gray-900 rounded text-sm sm:text-base">
-                    </div>
-                    <div>
-                        <label for="company" class="block mb-1 text-sm sm:text-base" data-i18n="contact.company">公司名称</label>
-                        <input type="text" id="company" name="company" required
-                            class="w-full px-2 py-1 sm:px-3 sm:py-2 text-gray-900 rounded text-sm sm:text-base">
-                    </div>
-                    <div>
-                        <label for="phone" class="block mb-1 text-sm sm:text-base" data-i18n="contact.phone">联系电话</label>
-                        <input type="tel" id="phone" name="phone" required
-                            class="w-full px-2 py-1 sm:px-3 sm:py-2 text-gray-900 rounded text-sm sm:text-base">
-                    </div>
-                    <div>
-                        <label for="message" class="block mb-1 text-sm sm:text-base" data-i18n="contact.intention">合作意向</label>
-                        <textarea id="message" name="message" rows="3" required
-                            class="w-full px-2 py-1 sm:px-3 sm:py-2 text-gray-900 rounded text-sm sm:text-base"></textarea>
-                    </div>
-                    <button type="submit" 
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-i18n="contact.submit">
-                        发送信息
-                    </button>
-                </form>
+            <div class="max-w-lg mx-auto text-center">
+                <h3 class="text-xl font-semibold mb-4" data-i18n="contact.title">合作咨询</h3>
+                <button id="openContactModal" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                    <i class="fas fa-handshake mr-2"></i>
+                    <span data-i18n="contact.start">开始咨询</span>
+                </button>
                 <p class="text-center mt-6" data-i18n="footer.copyright">&copy; 2024 广东日明. 保留所有权利。</p>
                 <p class="text-center mt-2" data-i18n="footer.address">地址：广东省揭阳市揭东区磐东镇北河工业区</p>
                 <p class="text-center mt-2">
@@ -931,6 +973,53 @@
             </div>
         </div>
     </footer>
+
+    <!-- 联系表单模态框 -->
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 w-full max-w-lg mx-4 rounded-lg shadow-xl transform transition-all duration-300 scale-95 opacity-0">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white" data-i18n="contact.title">合作咨询</h3>
+                    <button id="closeContactModal" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="contactForm" class="space-y-4">
+                    <div class="relative">
+                        <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-200" data-i18n="contact.name">姓名</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300">
+                    </div>
+                    <div class="relative">
+                        <label for="company" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-200" data-i18n="contact.company">公司名称</label>
+                        <input type="text" id="company" name="company" required
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300">
+                    </div>
+                    <div class="relative">
+                        <label for="phone" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-200" data-i18n="contact.phone">联系电话</label>
+                        <input type="tel" id="phone" name="phone" required
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300">
+                    </div>
+                    <div class="relative">
+                        <label for="message" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-200" data-i18n="contact.intention">合作意向</label>
+                        <textarea id="message" name="message" rows="4" required
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 resize-none"></textarea>
+                    </div>
+                    <button type="submit" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        <span data-i18n="contact.submit">发送信息</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提交成功提示框 -->
+    <div id="successToast" class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-full opacity-0 transition-all duration-300 flex items-center">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span data-i18n="contact.success">提交成功！我们会尽快与您联系。</span>
+    </div>
 
     <!-- 在页面底部添加脚本 -->
     <script>
@@ -1194,7 +1283,21 @@
             // 移动端菜单切换
             $('#menuToggle').on('click', function(e) {
                 e.stopPropagation(); // 阻止事件冒泡
-                $('#mobileMenu').toggleClass('hidden');
+                $('#mobileMenu').toggleClass('hidden show');
+                
+                // 添加动画效果
+                if ($('#mobileMenu').hasClass('show')) {
+                    setTimeout(() => {
+                        $('#mobileMenu').css('transform', 'scaleY(1)');
+                        $('#mobileMenu').css('opacity', '1');
+                    }, 0);
+                } else {
+                    $('#mobileMenu').css('transform', 'scaleY(0)');
+                    $('#mobileMenu').css('opacity', '0');
+                    setTimeout(() => {
+                        $('#mobileMenu').addClass('hidden');
+                    }, 300);
+                }
             });
 
             // 点击页面其他地方关闭移动端菜单
@@ -1287,25 +1390,34 @@
 
             // 导航栏滚动效果
             let lastScrollTop = 0;
+            let scrollTimer;
+
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollDelta = Math.abs(scrollTop - lastScrollTop);
                 
-                // 导航栏隐藏/显示
-                if (scrollTop > lastScrollTop && scrollTop > 100) {
-                    header.classList.add('nav-hidden');
-                } else {
-                    header.classList.remove('nav-hidden');
+                // 只有滚动距离超过阈值时才触发动画
+                if (scrollDelta > 10) {
+                    clearTimeout(scrollTimer);
+                    
+                    if (scrollTop > lastScrollTop && scrollTop > 100) {
+                        header.classList.add('nav-hidden');
+                    } else {
+                        header.classList.remove('nav-hidden');
+                    }
+                    
+                    // 添加滚动节流
+                    scrollTimer = setTimeout(() => {
+                        if (scrollTop > 50) {
+                            header.classList.add('nav-scrolled');
+                        } else {
+                            header.classList.remove('nav-scrolled');
+                        }
+                    }, 100);
+                    
+                    lastScrollTop = scrollTop;
                 }
-                
-                // 导航栏样式变化
-                if (scrollTop > 50) {
-                    header.classList.add('nav-scrolled');
-                } else {
-                    header.classList.remove('nav-scrolled');
-                }
-                
-                lastScrollTop = scrollTop;
             });
 
             // 滚动显示动画
@@ -1324,6 +1436,117 @@
 
             document.querySelectorAll('.scroll-reveal').forEach(el => {
                 observer.observe(el);
+            });
+
+            // 添加导航按钮点击波纹效果
+            function createRipple(event) {
+                const button = event.currentTarget;
+                const ripple = document.createElement('span');
+                
+                const diameter = Math.max(button.clientWidth, button.clientHeight);
+                const radius = diameter / 2;
+                
+                ripple.style.width = ripple.style.height = `${diameter}px`;
+                ripple.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+                ripple.style.top = `${event.clientY - button.offsetTop - radius}px`;
+                ripple.classList.add('ripple');
+                
+                const existingRipple = button.querySelector('.ripple');
+                if (existingRipple) {
+                    existingRipple.remove();
+                }
+                
+                button.appendChild(ripple);
+            }
+
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.addEventListener('click', createRipple);
+            });
+
+            // 修复联系表单相关的事件处理
+            function openModal() {
+                const modal = document.getElementById('contactModal');
+                const modalContent = modal.querySelector('.bg-white');
+                
+                modal.style.display = 'flex';
+                modal.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+
+            function closeModal() {
+                const modal = document.getElementById('contactModal');
+                const modalContent = modal.querySelector('.bg-white');
+                
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+
+            function showSuccessToast() {
+                const successToast = document.getElementById('successToast');
+                successToast.classList.remove('translate-y-full', 'opacity-0');
+                setTimeout(() => {
+                    successToast.classList.add('translate-y-full', 'opacity-0');
+                }, 3000);
+            }
+
+            // 确保在 DOM 加载完成后绑定事件
+            document.addEventListener('DOMContentLoaded', function() {
+                const openModalBtn = document.getElementById('openContactModal');
+                const closeModalBtn = document.getElementById('closeContactModal');
+                const contactForm = document.getElementById('contactForm');
+                const modal = document.getElementById('contactModal');
+
+                if (openModalBtn) {
+                    openModalBtn.addEventListener('click', openModal);
+                }
+
+                if (closeModalBtn) {
+                    closeModalBtn.addEventListener('click', closeModal);
+                }
+
+                if (modal) {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target.id === 'contactModal') {
+                            closeModal();
+                        }
+                    });
+                }
+
+                if (contactForm) {
+                    contactForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        
+                        const formData = {
+                            name: document.getElementById('name').value,
+                            company: document.getElementById('company').value,
+                            phone: document.getElementById('phone').value,
+                            message: document.getElementById('message').value
+                        };
+
+                        const mailtoLink = `mailto:81199000@qq.com?subject=合作咨询&body=姓名：${encodeURIComponent(formData.name)}%0D%0A公司：${encodeURIComponent(formData.company)}%0D%0A电话：${encodeURIComponent(formData.phone)}%0D%0A意向：${encodeURIComponent(formData.message)}`;
+
+                        window.location.href = mailtoLink;
+                        closeModal();
+                        showSuccessToast();
+                        contactForm.reset();
+                    });
+                }
+
+                // ESC键关闭模态框
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                        closeModal();
+                    }
+                });
             });
         });
     </script>
