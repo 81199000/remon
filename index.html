@@ -1130,14 +1130,11 @@
                 .use(i18nextHttpBackend)
                 .use(i18nextBrowserLanguageDetector)
                 .init({
-                    fallbackLng: ['zh-CN'],
-                    supportedLngs: ['zh-CN', 'zh-TW', 'en', 'ar', 'hi', 'ja', 'ko', 'ru'],
+                    fallbackLng: 'zh-CN',
+                    supportedLngs: ['zh-CN', 'zh-TW', 'en', 'ja', 'ko', 'ru', 'hi', 'ar'],
                     debug: true,
                     backend: {
-                        loadPath: './translations/{{lng}}.json',
-                        requestOptions: {
-                            cache: 'no-cache'
-                        }
+                        loadPath: './translations/{{lng}}.json'
                     },
                     detection: {
                         order: ['querystring', 'cookie', 'localStorage', 'navigator'],
@@ -1151,8 +1148,6 @@
                     
                     // 更新UI
                     updateLanguageUI();
-                }).catch(function(error) {
-                    console.error('i18next initialization error:', error);
                 });
 
             // 语言切换按钮点击事件
@@ -1389,4 +1384,3 @@
     </script>
 </body>
 </html>
-
