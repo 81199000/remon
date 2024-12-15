@@ -5,8 +5,8 @@
     "features": "Features",
     "technical": "Technical",
     "about": "About",
-    "darkMode": "Switch to Dark Mode",
-    "lightMode": "Switch to Light Mode"
+    "darkMode": "Toggle Dark Mode",
+    "lightMode": "Toggle Light Mode"
   },
   "hero": {
     "title1": "Empowering Home Living",
@@ -190,12 +190,15 @@
     "content3": "The company focuses on product quality management and has established a comprehensive quality control system. We look forward to establishing long-term cooperative relationships with you, developing together, and creating the future."
   },
   "contact": {
-    "title": "Business Inquiry",
+    "title": "Contact Us",
+    "start": "Get in Touch",
     "name": "Name",
-    "company": "Company Name",
-    "phone": "Contact Number",
-    "intention": "Cooperation Intention",
-    "submit": "Send Message"
+    "email": "Email",
+    "company": "Company",
+    "phone": "Phone",
+    "intention": "Message",
+    "submit": "Send Message",
+    "success": "Success! We will contact you soon."
   },
   "footer": {
     "copyright": "© 2024 Guangdong Remon. All rights reserved.",

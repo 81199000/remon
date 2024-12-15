@@ -5,8 +5,8 @@
     "features": "特性",
     "technical": "技術優勢",
     "about": "關於我們",
-    "darkMode": "切換夜間模式",
-    "lightMode": "切換日間模式"
+    "darkMode": "切換暗色模式",
+    "lightMode": "切換亮色模式"
   },
   "hero": {
     "title1": "賦能家居",
@@ -42,7 +42,7 @@
         "name": "黑色反彈封漆滑軌",
         "dimensions": "4515, 4512",
         "colors": "電泳黑, 鍍彩鋅",
-        "desc": "這款滑軌採用反��封漆工藝，表面光滑，具有優良的耐磨性和美觀性。"
+        "desc": "這款滑軌��用反封漆工藝，表面光滑，具有優良的耐磨性和美觀性。"
       },
       "black_silent": {
         "name": "黑色靜音三節軌",
@@ -191,11 +191,14 @@
   },
   "contact": {
     "title": "合作諮詢",
+    "start": "聯繫我們",
     "name": "姓名",
+    "email": "電子郵箱",
     "company": "公司名稱",
     "phone": "聯繫電話",
     "intention": "合作意向",
-    "submit": "發送信息"
+    "submit": "發送訊息",
+    "success": "提交成功！我們會盡快與您聯繫。"
   },
   "footer": {
     "copyright": "© 2024 廣東日明. 保留所有權利。",
