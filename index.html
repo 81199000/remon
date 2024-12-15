@@ -1130,15 +1130,24 @@
                 .use(i18nextHttpBackend)
                 .use(i18nextBrowserLanguageDetector)
                 .init({
-                    fallbackLng: 'zh-CN',
+                    fallbackLng: ['zh-CN'],
+                    supportedLngs: ['zh-CN', 'zh-TW', 'en', 'ar', 'hi', 'ja', 'ko', 'ru'],
                     debug: true,
                     backend: {
-                        loadPath: './translations/{{lng}}.json'
+                        loadPath: './translations/{{lng}}.json',
+                        requestOptions: {
+                            cache: 'no-store'  // 禁用浏览器缓存
+                        }
                     },
                     detection: {
-                        order: ['querystring', 'cookie', 'localStorage', 'navigator'],
-                        caches: ['localStorage', 'cookie']
-                    }
+                        order: ['querystring', 'localStorage', 'cookie', 'navigator'],
+                        lookupQuerystring: 'lng',
+                        lookupLocalStorage: 'i18nextLng',
+                        lookupCookie: 'i18next',
+                        caches: ['localStorage', 'cookie'],
+                        cookieMinutes: 10  // 设置较短的 cookie 过期时间
+                    },
+                    load: 'currentOnly'  // 只加载当前语言
                 }).then(function() {
                     // 初始化 jquery-i18next
                     jqueryI18next.init(i18next, $, {
@@ -1147,6 +1156,8 @@
                     
                     // 更新UI
                     updateLanguageUI();
+                }).catch(function(error) {
+                    console.error('i18next initialization error:', error);
                 });
 
             // 语言切换按钮点击事件
@@ -1156,12 +1167,21 @@
                 const lang = $(this).data('lang');
                 console.log('Switching language to:', lang);
                 if (lang) {
+                    // 清除语言缓存
+                    localStorage.removeItem('i18nextLng');
+                    document.cookie = 'i18next=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                    
                     i18next.changeLanguage(lang).then(function() {
                         console.log('Language changed to:', lang);
+                        // 更新缓存
+                        localStorage.setItem('i18nextLng', lang);
+                        document.cookie = `i18next=${lang}; path=/;`;
                         updateLanguageUI();
                         $('.language-dropdown-content').removeClass('show');
                     }).catch(function(err) {
                         console.error('Error changing language:', err);
+                        // 发生错误时尝试重新加载页面
+                        window.location.reload();
                     });
                 }
             });
@@ -1170,11 +1190,20 @@
             $('#mobileLangSelect').on('change', function() {
                 const lang = $(this).val();
                 console.log('Mobile language change:', lang);
+                // 清除语言缓存
+                localStorage.removeItem('i18nextLng');
+                document.cookie = 'i18next=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                
                 i18next.changeLanguage(lang).then(function() {
                     console.log('Mobile language changed to:', lang);
+                    // 更新缓存
+                    localStorage.setItem('i18nextLng', lang);
+                    document.cookie = `i18next=${lang}; path=/;`;
                     updateLanguageUI();
                 }).catch(function(err) {
                     console.error('Error changing mobile language:', err);
+                    // 发生错误时尝试重新加载页面
+                    window.location.reload();
                 });
             });
 
