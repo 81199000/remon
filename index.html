@@ -7,11 +7,6 @@
     <!-- 先加载 jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- i18next 相关库 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.10/i18next.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/1.3.1/i18nextHttpBackend.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -1041,292 +1036,6 @@
         $(document).ready(function() {
             console.log('DOM loaded');
 
-            // 获取用户IP并设置默认语言
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    console.log('IP data:', data);
-                    let defaultLang = 'zh-CN'; // 默认语言
-
-                    // 根据国家/地区代码设置语言
-                    switch(data.country) {
-                        case 'CN':
-                            defaultLang = 'zh-CN';
-                            break;
-                        case 'TW':
-                        case 'HK':
-                        case 'MO':
-                            defaultLang = 'zh-TW';
-                            break;
-                        case 'JP':
-                            defaultLang = 'ja';
-                            break;
-                        case 'KR':
-                            defaultLang = 'ko';
-                            break;
-                        case 'RU':
-                            defaultLang = 'ru';
-                            break;
-                        case 'IN':
-                            defaultLang = 'hi';
-                            break;
-                        case 'SA':
-                        case 'AE':
-                        case 'QA':
-                        case 'BH':
-                        case 'KW':
-                        case 'OM':
-                        case 'YE':
-                        case 'SY':
-                        case 'IQ':
-                        case 'JO':
-                        case 'LB':
-                        case 'PS':
-                            defaultLang = 'ar';
-                            break;
-                        case 'US':
-                        case 'GB':
-                        case 'AU':
-                        case 'CA':
-                        case 'NZ':
-                            defaultLang = 'en';
-                            break;
-                        default:
-                            // 如果无法确定具体地区，使用浏览器语言
-                            const browserLang = navigator.language || navigator.userLanguage;
-                            if (browserLang.startsWith('zh')) {
-                                defaultLang = browserLang.includes('TW') || browserLang.includes('HK') ? 'zh-TW' : 'zh-CN';
-                            } else if (browserLang.startsWith('ja')) {
-                                defaultLang = 'ja';
-                            } else if (browserLang.startsWith('ko')) {
-                                defaultLang = 'ko';
-                            } else if (browserLang.startsWith('ru')) {
-                                defaultLang = 'ru';
-                            } else if (browserLang.startsWith('hi')) {
-                                defaultLang = 'hi';
-                            } else if (browserLang.startsWith('ar')) {
-                                defaultLang = 'ar';
-                            } else if (browserLang.startsWith('en')) {
-                                defaultLang = 'en';
-                            }
-                    }
-
-                    // 初始化i18next
-                    i18next
-                        .use(i18nextHttpBackend)
-                        .use(i18nextBrowserLanguageDetector)
-                        .init({
-                            fallbackLng: 'zh-CN',
-                            debug: true,
-                            ns: ['translation'],
-                            defaultNS: 'translation',
-                            backend: {
-                                loadPath: './translations/{{lng}}.json'
-                            },
-                            interpolation: {
-                                escapeValue: false
-                            },
-                            detection: {
-                                order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
-                                lookupQuerystring: 'lng',
-                                lookupCookie: 'i18next',
-                                lookupLocalStorage: 'i18nextLng',
-                                caches: ['localStorage', 'cookie']
-                            },
-                            lng: defaultLang // 设置默认语言
-                        }).then(function() {
-                            // 初始化 jquery-i18next
-                            jqueryI18next.init(i18next, $, {
-                                useOptionsAttr: true
-                            });
-                            
-                            // 更新UI
-                            updateLanguageUI();
-                        });
-                })
-                .catch(error => {
-                    console.error('Error fetching IP data:', error);
-                    // 如果IP检测失败，使用默认初始化
-                    initI18next();
-                });
-
-            // 备用初始化函数
-            function initI18next() {
-                i18next
-                    .use(i18nextHttpBackend)
-                    .use(i18nextBrowserLanguageDetector)
-                    .init({
-                        fallbackLng: 'zh-CN',
-                        debug: true,
-                        ns: ['translation'],
-                        defaultNS: 'translation',
-                        backend: {
-                            loadPath: './translations/{{lng}}.json'
-                        },
-                        interpolation: {
-                            escapeValue: false
-                        },
-                        detection: {
-                            order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
-                            lookupQuerystring: 'lng',
-                            lookupCookie: 'i18next',
-                            lookupLocalStorage: 'i18nextLng',
-                            caches: ['localStorage', 'cookie']
-                        }
-                    }).then(function() {
-                        jqueryI18next.init(i18next, $, {
-                            useOptionsAttr: true
-                        });
-                        updateLanguageUI();
-                    });
-            }
-
-            // 导航按钮点击事件
-            $(document).on('click', '.nav-button', function(e) {
-                console.log('Nav button clicked:', $(this).data('section'));
-                e.preventDefault();
-                e.stopPropagation();
-                const sectionId = $(this).data('section');
-                if (sectionId) {
-                    scrollToSection(sectionId);
-                }
-            });
-
-            // 语言切换按钮点击事件
-            $(document).on('click', '.globe-icon-wrapper', function(e) {
-                console.log('Globe icon clicked');
-                e.preventDefault();
-                e.stopPropagation();
-                toggleDropdown();
-                return false;
-            });
-
-            // 语言选项点击事件
-            $(document).on('click', '.language-option', function(e) {
-                console.log('Language option clicked:', $(this).data('lang'));
-                e.preventDefault();
-                e.stopPropagation();
-                const lang = $(this).data('lang');
-                if (lang) {
-                    console.log('Changing language to:', lang);
-                    i18next.changeLanguage(lang).then(function() {
-                        console.log('Language changed successfully to:', lang);
-                        updateLanguageUI();
-                        toggleDropdown(false);
-                    }).catch(function(err) {
-                        console.error('Error changing language:', err);
-                    });
-                }
-                return false;
-            });
-
-            // 点击页面其他地方关闭下拉菜单
-            $(document).on('click', function(e) {
-                if (!$(e.target).closest('.language-dropdown').length) {
-                    toggleDropdown(false);
-                }
-            });
-
-            function scrollToSection(sectionId) {
-                console.log('Scrolling to section:', sectionId);
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    const offset = section.offsetTop - 60;
-                    window.scrollTo({
-                        top: offset,
-                        behavior: 'smooth'
-                    });
-                    $('#mobileMenu').addClass('hidden');
-                }
-            }
-
-            function toggleDropdown(show) {
-                console.log('Toggling dropdown:', show);
-                const $dropdown = $('.language-dropdown');
-                const $button = $dropdown.find('.globe-icon-wrapper');
-                const $content = $dropdown.find('.language-dropdown-content');
-                
-                if (show === undefined) {
-                    show = !$content.hasClass('show');
-                }
-                
-                console.log('Dropdown state:', show);
-                
-                if (show) {
-                    $content.addClass('show');
-                    $dropdown.addClass('active');
-                    $button.attr('aria-expanded', 'true');
-                } else {
-                    $content.removeClass('show');
-                    $dropdown.removeClass('active');
-                    $button.attr('aria-expanded', 'false');
-                }
-            }
-
-            function updateLanguageUI() {
-                console.log('Updating language UI');
-                try {
-                    // 更新���有带有data-i18n属性的元素
-                    $('[data-i18n]').localize();
-                    
-                    // 更新文档方向（针对阿拉伯语）
-                    if (i18next.language === 'ar') {
-                        document.documentElement.setAttribute('dir', 'rtl');
-                    } else {
-                        document.documentElement.setAttribute('dir', 'ltr');
-                    }
-                    
-                    // 更新选中状态
-                    $('.language-option .fa-check').addClass('opacity-0');
-                    $(`.language-option[data-lang="${i18next.language}"] .fa-check`).removeClass('opacity-0');
-                    
-                    // 更新移动端选择框
-                    $('#mobileLangSelect').val(i18next.language);
-                    
-                    console.log('UI updated successfully');
-                } catch (err) {
-                    console.error('Error updating UI:', err);
-                }
-            }
-
-            // 移动端语言切换
-            $('#mobileLangSelect').on('change', function() {
-                const lang = $(this).val();
-                i18next.changeLanguage(lang).then(updateLanguageUI);
-            });
-
-            // 移动端菜单切换
-            $('#menuToggle').on('click', function(e) {
-                e.stopPropagation(); // 阻止事件冒泡
-                $('#mobileMenu').toggleClass('hidden show');
-                
-                // 添加动画效果
-                if ($('#mobileMenu').hasClass('show')) {
-                    setTimeout(() => {
-                        $('#mobileMenu').css('transform', 'scaleY(1)');
-                        $('#mobileMenu').css('opacity', '1');
-                    }, 0);
-                } else {
-                    $('#mobileMenu').css('transform', 'scaleY(0)');
-                    $('#mobileMenu').css('opacity', '0');
-                    setTimeout(() => {
-                        $('#mobileMenu').addClass('hidden');
-                    }, 300);
-                }
-            });
-
-            // 点击页面其他地方关闭移动端菜单
-            $(document).on('click', function(e) {
-                if (!$(e.target).closest('#mobileMenu, #menuToggle').length) {
-                    $('#mobileMenu').addClass('hidden');
-                }
-            });
-
-            // 移动端菜单内的点击事件阻止冒泡
-            $('#mobileMenu').on('click', function(e) {
-                e.stopPropagation();
-            });
-
             // 检查系统暗黑模式和时间
             function shouldEnableDarkMode() {
                 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1335,147 +1044,28 @@
                 return systemPrefersDark || isNightTime;
             }
 
-            // 更新暗黑模式状态和按钮文本
+            // 更新暗黑模式状态
             function updateDarkMode(isDark) {
                 if (isDark) {
                     document.documentElement.classList.add('dark');
                 } else {
                     document.documentElement.classList.remove('dark');
                 }
-                updateDarkModeButtonText(isDark);
                 localStorage.theme = isDark ? 'dark' : 'light';
             }
 
-            // 更新按钮文本
-            function updateDarkModeButtonText(isDark) {
-                const buttonText = isDark ? 'nav.lightMode' : 'nav.darkMode';
-                const icon = isDark ? 'fa-sun' : 'fa-moon';
-                
-                // 更新桌面端按钮
-                $('#darkModeToggle')
-                    .attr('aria-label', i18next.t(buttonText))
-                    .html(`<i class="fas ${icon}" aria-hidden="true"></i>`);
-                
-                // 更新移动端按钮
-                $('#mobileDarkModeToggle')
-                    .html(`<i class="fas ${icon} mr-2" aria-hidden="true"></i><span data-i18n="${buttonText}"></span>`);
-                
-                // 重新应用本地化
-                $('[data-i18n]').localize();
-            }
-
             // 初始化暗黑模式
-            function initDarkMode() {
-                const savedTheme = localStorage.theme;
-                if (savedTheme) {
-                    // 如果用户手动设置过主题，优先使用保存的设置
-                    updateDarkMode(savedTheme === 'dark');
-                } else {
-                    // 否则根据系统设置和时间自动判断
-                    updateDarkMode(shouldEnableDarkMode());
-                }
+            const savedTheme = localStorage.theme;
+            if (savedTheme) {
+                updateDarkMode(savedTheme === 'dark');
+            } else {
+                updateDarkMode(shouldEnableDarkMode());
             }
 
-            // 监听系统暗黑模式变化
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (!localStorage.theme) {
-                    // 只有用户没有手动设置主题时才自动跟随系统
-                    updateDarkMode(shouldEnableDarkMode());
-                }
-            });
-
-            // 定时检查夜间模式
-            function checkNightMode() {
-                if (!localStorage.theme) {
-                    updateDarkMode(shouldEnableDarkMode());
-                }
-            }
-
-            // 每分钟检查一次是否需要切换模式
-            setInterval(checkNightMode, 60000);
-
-            // 绑定点击事件
+            // 暗黑模式切换按钮事件
             $('#darkModeToggle, #mobileDarkModeToggle').on('click', function() {
                 const isDark = !document.documentElement.classList.contains('dark');
                 updateDarkMode(isDark);
-            });
-
-            // 初始化
-            initDarkMode();
-
-            // 导航栏滚动效果
-            let lastScrollTop = 0;
-            let scrollTimer;
-
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const scrollDelta = Math.abs(scrollTop - lastScrollTop);
-                
-                // 只有滚动距离超过阈值时才触发动画
-                if (scrollDelta > 10) {
-                    clearTimeout(scrollTimer);
-                    
-                    if (scrollTop > lastScrollTop && scrollTop > 100) {
-                        header.classList.add('nav-hidden');
-                    } else {
-                        header.classList.remove('nav-hidden');
-                    }
-                    
-                    // 添加滚动节流
-                    scrollTimer = setTimeout(() => {
-                        if (scrollTop > 50) {
-                            header.classList.add('nav-scrolled');
-                        } else {
-                            header.classList.remove('nav-scrolled');
-                        }
-                    }, 100);
-                    
-                    lastScrollTop = scrollTop;
-                }
-            });
-
-            // 滚动显示动画
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.scroll-reveal').forEach(el => {
-                observer.observe(el);
-            });
-
-            // 添加导航按钮点击波纹效果
-            function createRipple(event) {
-                const button = event.currentTarget;
-                const ripple = document.createElement('span');
-                
-                const diameter = Math.max(button.clientWidth, button.clientHeight);
-                const radius = diameter / 2;
-                
-                ripple.style.width = ripple.style.height = `${diameter}px`;
-                ripple.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-                ripple.style.top = `${event.clientY - button.offsetTop - radius}px`;
-                ripple.classList.add('ripple');
-                
-                const existingRipple = button.querySelector('.ripple');
-                if (existingRipple) {
-                    existingRipple.remove();
-                }
-                
-                button.appendChild(ripple);
-            }
-
-            document.querySelectorAll('.nav-button').forEach(button => {
-                button.addEventListener('click', createRipple);
             });
 
             // 联系表单相关的事件处理
@@ -1485,16 +1075,19 @@
             const closeModalBtn = document.getElementById('closeContactModal');
             const contactForm = document.getElementById('contactForm');
 
-            // 直接绑定点击事件
-            openModalBtn.onclick = function() {
+            // 打开模态框
+            openModalBtn.addEventListener('click', function() {
                 console.log('Opening modal');
                 modal.style.display = 'flex';
                 modal.classList.remove('hidden');
-                modalContent.classList.remove('scale-95', 'opacity-0');
-                modalContent.classList.add('scale-100', 'opacity-100');
-            };
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            });
 
-            closeModalBtn.onclick = function() {
+            // 关闭模态框
+            closeModalBtn.addEventListener('click', function() {
                 console.log('Closing modal');
                 modalContent.classList.remove('scale-100', 'opacity-100');
                 modalContent.classList.add('scale-95', 'opacity-0');
@@ -1502,17 +1095,17 @@
                     modal.style.display = 'none';
                     modal.classList.add('hidden');
                 }, 300);
-            };
+            });
 
-            // 点击模态框外部关闭
-            modal.onclick = function(e) {
+            // 点击外部关闭
+            modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     closeModalBtn.click();
                 }
-            };
+            });
 
-            // 表单提交事件
-            contactForm.onsubmit = async function(e) {
+            // 表单提交
+            contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 console.log('Form submitted');
                 
@@ -1541,14 +1134,33 @@
                     console.error('Error:', error);
                     alert('提交失败，请稍后重试');
                 }
-            };
+            });
 
-            // ESC键关闭模态框
-            document.onkeydown = function(e) {
+            // ESC键关闭
+            document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
                     closeModalBtn.click();
                 }
-            };
+            });
+
+            // 导航按钮点击事件
+            $('.nav-button[data-section]').on('click', function() {
+                const sectionId = $(this).data('section');
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const offset = section.offsetTop - 60;
+                    window.scrollTo({
+                        top: offset,
+                        behavior: 'smooth'
+                    });
+                    $('#mobileMenu').addClass('hidden');
+                }
+            });
+
+            // 移动端菜单
+            $('#menuToggle').on('click', function() {
+                $('#mobileMenu').toggleClass('hidden');
+            });
         });
     </script>
 </body>
