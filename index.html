@@ -1266,7 +1266,7 @@
             function updateLanguageUI() {
                 console.log('Updating language UI');
                 try {
-                    // 更新所有带有data-i18n属性的元素
+                    // 更新���有带有data-i18n属性的元素
                     $('[data-i18n]').localize();
                     
                     // 更新文档方向（针对阿拉伯语）
@@ -1479,88 +1479,76 @@
             });
 
             // 联系表单相关的事件处理
-            function initContactForm() {
-                console.log('Initializing contact form');
-                const openModalBtn = document.querySelector('#openContactModal');
-                const closeModalBtn = document.querySelector('#closeContactModal');
-                const contactForm = document.querySelector('#contactForm');
-                const modal = document.querySelector('#contactModal');
-                const modalContent = modal.querySelector('.bg-white');
+            const modal = document.getElementById('contactModal');
+            const modalContent = modal.querySelector('.bg-white');
+            const openModalBtn = document.getElementById('openContactModal');
+            const closeModalBtn = document.getElementById('closeContactModal');
+            const contactForm = document.getElementById('contactForm');
 
-                function openModal() {
-                    console.log('Opening modal');
-                    modal.style.display = 'flex';
-                    modal.classList.remove('hidden');
-                    requestAnimationFrame(() => {
-                        modalContent.classList.remove('scale-95', 'opacity-0');
-                        modalContent.classList.add('scale-100', 'opacity-100');
-                    });
+            // 直接绑定点击事件
+            openModalBtn.onclick = function() {
+                console.log('Opening modal');
+                modal.style.display = 'flex';
+                modal.classList.remove('hidden');
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            };
+
+            closeModalBtn.onclick = function() {
+                console.log('Closing modal');
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    modal.classList.add('hidden');
+                }, 300);
+            };
+
+            // 点击模态框外部关闭
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    closeModalBtn.click();
                 }
+            };
 
-                function closeModal() {
-                    console.log('Closing modal');
-                    modalContent.classList.remove('scale-100', 'opacity-100');
-                    modalContent.classList.add('scale-95', 'opacity-0');
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                        modal.classList.add('hidden');
-                    }, 300);
-                }
-
-                function showSuccessToast() {
-                    const successToast = document.querySelector('#successToast');
-                    successToast.classList.remove('translate-y-full', 'opacity-0');
-                    setTimeout(() => {
-                        successToast.classList.add('translate-y-full', 'opacity-0');
-                    }, 3000);
-                }
-
-                // 绑定事件监听器
-                openModalBtn.addEventListener('click', openModal);
-                closeModalBtn.addEventListener('click', closeModal);
-
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeModal();
-                    }
-                });
-
-                contactForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    
-                    const formData = new FormData(contactForm);
-                    try {
-                        const response = await fetch(contactForm.action, {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                'Accept': 'application/json'
-                            }
-                        });
-
-                        if (response.ok) {
-                            closeModal();
-                            showSuccessToast();
-                            contactForm.reset();
-                        } else {
-                            throw new Error('提交失败');
+            // 表单提交事件
+            contactForm.onsubmit = async function(e) {
+                e.preventDefault();
+                console.log('Form submitted');
+                
+                const formData = new FormData(contactForm);
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
                         }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        alert('提交失败，请稍后重试');
-                    }
-                });
+                    });
 
-                // ESC键关闭模态框
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                        closeModal();
+                    if (response.ok) {
+                        closeModalBtn.click();
+                        const successToast = document.getElementById('successToast');
+                        successToast.classList.remove('translate-y-full', 'opacity-0');
+                        setTimeout(() => {
+                            successToast.classList.add('translate-y-full', 'opacity-0');
+                        }, 3000);
+                        contactForm.reset();
+                    } else {
+                        throw new Error('提交失败');
                     }
-                });
-            }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('提交失败，请稍后重试');
+                }
+            };
 
-            // 初始化联系表单
-            initContactForm();
+            // ESC键关闭模态框
+            document.onkeydown = function(e) {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModalBtn.click();
+                }
+            };
         });
     </script>
 </body>
