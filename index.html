@@ -1122,69 +1122,108 @@
 
     <!-- 在页面底部添加脚本 -->
     <script>
-        $(document).ready(function() {
-            console.log('DOM loaded');
+        // 预加载所有翻译文件
+        const languages = ['zh-CN', 'zh-TW', 'en', 'ar', 'hi', 'ja', 'ko', 'ru'];
+        const translations = {};
 
-            // 初始化i18next
+        // 初始化时预加载所有翻译
+        async function preloadTranslations() {
+            try {
+                await Promise.all(languages.map(async (lang) => {
+                    const response = await fetch(`./translations/${lang}.json`);
+                    translations[lang] = await response.json();
+                }));
+                console.log('All translations loaded');
+                initI18next();
+            } catch (error) {
+                console.error('Error loading translations:', error);
+            }
+        }
+
+        // 初始化 i18next
+        function initI18next() {
             i18next
                 .use(i18nextHttpBackend)
                 .use(i18nextBrowserLanguageDetector)
                 .init({
                     fallbackLng: 'zh-CN',
-                    debug: true,
+                    debug: false, // 关闭调试模式以提升性能
+                    resources: translations, // 使用预加载的翻译
                     backend: {
                         loadPath: './translations/{{lng}}.json',
                         requestOptions: {
+                            cache: 'default', // 启用浏览器缓存
                             headers: {
                                 'Content-Type': 'application/json; charset=utf-8'
                             }
                         }
+                    },
+                    load: 'currentOnly', // 只加载当前语言
+                    preload: languages, // 预加载所有语言
+                    returnObjects: true,
+                    interpolation: {
+                        escapeValue: false
                     }
                 }).then(function() {
-                    // 初始化 jquery-i18next
                     jqueryI18next.init(i18next, $, {
                         useOptionsAttr: true
                     });
-                    
-                    // 更新UI
                     updateLanguageUI();
                 });
+        }
 
-            // 语言切换按钮点击事件
+        $(document).ready(function() {
+            console.log('DOM loaded');
+            preloadTranslations();
+
+            // 优化语言切换逻辑
             $('.language-option').on('click', function(e) {
                 e.preventDefault();
                 const lang = $(this).data('lang');
-                if (lang) {
+                if (lang && lang !== i18next.language) {
+                    const $button = $(this);
+                    $button.addClass('loading'); // 添加加载状态
+                    
                     i18next.changeLanguage(lang).then(function() {
                         updateLanguageUI();
                         $('.language-dropdown-content').removeClass('show');
+                        $button.removeClass('loading');
+                    });
+                } else {
+                    $('.language-dropdown-content').removeClass('show');
+                }
+            });
+
+            // 移动端语言切换优化
+            $('#mobileLangSelect').on('change', function() {
+                const lang = $(this).val();
+                if (lang !== i18next.language) {
+                    const $select = $(this);
+                    $select.prop('disabled', true); // 禁用选择框
+                    
+                    i18next.changeLanguage(lang).then(function() {
+                        updateLanguageUI();
+                        $select.prop('disabled', false);
                     });
                 }
             });
 
-            // 移动端语言切换
-            $('#mobileLangSelect').on('change', function() {
-                const lang = $(this).val();
-                i18next.changeLanguage(lang).then(updateLanguageUI);
-            });
-
-            // 更新UI函数
+            // 更新UI函数优化
             function updateLanguageUI() {
-                $('[data-i18n]').localize();
-                
-                // 更新选中状态
-                $('.language-option .fa-check').addClass('opacity-0');
-                $(`.language-option[data-lang="${i18next.language}"] .fa-check`).removeClass('opacity-0');
-                
-                // 更新移动端选择框
-                $('#mobileLangSelect').val(i18next.language);
-                
-                // 更新文档方向（针对阿拉伯语）
-                if (i18next.language === 'ar') {
-                    document.documentElement.setAttribute('dir', 'rtl');
-                } else {
-                    document.documentElement.setAttribute('dir', 'ltr');
-                }
+                // 使用 requestAnimationFrame 优化性能
+                requestAnimationFrame(() => {
+                    $('[data-i18n]').localize();
+                    
+                    // 更新选中状态
+                    $('.language-option .fa-check').addClass('opacity-0');
+                    $(`.language-option[data-lang="${i18next.language}"] .fa-check`).removeClass('opacity-0');
+                    
+                    // 更新移动端选择框
+                    $('#mobileLangSelect').val(i18next.language);
+                    
+                    // 更新文档方向（针对阿拉伯语）
+                    document.documentElement.setAttribute('dir', i18next.language === 'ar' ? 'rtl' : 'ltr');
+                });
             }
 
             // 语言下拉菜单切换
