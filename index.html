@@ -6,10 +6,63 @@
     <title data-i18n="title">广东日明五金实业有限公司</title>
     <!-- 先加载 jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 更新 Tailwind CSS 配置 -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    backgroundColor: {
+                        'light': '#ffffff',
+                        'dark': '#111827',
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* 基础样式 */
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* 暗黑模式样式 */
+        .dark body {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+
+        .dark .bg-white {
+            background-color: #1f2937 !important;
+        }
+
+        .dark .text-gray-900 {
+            color: #f3f4f6 !important;
+        }
+
+        /* 强制覆盖暗黑模式背景色 */
+        @media (prefers-color-scheme: dark) {
+            .dark body {
+                background-color: #111827 !important;
+            }
+            .dark .bg-white {
+                background-color: #1f2937 !important;
+            }
+        }
+
+        /* 强制覆盖亮色模式背景色 */
+        body:not(.dark) {
+            background-color: #ffffff !important;
+        }
+        .bg-white:not(.dark) {
+            background-color: #ffffff !important;
+        }
+
         /* 自定义样式 */
         .nav-height {
             height: 60px;
@@ -77,11 +130,6 @@
         header.nav-scrolled {
             background-color: rgba(255, 255, 255, 0.98);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .dark header.nav-scrolled {
-            background-color: rgba(17, 24, 39, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         nav {
