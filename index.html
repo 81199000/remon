@@ -1133,12 +1133,11 @@
                     fallbackLng: 'zh-CN',
                     debug: true,
                     backend: {
-                        loadPath: './translations/{{lng}}.json',
-                        requestOptions: {
-                            headers: {
-                                'Content-Type': 'application/json; charset=utf-8'
-                            }
-                        }
+                        loadPath: './translations/{{lng}}.json'
+                    },
+                    detection: {
+                        order: ['querystring', 'cookie', 'localStorage', 'navigator'],
+                        caches: ['localStorage', 'cookie']
                     }
                 }).then(function() {
                     // 初始化 jquery-i18next
@@ -1151,13 +1150,18 @@
                 });
 
             // 语言切换按钮点击事件
-            $('.language-option').on('click', function(e) {
+            $(document).on('click', '.language-option', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 const lang = $(this).data('lang');
+                console.log('Switching language to:', lang);
                 if (lang) {
                     i18next.changeLanguage(lang).then(function() {
+                        console.log('Language changed to:', lang);
                         updateLanguageUI();
                         $('.language-dropdown-content').removeClass('show');
+                    }).catch(function(err) {
+                        console.error('Error changing language:', err);
                     });
                 }
             });
@@ -1165,11 +1169,18 @@
             // 移动端语言切换
             $('#mobileLangSelect').on('change', function() {
                 const lang = $(this).val();
-                i18next.changeLanguage(lang).then(updateLanguageUI);
+                console.log('Mobile language change:', lang);
+                i18next.changeLanguage(lang).then(function() {
+                    console.log('Mobile language changed to:', lang);
+                    updateLanguageUI();
+                }).catch(function(err) {
+                    console.error('Error changing mobile language:', err);
+                });
             });
 
             // 更新UI函数
             function updateLanguageUI() {
+                console.log('Updating UI for language:', i18next.language);
                 $('[data-i18n]').localize();
                 
                 // 更新选中状态
@@ -1185,6 +1196,9 @@
                 } else {
                     document.documentElement.setAttribute('dir', 'ltr');
                 }
+
+                // 更新 HTML lang 属性
+                document.documentElement.setAttribute('lang', i18next.language);
             }
 
             // 语言下拉菜单切换
