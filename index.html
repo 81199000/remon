@@ -274,9 +274,19 @@
             color: #f3f4f6;
         }
 
-        /* Logo 暗黑模式样式 */
+        /* 删除所有 Logo 相关的暗黑模式滤镜样式 */
+        /* 删除这些行
         .dark img[alt="REMON Logo"] {
             filter: brightness(0) invert(1);
+        } */
+
+        /* 确保暗黑模式下白色 Logo 正确显示 */
+        .dark .logo-dark {
+            display: block !important;
+        }
+
+        .dark .logo-light {
+            display: none !important;
         }
 
         .dark header {
@@ -542,7 +552,7 @@
             background-color: #1a1f2d;
         }
 
-        /* 产品卡片在暗黑模式下的背景色调整 */
+        /* ���品卡片在暗黑模式下的背景色调整 */
         .dark .product-card {
             background-color: #1f2937;
             border: 1px solid rgba(75, 85, 99, 0.2);
@@ -592,8 +602,8 @@
     <header>
         <nav class="container mx-auto px-4 flex justify-between items-center nav-height">
             <a href="#" class="flex items-center z-[52]">
-                <img src="./TP/日明.png" alt="REMON Logo" class="h-12 w-auto transition-all duration-200 block dark:hidden">
-                <img src="./TP/日明-白色.png" alt="REMON Logo" class="h-12 w-auto transition-all duration-200 hidden dark:block">
+                <img src="./TP/日明.png" alt="REMON Logo" class="logo-light h-12 w-auto transition-all duration-200 block dark:hidden">
+                <img src="./TP/日明-白色.png" alt="REMON Logo White" class="logo-dark h-12 w-auto transition-all duration-200 hidden dark:block">
                 <span class="sr-only">REMON</span>
             </a>
             <div class="hidden md:flex items-center space-x-8 z-[52]">
@@ -835,7 +845,7 @@
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.913.type">固装</span></p>
                         <p><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.913.material">不锈钢</span></p>
                         <p><span data-i18n="products.common_labels.finish">表面：</span><span data-i18n="products.hinges_list.913.finish">精抛光</span></p>
-                        <p data-i18n="products.hinges_list.913.desc">这款铰链适合各种家具，确保稳定性和耐用性。</p>
+                        <p data-i18n="products.hinges_list.913.desc">这款���链适合各种家具，确保稳定性和耐用性。</p>
                     </div>
                     <!-- 产品 11 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
@@ -859,7 +869,7 @@
                     </div>
                     <!-- 产品 13 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                        <img src="./TP/CP/M1 三��力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="M1 三段力 功能可选 固装 自卸" class="w-full h-auto object-contain mb-4">
+                        <img src="./TP/CP/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="M1 三段力 功能可选 固装 自卸" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.M1.name">型号: M1</h3>
                         <p><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M1.feature">三段力</span></p>
                         <p><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.M1.type">固装/自卸</span></p>
@@ -933,7 +943,7 @@
                     <div class="md:w-1/2 md:pl-8">
                         <h3 class="text-2xl font-semibold mb-4" data-i18n="technical.subtitle">精密工艺，卓越品质</h3>
                         <p class="text-lg mb-4" data-i18n="technical.description">
-                            我们的不锈钢铰链采用先进的工程设计和精密��工艺。每一个零件都经过严格的质量控制，确保产品的耐用性和稳定性。
+                            我们的不锈钢铰链采用先进的工程设计和精密工艺。每一个零件都经过严格的质量控制，确保产品的耐用性和稳定性。
                         </p>
                         <ul class="list-disc list-inside space-y-2">
                             <li data-i18n="[html]technical.features.0">高强度不锈钢材质，抗腐蚀性强</li>
@@ -961,9 +971,9 @@
         <div class="container mx-auto px-4">
             <div class="max-w-lg mx-auto text-center">
                 <h3 class="text-xl font-semibold mb-4" data-i18n="contact.title">合作咨询</h3>
-                <button id="openContactModal" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <button id="openContactModal" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                     <i class="fas fa-handshake mr-2"></i>
-                    <span data-i18n="contact.start">开始咨询</span>
+                    <span data-i18n="contact.start">联系我们</span>
                 </button>
                 <p class="text-center mt-6" data-i18n="footer.copyright">&copy; 2024 广东日明. 保留所有权利。</p>
                 <p class="text-center mt-2" data-i18n="footer.address">地址：广东省揭阳市揭东区磐东镇北河工业区</p>
@@ -984,7 +994,7 @@
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <form id="contactForm" class="space-y-4">
+                <form id="contactForm" action="https://formspree.io/f/81199000@qq.com" method="POST" class="space-y-4">
                     <div class="relative">
                         <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-200" data-i18n="contact.name">姓名</label>
                         <input type="text" id="name" name="name" required
@@ -1463,91 +1473,89 @@
                 button.addEventListener('click', createRipple);
             });
 
-            // 修复联系表单相关的事件处理
-            function openModal() {
-                const modal = document.getElementById('contactModal');
+            // 联系表单相关的事件处理
+            function initContactForm() {
+                console.log('Initializing contact form');
+                const openModalBtn = document.querySelector('#openContactModal');
+                const closeModalBtn = document.querySelector('#closeContactModal');
+                const contactForm = document.querySelector('#contactForm');
+                const modal = document.querySelector('#contactModal');
                 const modalContent = modal.querySelector('.bg-white');
-                
-                modal.style.display = 'flex';
-                modal.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    modalContent.classList.remove('scale-95', 'opacity-0');
-                    modalContent.classList.add('scale-100', 'opacity-100');
-                }, 10);
-            }
 
-            function closeModal() {
-                const modal = document.getElementById('contactModal');
-                const modalContent = modal.querySelector('.bg-white');
-                
-                modalContent.classList.remove('scale-100', 'opacity-100');
-                modalContent.classList.add('scale-95', 'opacity-0');
-                
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    modal.classList.add('hidden');
-                }, 300);
-            }
-
-            function showSuccessToast() {
-                const successToast = document.getElementById('successToast');
-                successToast.classList.remove('translate-y-full', 'opacity-0');
-                setTimeout(() => {
-                    successToast.classList.add('translate-y-full', 'opacity-0');
-                }, 3000);
-            }
-
-            // 确保在 DOM 加载完成后绑定事件
-            document.addEventListener('DOMContentLoaded', function() {
-                const openModalBtn = document.getElementById('openContactModal');
-                const closeModalBtn = document.getElementById('closeContactModal');
-                const contactForm = document.getElementById('contactForm');
-                const modal = document.getElementById('contactModal');
-
-                if (openModalBtn) {
-                    openModalBtn.addEventListener('click', openModal);
-                }
-
-                if (closeModalBtn) {
-                    closeModalBtn.addEventListener('click', closeModal);
-                }
-
-                if (modal) {
-                    modal.addEventListener('click', (e) => {
-                        if (e.target.id === 'contactModal') {
-                            closeModal();
-                        }
+                function openModal() {
+                    console.log('Opening modal');
+                    modal.style.display = 'flex';
+                    modal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        modalContent.classList.remove('scale-95', 'opacity-0');
+                        modalContent.classList.add('scale-100', 'opacity-100');
                     });
                 }
 
-                if (contactForm) {
-                    contactForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        
-                        const formData = {
-                            name: document.getElementById('name').value,
-                            company: document.getElementById('company').value,
-                            phone: document.getElementById('phone').value,
-                            message: document.getElementById('message').value
-                        };
-
-                        const mailtoLink = `mailto:81199000@qq.com?subject=合作咨询&body=姓名：${encodeURIComponent(formData.name)}%0D%0A公司：${encodeURIComponent(formData.company)}%0D%0A电话：${encodeURIComponent(formData.phone)}%0D%0A意向：${encodeURIComponent(formData.message)}`;
-
-                        window.location.href = mailtoLink;
-                        closeModal();
-                        showSuccessToast();
-                        contactForm.reset();
-                    });
+                function closeModal() {
+                    console.log('Closing modal');
+                    modalContent.classList.remove('scale-100', 'opacity-100');
+                    modalContent.classList.add('scale-95', 'opacity-0');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        modal.classList.add('hidden');
+                    }, 300);
                 }
 
-                // ESC键关闭模态框
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                function showSuccessToast() {
+                    const successToast = document.querySelector('#successToast');
+                    successToast.classList.remove('translate-y-full', 'opacity-0');
+                    setTimeout(() => {
+                        successToast.classList.add('translate-y-full', 'opacity-0');
+                    }, 3000);
+                }
+
+                // 绑定事件监听器
+                openModalBtn.addEventListener('click', openModal);
+                closeModalBtn.addEventListener('click', closeModal);
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
                         closeModal();
                     }
                 });
-            });
+
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(contactForm);
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (response.ok) {
+                            closeModal();
+                            showSuccessToast();
+                            contactForm.reset();
+                        } else {
+                            throw new Error('提交失败');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('提交失败，请稍后重试');
+                    }
+                });
+
+                // ESC键关闭模态框
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // 初始化联系表单
+            initContactForm();
         });
     </script>
 </body>
