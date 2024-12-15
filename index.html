@@ -703,7 +703,7 @@
                         </button>
                         <button type="button" class="language-option" data-lang="hi" role="menuitem">
                             <i class="fas fa-check opacity-0" aria-hidden="true"></i>
-                            <span>ह��ंदी</span>
+                            <span>हिंदी</span>
                         </button>
                         <button type="button" class="language-option" data-lang="ja" role="menuitem">
                             <i class="fas fa-check opacity-0" aria-hidden="true"></i>
@@ -883,8 +883,8 @@
                                     <i class="fas fa-chevron-down rotate-icon text-white opacity-0 group-hover:opacity-100 text-2xl"></i>
                                 </div>
                             </div>
-                            <h3 class="text-xl font-semibold mb-2 text-center">二段力液压铰链</h3>
-                            <p class="text-center text-gray-600 mb-3">开门随时定位静音，关门缓冲静音铰链系列</p>
+                            <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type2">二段力液压铰链</h3>
+                            <p class="text-center text-gray-600 mb-3" data-i18n="products.hinges_categories.type2_desc">开门随时定位静音，关门缓冲静音铰链系列</p>
                         </div>
                         <div class="hinge-content mt-4 absolute left-0 w-[300%] z-10">
                             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -940,8 +940,8 @@
                                     <i class="fas fa-chevron-down rotate-icon text-white opacity-0 group-hover:opacity-100 text-2xl"></i>
                                 </div>
                             </div>
-                            <h3 class="text-xl font-semibold mb-2 text-center">三段力液压铰链</h3>
-                            <p class="text-center text-gray-600 mb-3">开门大于零度启动缓冲效果，随时定位静音，关门缓冲静音铰链系列</p>
+                            <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type3">三段力液压铰链</h3>
+                            <p class="text-center text-gray-600 mb-3" data-i18n="products.hinges_categories.type3_desc">开门大于零度启动缓冲效果，随时定位静音，关门缓冲静音铰链系列</p>
                         </div>
                         <div class="hinge-content mt-4 absolute left-0 w-[300%] z-10">
                             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -1133,7 +1133,12 @@
                     fallbackLng: 'zh-CN',
                     debug: true,
                     backend: {
-                        loadPath: './translations/{{lng}}.json'
+                        loadPath: './translations/{{lng}}.json',
+                        requestOptions: {
+                            headers: {
+                                'Content-Type': 'application/json; charset=utf-8'
+                            }
+                        }
                     }
                 }).then(function() {
                     // 初始化 jquery-i18next

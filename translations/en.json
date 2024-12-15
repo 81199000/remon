@@ -5,151 +5,129 @@
     "features": "Features",
     "technical": "Technical",
     "about": "About",
-    "darkMode": "Toggle Dark Mode",
-    "lightMode": "Toggle Light Mode"
+    "darkMode": "Toggle Dark Mode"
   },
   "hero": {
-    "title1": "Empowering Home Living",
-    "title2": "Refreshing Experience",
+    "title1": "Empowering Living",
+    "title2": "New Experience",
     "subtitle": "Ultimate Silence, Buffer Expert"
   },
   "products": {
-    "title": "Slide Rail Series",
-    "hinges": "Soft-Close Hinge Series",
-    "dimensions": "Available Dimensions: ",
-    "colors": "Available Colors: ",
-    "common_labels": {
-      "type": "Installation: ",
-      "material": "Material: ",
-      "finish": "Surface: ",
-      "function": "Function: ",
-      "color": "Color: "
-    },
+    "title": "Slide Series",
+    "hinges": "Hinge Series",
+    "dimensions": "Available Sizes",
+    "colors": "Available Colors",
     "slides": {
       "white_zinc": {
         "name": "White Zinc-plated Buffer Slide",
         "dimensions": "4515, 4512",
-        "colors": "Black Electrophoretic, Colored Zinc",
-        "desc": "This slide rail uses high-quality zinc-plated material, offering excellent corrosion resistance and wear resistance, suitable for various home and industrial applications."
+        "colors": "Black E-coating, Colored Zinc",
+        "desc": "This slide uses high-quality zinc-plated material, offering excellent corrosion resistance and wear resistance, suitable for various home and industrial applications."
       },
       "stainless_steel": {
         "name": "Stainless Steel Silent Three-Section Slide",
         "dimensions": "4515, 4512",
-        "colors": "Black Electrophoretic, Colored Zinc",
-        "desc": "This slide rail uses stainless steel material with delicate design, ensuring silent sliding, perfect for high-end furniture."
+        "colors": "Black E-coating, Colored Zinc",
+        "desc": "This slide is made of stainless steel with delicate design, ensuring silent sliding, suitable for high-end furniture."
       },
       "black_rebound": {
         "name": "Black Rebound Sealed Slide",
         "dimensions": "4515, 4512",
-        "colors": "Black Electrophoretic, Colored Zinc",
-        "desc": "This slide rail features rebound sealing technology, with a smooth surface offering excellent wear resistance and aesthetics."
+        "colors": "Black E-coating, Colored Zinc",
+        "desc": "This slide uses rebound sealing process, with smooth surface, excellent wear resistance and aesthetics."
       },
       "black_silent": {
         "name": "Black Silent Three-Section Slide",
         "dimensions": "4515, 4512",
-        "colors": "Black Electrophoretic, Colored Zinc",
-        "desc": "This slide rail features a three-section design, ensuring smooth sliding experience, suitable for various cabinet doors."
+        "colors": "Black E-coating, Colored Zinc",
+        "desc": "This slide features a three-section design, ensuring smooth sliding experience, suitable for various cabinet doors."
       }
+    },
+    "hinges_categories": {
+      "type1": "Single-Stage Hydraulic Hinge",
+      "type1_desc": "Silent closing buffer hinge series",
+      "type2": "Two-Stage Hydraulic Hinge",
+      "type2_desc": "Door positioning and silent closing buffer hinge series",
+      "type3": "Three-Stage Hydraulic Hinge",
+      "type3_desc": "Zero-degree buffer effect, positioning and silent closing hinge series"
+    },
+    "common_labels": {
+      "type": "Installation",
+      "material": "Material",
+      "color": "Color",
+      "function": "Function"
     },
     "hinges_list": {
       "817": {
         "name": "Model: 817",
         "type": "Fixed",
-        "material": "Cold-Rolled Steel",
-        "desc": "This hinge offers good strength and durability, suitable for various furniture applications."
+        "material": "Cold-rolled Steel",
+        "desc": "This hinge has good strength and durability, suitable for various furniture applications."
       },
       "817QH": {
         "name": "Model: 817QH",
         "type": "Fixed",
-        "material": "Cold-Rolled Steel",
+        "material": "Cold-rolled Steel",
         "color": "Gun Black",
-        "desc": "This hinge uses gun black cold-rolled steel, aesthetically pleasing, suitable for modern home styles."
+        "desc": "This hinge uses gun black cold-rolled steel, aesthetically pleasing, suitable for modern furniture styles."
       },
       "818": {
         "name": "Model: 818",
-        "type": "Self-Dismounting",
-        "material": "Cold-Rolled Steel",
+        "feature": "Quick Release",
+        "material": "Cold-rolled Steel",
         "desc": "This hinge is designed for convenient use, ensuring durability and stability."
       },
       "818QH": {
         "name": "Model: 818QH",
-        "type": "Self-Dismounting",
-        "material": "Cold-Rolled Steel",
+        "feature": "Quick Release",
+        "material": "Cold-rolled Steel",
         "color": "Gun Black",
-        "desc": "This hinge combines aesthetics and functionality, suitable for various furniture."
+        "desc": "This hinge combines aesthetics with practicality, suitable for various furniture."
       },
       "827": {
         "name": "Model: 827",
+        "feature": "Two-Stage",
         "type": "Fixed",
-        "material": "Cold-Rolled Steel",
-        "feature": "Two-Stage Force",
+        "material": "Cold-rolled Steel",
         "desc": "This hinge provides better support, suitable for heavy door panels."
       },
       "827QH": {
         "name": "Model: 827QH",
+        "feature": "Two-Stage",
         "type": "Fixed",
-        "material": "Cold-Rolled Steel",
-        "feature": "Two-Stage Force",
+        "material": "Cold-rolled Steel",
         "color": "Gun Black",
-        "desc": "This hinge combines aesthetics and functionality, suitable for various furniture."
+        "desc": "This hinge combines aesthetics with functionality, suitable for various furniture."
       },
       "828": {
         "name": "Model: 828",
-        "type": "Self-Dismounting",
-        "material": "Cold-Rolled Steel",
-        "feature": "Two-Stage Force",
+        "feature": "Two-Stage",
+        "type": "Quick Release",
+        "material": "Cold-rolled Steel",
         "desc": "This hinge ensures smooth opening and closing experience, suitable for various applications."
       },
       "828QH": {
         "name": "Model: 828QH",
-        "type": "Self-Dismounting",
-        "material": "Cold-Rolled Steel",
-        "feature": "Two-Stage Force",
-        "desc": "This hinge combines two-stage force design, suitable for various applications."
-      },
-      "912": {
-        "name": "Model: 912",
-        "type": "Self-Dismounting",
-        "material": "Stainless Steel",
-        "finish": "Fine Polished",
-        "desc": "This hinge uses stainless steel material with fine polishing, ensuring durability and aesthetics."
-      },
-      "913": {
-        "name": "Model: 913",
-        "type": "Fixed",
-        "material": "Stainless Steel",
-        "finish": "Fine Polished",
-        "desc": "This hinge is suitable for various furniture, ensuring stability and durability."
-      },
-      "922": {
-        "name": "Model: 922",
-        "type": "Self-Dismounting",
-        "material": "Stainless Steel",
-        "feature": "Two-Stage Force",
-        "finish": "Fine Polished",
-        "desc": "This hinge ensures smooth opening and closing experience, suitable for high-end furniture."
-      },
-      "923": {
-        "name": "Model: 923",
-        "type": "Fixed",
-        "material": "Stainless Steel",
-        "feature": "Two-Stage Force",
-        "finish": "Fine Polished",
-        "desc": "This hinge is suitable for heavy door panels, ensuring stability and durability."
+        "feature": "Two-Stage",
+        "type": "Quick Release",
+        "material": "Cold-rolled Steel",
+        "color": "Gun Black",
+        "desc": "This hinge combines two-stage design, suitable for various applications."
       },
       "M1": {
         "name": "Model: M1",
-        "type": "Fixed/Self-Dismounting",
-        "material": "Stainless Steel/Cold-Rolled Steel",
-        "feature": "Three-Stage Force",
-        "desc": "This hinge features flexible design, suitable for various applications."
+        "feature": "Three-Stage",
+        "type": "Fixed/Quick Release Optional",
+        "material": "Stainless Steel/Cold-rolled Steel Optional",
+        "desc": "This hinge uses zero-degree design, providing excellent buffer effect."
       },
-      "M2": {
+      "M1QH": {
         "name": "Model: M2",
-        "type": "Self-Dismounting",
-        "material": "Stainless Steel/Cold-Rolled Steel",
-        "feature": "Three-Stage Force",
-        "desc": "This hinge features flexible design, suitable for various materials, ensuring flexible application."
+        "feature": "Three-Stage",
+        "type": "Fixed/Quick Release Optional",
+        "material": "Stainless Steel/Cold-rolled Steel Optional",
+        "color": "Gun Black",
+        "desc": "This hinge features gun black finish, stylish appearance with complete functionality."
       }
     }
   },
@@ -161,11 +139,11 @@
     },
     "innovation": {
       "title": "Innovative Design",
-      "desc": "Unique structure, enhanced user experience"
+      "desc": "Unique structure, enhancing user experience"
     },
     "buffer": {
       "title": "Buffer Technology",
-      "desc": "Unique red buffer device for silent and smooth closing"
+      "desc": "Unique red buffer device, achieving silent and smooth closing"
     },
     "engineering": {
       "title": "Precision Engineering",
@@ -175,30 +153,30 @@
   "technical": {
     "title": "Technical Advantages",
     "subtitle": "Precision Craftsmanship, Superior Quality",
-    "description": "Our stainless steel hinges utilize advanced engineering design and precision manufacturing processes. Each component undergoes strict quality control to ensure product durability and stability.",
-    "features": [
-      "High-strength stainless steel material with strong corrosion resistance",
-      "Precision machining ensures perfect fit of each component",
-      "Innovative design achieves silent and smooth operation",
-      "Long-lasting durability suitable for various environments"
-    ]
+    "description": "Our stainless steel hinges use advanced engineering design and precision craftsmanship. Each component undergoes strict quality control to ensure product durability and stability.",
+    "features": {
+      "0": "High-strength stainless steel material with strong corrosion resistance",
+      "1": "Precision machining ensures perfect fit of each component",
+      "2": "Innovative design achieves silent and smooth operation",
+      "3": "Long-lasting durability, suitable for various environments"
+    }
   },
   "about": {
     "title": "About Guangdong Remon Hardware Industrial Co., Ltd.",
-    "content1": "Guangdong Remon Hardware Industrial Co., Ltd., established in 1986, is a professional enterprise specializing in the research and development, production, and sales of furniture hardware accessories. Since its establishment, we have always adhered to the philosophy of 'Quality First, Innovation Development,' committed to providing high-quality products and excellent service to our customers.",
-    "content2": "We possess advanced production equipment and a professional technical team, with products covering multiple series including slide rails and hinges. Through continuous technological innovation and process improvement, our products have won a good reputation in the market.",
-    "content3": "The company focuses on product quality management and has established a comprehensive quality control system. We look forward to establishing long-term cooperative relationships with you, developing together, and creating the future."
+    "content1": "Founded in 1986, Guangdong Remon Hardware Industrial Co., Ltd. is a professional enterprise specializing in the R&D, production, and sales of furniture hardware accessories. Since its establishment, the company has always adhered to the concept of 'Quality First, Innovation Development', committed to providing high-quality products and excellent service to customers.",
+    "content2": "We have advanced production equipment and professional technical team, with products covering multiple series including slides and hinges. Through continuous technological innovation and process improvement, our products have won good reputation in the market.",
+    "content3": "The company focuses on product quality management and has established a complete quality control system. We look forward to establishing long-term cooperation relationships with you, developing together and creating the future."
   },
   "contact": {
-    "title": "Contact Us",
-    "start": "Get in Touch",
+    "title": "Cooperation Inquiry",
+    "start": "Contact Us",
     "name": "Name",
     "email": "Email",
-    "company": "Company",
+    "company": "Company Name",
     "phone": "Phone",
-    "intention": "Message",
+    "intention": "Cooperation Intention",
     "submit": "Send Message",
-    "success": "Success! We will contact you soon."
+    "success": "Submitted successfully! We will contact you soon."
   },
   "footer": {
     "copyright": "© 2024 Guangdong Remon. All rights reserved.",
