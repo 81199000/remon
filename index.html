@@ -612,10 +612,8 @@
         }
 
         .expand-indicator {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: static;  /* 改为静态定位 */
+            transform: none;   /* 移除transform */
             background: #2563eb;
             color: white;
             padding: 8px 16px;
@@ -625,24 +623,27 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 5px;
             box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
             animation: pulse 2s infinite;
             z-index: 20;
+            margin: 0 auto;  /* 水平居中 */
+            width: fit-content;
         }
 
         @keyframes pulse {
             0% {
                 box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
-                transform: translateX(-50%) scale(1);
+                transform: scale(1);
             }
             50% {
                 box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
-                transform: translateX(-50%) scale(1.05);
+                transform: scale(1.05);
             }
             100% {
                 box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
-                transform: translateX(-50%) scale(1);
+                transform: scale(1);
             }
         }
 
@@ -956,12 +957,12 @@
                             <div class="relative">
                                 <img src="./TP/CP/铰链/一段力液压铰链/817 固装 冷轧钢.webp" alt="一段力液压铰链" class="w-full h-64 object-cover mb-4 rounded-lg">
                                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
-                                <div class="expand-indicator">
-                                    <span data-i18n="common.expand">点击展开</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
                             </div>
-                            <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type1">一段力液压铰链</h3>
+                            <h3 class="text-xl font-semibold mb-4 text-center" data-i18n="products.hinges_categories.type1">一段力液压铰链</h3>
+                            <div class="expand-indicator">
+                                <span data-i18n="common.expand">点击展开</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
                             <p class="text-center text-gray-600 mb-3" data-i18n="products.hinges_categories.type1_desc">关门缓冲静音铰链系列</p>
                         </div>
                         <div class="hinge-content mt-4 absolute left-0 w-[300%] z-10">
@@ -1011,12 +1012,12 @@
                             <div class="relative">
                                 <img src="./TP/CP/铰链/二段力液压铰链/827 二段力 固装 冷轧钢.webp" alt="二段力液压铰链" class="w-full h-64 object-cover mb-4 rounded-lg">
                                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
-                                <div class="expand-indicator">
-                                    <span data-i18n="common.expand">点击展开</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
                             </div>
-                            <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type2">二段力液压铰链</h3>
+                            <h3 class="text-xl font-semibold mb-4 text-center" data-i18n="products.hinges_categories.type2">二段力液压铰链</h3>
+                            <div class="expand-indicator">
+                                <span data-i18n="common.expand">点击展开</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
                             <p class="text-center text-gray-600 mb-3" data-i18n="products.hinges_categories.type2_desc">开门随时定位静音，关门缓冲静音铰链系列</p>
                         </div>
                         <div class="hinge-content mt-4 absolute left-0 w-[300%] z-10">
@@ -1070,12 +1071,12 @@
                             <div class="relative">
                                 <img src="./TP/CP/铰链/零角度二段力铰链/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="零角度二段力铰链" class="w-full h-64 object-cover mb-4 rounded-lg">
                                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
-                                <div class="expand-indicator">
-                                    <span data-i18n="common.expand">点击展开</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
                             </div>
-                            <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type3">三段力液压铰链</h3>
+                            <h3 class="text-xl font-semibold mb-4 text-center" data-i18n="products.hinges_categories.type3">三段力液压铰链</h3>
+                            <div class="expand-indicator">
+                                <span data-i18n="common.expand">点击展开</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
                             <p class="text-center text-gray-600 mb-3" data-i18n="products.hinges_categories.type3_desc">开门大于零度启动缓冲效果，随时定位静音，关门缓冲静音铰链系列</p>
                         </div>
                         <div class="hinge-content mt-4 absolute left-0 w-[300%] z-10">

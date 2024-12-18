@@ -26,12 +26,12 @@
       "color": "Color: "
     },
     "hinges_categories": {
-      "type1": "Single-Force Hydraulic Hinges",
-      "type1_desc": "Premium silent hinges series featuring advanced soft-close buffer technology",
-      "type2": "Dual-Force Hydraulic Hinges",
-      "type2_desc": "Silent hinges series with positioning during opening and soft-close buffer",
-      "type3": "Triple-Force Hydraulic Hinges",
-      "type3_desc": "Silent hinges series with buffer effect from zero degrees during opening, any angle positioning, and soft-close buffer"
+      "type1": "Single-Stage Hydraulic Hinge",
+      "type1_desc": "Silent door closing hinge series with soft-close damping",
+      "type2": "Dual-Stage Hydraulic Hinge",
+      "type2_desc": "Silent door operation series with position hold and soft-close damping",
+      "type3": "Triple-Stage Hydraulic Hinge",
+      "type3_desc": "Damping effect above zero degrees, any angle positioning, with soft-close function"
     },
     "slides": {
       "white_zinc": {
