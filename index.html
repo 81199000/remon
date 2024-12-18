@@ -621,18 +621,30 @@
             position: relative;
         }
 
-        .hinge-category:nth-child(2) .hinge-content {
+        /* LTR layout */
+        [dir="ltr"] .hinge-category:nth-child(2) .hinge-content {
             left: -100%;
         }
 
-        .hinge-category:nth-child(3) .hinge-content {
+        [dir="ltr"] .hinge-category:nth-child(3) .hinge-content {
             left: -200%;
+        }
+
+        /* RTL layout */
+        [dir="rtl"] .hinge-category:nth-child(2) .hinge-content {
+            right: -100%;
+        }
+
+        [dir="rtl"] .hinge-category:nth-child(3) .hinge-content {
+            right: -200%;
         }
 
         @media (max-width: 768px) {
             .hinge-content {
                 position: static !important;
                 width: 100% !important;
+                left: auto !important;
+                right: auto !important;
             }
         }
 
@@ -958,8 +970,8 @@
                                     <i class="fas fa-chevron-down rotate-icon text-white opacity-0 group-hover:opacity-100 text-2xl"></i>
                                 </div>
                             </div>
-                            <h3 class="text-xl font-semibold mb-2 text-center">二段力液压铰链</h3>
-                            <p class="text-center text-gray-600 mb-3">开门随时定位静音，关门缓冲静音铰链系列</p>
+                            <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type2">二段力液压铰链</h3>
+                            <p class="text-center text-gray-600 mb-3" data-i18n="products.hinges_categories.type2_desc">开门随时定位静音，关门缓冲静音铰链系列</p>
                         </div>
                         <div class="hinge-content mt-4 absolute left-0 w-[300%] z-10">
                             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -1006,7 +1018,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 零角度二段力铰链 -->
+                    <!-- 三段力液压铰链 -->
                     <div class="hinge-category relative">
                         <div class="hinge-card bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 group">
                             <div class="relative">
@@ -1015,8 +1027,8 @@
                                     <i class="fas fa-chevron-down rotate-icon text-white opacity-0 group-hover:opacity-100 text-2xl"></i>
                                 </div>
                             </div>
-                            <h3 class="text-xl font-semibold mb-2 text-center">三段力液压铰链</h3>
-                            <p class="text-center text-gray-600 mb-3">开门大于零度启动缓冲效果，随时定位静音，关门缓冲静音铰链系列</p>
+                            <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type3">三段力液压铰链</h3>
+                            <p class="text-center text-gray-600 mb-3" data-i18n="products.hinges_categories.type3_desc">开门大于零度启动缓冲效果，随时定位静音，关门缓冲静音铰链系列</p>
                         </div>
                         <div class="hinge-content mt-4 absolute left-0 w-[300%] z-10">
                             <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -1032,13 +1044,12 @@
                                     </div>
                                     <!-- 产品 2 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/零角度二段力铰链/M2 三段力 功能可选 自卸 三维可调 材质可选 不锈钢 冷轧钢.webp" alt="M2 三段力 零角度缓冲 枪黑" class="w-full h-auto object-contain mb-4">
-                                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.M1QH.name">型号: M2</h3>
-                                        <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M1QH.feature">三段力</span></p>
-                                        <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.M1QH.type">固装/自卸可选</span></p>
-                                        <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.M1QH.material">不锈钢/冷轧钢可选</span></p>
-                                        <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.color">颜色：</span><span data-i18n="products.hinges_list.M1QH.color">枪黑</span></p>
-                                        <p class="text-gray-600 dark:text-gray-400" data-i18n="products.hinges_list.M1QH.desc">这款铰链采用枪黑色处理，外观时尚，功能齐全。</p>
+                                        <img src="./TP/CP/铰链/零角度二段力铰链/M2 三段力 功能可选 自卸 三维可调 材质可选 不锈钢 冷轧钢.webp" alt="M2 三段力" class="w-full h-auto object-contain mb-4">
+                                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.M2.name">型号: M2</h3>
+                                        <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M2.feature">三段力</span></p>
+                                        <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.M2.type">自卸</span></p>
+                                        <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.M2.material">不锈钢/冷轧钢可选</span></p>
+                                        <p class="text-gray-600 dark:text-gray-400" data-i18n="products.hinges_list.M2.desc">这款铰链采用枪黑色处理，外观时尚，功能齐全。</p>
                                         
                                         <!-- 添加视频按钮 -->
                                         <div class="video-container mt-4">
@@ -1219,7 +1230,7 @@
         $(document).ready(function() {
             console.log('DOM loaded');
 
-            // 初始化i18next
+            // ���始化i18next
             i18next
                 .use(i18nextHttpBackend)
                 .use(i18nextBrowserLanguageDetector)
@@ -1254,6 +1265,9 @@
                     // 添加调试日志
                     console.log('Current language:', i18next.language);
                     console.log('Loaded resources:', i18next.store.data);
+                    
+                    // 更新所有翻译元素，包括铰链分类
+                    $('[data-i18n]').localize();
                     
                     // 更新UI和视频源
                     updateLanguageUI();
@@ -1322,7 +1336,7 @@
                 
                 // 强制重新加载翻译
                 i18next.reloadResources(currentLang).then(() => {
-                    // 更新所有翻译元素
+                    // 更新所有翻译元素，包括铰链分类
                     $('[data-i18n]').localize();
                     
                     // 更新选中状态
@@ -1549,8 +1563,11 @@
                     content.classList.toggle('expanded');
                     icon.classList.toggle('expanded');
                     
-                    // 如果展开，滚动到内容区域
+                    // 如果展开，更新翻译并滚动到内容区域
                     if (content.classList.contains('expanded')) {
+                        // 更新展开内容中的翻译
+                        $(content).find('[data-i18n]').localize();
+                        
                         setTimeout(() => {
                             const offset = category.offsetTop;
                             window.scrollTo({

@@ -29,9 +29,9 @@
       "type1": "Single-Force Hydraulic Hinges",
       "type1_desc": "Premium silent hinges series featuring advanced soft-close buffer technology",
       "type2": "Dual-Force Hydraulic Hinges",
-      "type2_desc": "Advanced silent hinges series with precision positioning during opening and enhanced soft-close buffer mechanism",
+      "type2_desc": "Silent hinges series with positioning during opening and soft-close buffer",
       "type3": "Triple-Force Hydraulic Hinges",
-      "type3_desc": "Professional-grade silent hinges series with progressive buffer effect from zero degrees during opening, multi-point positioning capability, and precision-engineered soft-close buffer system"
+      "type3_desc": "Silent hinges series with buffer effect from zero degrees during opening, any angle positioning, and soft-close buffer"
     },
     "slides": {
       "white_zinc": {
@@ -117,6 +117,7 @@
         "type": "Self-Dismounting",
         "material": "Cold-Rolled Steel",
         "feature": "Dual-Stage Force",
+        "color": "Gun Black",
         "desc": "Advanced hinge incorporating dual-stage force design, engineered for versatile application scenarios."
       },
       "912": {
