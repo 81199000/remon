@@ -674,6 +674,66 @@
         .dark .product-card {
             background-color: #1f2937;
         }
+
+        .video-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .video-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .video-btn i {
+            margin-right: 8px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 0;
+            top: -30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        #productVideo {
+            width: 100%;
+            height: auto;
+        }
+
+        /* RTL支持 */
+        [dir="rtl"] .video-btn i {
+            margin-right: 0;
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
@@ -978,7 +1038,15 @@
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.M1QH.type">固装/自卸可选</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.M1QH.material">不锈钢/冷轧钢可选</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.color">颜色：</span><span data-i18n="products.hinges_list.M1QH.color">枪黑</span></p>
-                                        <p class="text-gray-600 dark:text-gray-400" data-i18n="products.hinges_list.M1QH.desc">这���铰链采用枪黑色处理，外观时尚，功能齐全。</p>
+                                        <p class="text-gray-600 dark:text-gray-400" data-i18n="products.hinges_list.M1QH.desc">这款铰链采用枪黑色处理，外观时尚，功能齐全。</p>
+                                        
+                                        <!-- 添加视频按钮 -->
+                                        <div class="video-container mt-4">
+                                            <button class="video-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center justify-center mx-auto transition-all duration-300">
+                                                <i class="fas fa-play-circle mr-2"></i>
+                                                <span data-i18n="watch_video">观看视频</span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -987,6 +1055,17 @@
                 </div>
             </div>
         </section>
+
+        <!-- 添加视频模态框 -->
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <video id="productVideo" controls>
+                    <source id="videoSource" src="./TP/视频/M2介绍.mp4" type="video/mp4">
+                    <p data-i18n="video_not_supported">您的浏览器不支持视频播放</p>
+                </video>
+            </div>
+        </div>
 
         <section id="features" class="py-12">
             <div class="container mx-auto px-4">
@@ -1176,10 +1255,9 @@
                     console.log('Current language:', i18next.language);
                     console.log('Loaded resources:', i18next.store.data);
                     
-                    // 更新UI
+                    // 更新UI和视频源
                     updateLanguageUI();
-                }).catch(function(error) {
-                    console.error('i18next initialization error:', error);
+                    updateVideoSource(i18next.language || 'zh-CN');
                 });
 
             // 语言切换按钮点击事件
@@ -1409,6 +1487,43 @@
             $('#menuToggle').on('click', function() {
                 $('#mobileMenu').toggleClass('hidden');
             });
+
+            // 视频源切换函数
+            function updateVideoSource(lang) {
+                const videoSource = document.getElementById('videoSource');
+                const video = document.getElementById('productVideo');
+                
+                console.log('Updating video source for language:', lang);
+                
+                // 根据语言选择视频源
+                if (lang === 'zh-CN' || lang === 'zh-TW') {
+                    videoSource.src = './TP/视频/M2介绍.mp4';
+                } else {
+                    videoSource.src = './TP/视频/M2介绍-英文版.mp4';
+                }
+                
+                // 重新加载视频
+                video.load();
+            }
+
+            // 在语言切换时更新视频源
+            $(document).on('click', '.language-option', function(e) {
+                const lang = $(this).data('lang');
+                if (lang) {
+                    updateVideoSource(lang);
+                }
+            });
+
+            // 移动端语言切换
+            $('#mobileLangSelect').on('change', function() {
+                const lang = $(this).val();
+                if (lang) {
+                    updateVideoSource(lang);
+                }
+            });
+
+            // 删除这行，因为我们已经在 i18next 初始化完成后调用了
+            // updateVideoSource(i18next.language);
         });
 
         // 铰链展开/收缩功能
@@ -1445,6 +1560,29 @@
                         }, 100);
                     }
                 });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoBtn = document.querySelector('.video-btn');
+            const videoModal = document.getElementById('videoModal');
+            const closeBtn = document.querySelector('.close-btn');
+            const video = document.getElementById('productVideo');
+
+            videoBtn.addEventListener('click', function() {
+                videoModal.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', function() {
+                videoModal.style.display = 'none';
+                video.pause();
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == videoModal) {
+                    videoModal.style.display = 'none';
+                    video.pause();
+                }
             });
         });
     </script>

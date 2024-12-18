@@ -15,7 +15,7 @@
   },
   "products": {
     "title": "Slide Rail Series",
-    "hinges": "Soft-Close Hinge Series",
+    "hinges": "Hinge Series",
     "dimensions": "Available Dimensions: ",
     "colors": "Available Colors: ",
     "common_labels": {
@@ -25,183 +25,197 @@
       "function": "Function: ",
       "color": "Color: "
     },
+    "hinges_categories": {
+      "type1": "Single-Force Hydraulic Hinges",
+      "type1_desc": "Premium silent hinges series featuring advanced soft-close buffer technology",
+      "type2": "Dual-Force Hydraulic Hinges",
+      "type2_desc": "Advanced silent hinges series with precision positioning during opening and enhanced soft-close buffer mechanism",
+      "type3": "Triple-Force Hydraulic Hinges",
+      "type3_desc": "Professional-grade silent hinges series with progressive buffer effect from zero degrees during opening, multi-point positioning capability, and precision-engineered soft-close buffer system"
+    },
     "slides": {
       "white_zinc": {
         "name": "White Zinc-plated Buffer Slide",
         "dimensions": "4515, 4512",
         "colors": "Black Electrophoretic, Colored Zinc",
-        "desc": "This slide rail uses high-quality zinc-plated material, offering excellent corrosion resistance and wear resistance, suitable for various home and industrial applications."
+        "desc": "Premium slide rail featuring high-quality zinc-plated material with superior corrosion resistance and exceptional wear resistance. Engineered for versatile applications in both residential and industrial environments."
       },
       "stainless_steel": {
         "name": "Stainless Steel Silent Three-Section Slide",
         "dimensions": "4515, 4512",
         "colors": "Black Electrophoretic, Colored Zinc",
-        "desc": "This slide rail uses stainless steel material with delicate design, ensuring silent sliding, perfect for high-end furniture."
+        "desc": "Professional-grade slide rail crafted from premium stainless steel with precision engineering, ensuring whisper-quiet operation. Perfect for luxury furniture applications demanding superior performance."
       },
       "black_rebound": {
         "name": "Black Rebound Sealed Slide",
         "dimensions": "4515, 4512",
         "colors": "Black Electrophoretic, Colored Zinc",
-        "desc": "This slide rail features rebound sealing technology, with a smooth surface offering excellent wear resistance and aesthetics."
+        "desc": "Innovative slide rail incorporating advanced rebound sealing technology, featuring a precision-finished surface that delivers outstanding wear resistance and sophisticated aesthetics."
       },
       "black_silent": {
         "name": "Black Silent Three-Section Slide",
         "dimensions": "4515, 4512",
         "colors": "Black Electrophoretic, Colored Zinc",
-        "desc": "This slide rail features a three-section design, ensuring smooth sliding experience, suitable for various cabinet doors."
+        "desc": "High-performance slide rail with optimized three-section design, delivering exceptionally smooth operation and reliable performance across various cabinet door applications."
       }
     },
     "hinges_list": {
       "817": {
         "name": "Model: 817",
+        "feature": "Single-Stage Force",
         "type": "Fixed",
         "material": "Cold-Rolled Steel",
-        "desc": "This hinge offers good strength and durability, suitable for various furniture applications."
+        "desc": "Professional-grade hinge offering superior strength and durability, featuring precision-engineered single-stage damping for consistently smooth operation."
       },
       "817QH": {
         "name": "Model: 817QH",
+        "feature": "Single-Stage Force",
         "type": "Fixed",
         "material": "Cold-Rolled Steel",
         "color": "Gun Black",
-        "desc": "This hinge uses gun black cold-rolled steel, aesthetically pleasing, suitable for modern home styles."
+        "desc": "Premium hinge featuring sophisticated gun black cold-rolled steel construction with advanced single-stage damping, perfectly complementing modern interior designs."
       },
       "818": {
         "name": "Model: 818",
+        "feature": "Single-Stage Force",
         "type": "Self-Dismounting",
         "material": "Cold-Rolled Steel",
-        "desc": "This hinge is designed for convenient use, ensuring durability and stability."
+        "desc": "Advanced hinge combining tool-free installation with precision single-stage damping, ensuring reliable performance and long-term stability."
       },
       "818QH": {
         "name": "Model: 818QH",
+        "feature": "Single-Stage Force",
         "type": "Self-Dismounting",
         "material": "Cold-Rolled Steel",
         "color": "Gun Black",
-        "desc": "This hinge combines aesthetics and functionality, suitable for various furniture."
+        "desc": "Sophisticated hinge integrating aesthetics with functionality, featuring single-stage damping in an elegant gun black finish."
       },
       "827": {
         "name": "Model: 827",
         "type": "Fixed",
         "material": "Cold-Rolled Steel",
-        "feature": "Two-Stage Force",
-        "desc": "This hinge provides better support, suitable for heavy door panels."
+        "feature": "Dual-Stage Force",
+        "desc": "Heavy-duty hinge providing enhanced support capacity, specifically engineered for heavy door panel applications."
       },
       "827QH": {
         "name": "Model: 827QH",
         "type": "Fixed",
         "material": "Cold-Rolled Steel",
-        "feature": "Two-Stage Force",
+        "feature": "Dual-Stage Force",
         "color": "Gun Black",
-        "desc": "This hinge combines aesthetics and functionality, suitable for various furniture."
+        "desc": "Premium hinge combining aesthetic sophistication with robust functionality, suitable for diverse furniture applications."
       },
       "828": {
         "name": "Model: 828",
         "type": "Self-Dismounting",
         "material": "Cold-Rolled Steel",
-        "feature": "Two-Stage Force",
-        "desc": "This hinge ensures smooth opening and closing experience, suitable for various applications."
+        "feature": "Dual-Stage Force",
+        "desc": "Professional-grade hinge ensuring smooth operation and reliable performance across various applications."
       },
       "828QH": {
         "name": "Model: 828QH",
         "type": "Self-Dismounting",
         "material": "Cold-Rolled Steel",
-        "feature": "Two-Stage Force",
-        "desc": "This hinge combines two-stage force design, suitable for various applications."
+        "feature": "Dual-Stage Force",
+        "desc": "Advanced hinge incorporating dual-stage force design, engineered for versatile application scenarios."
       },
       "912": {
         "name": "Model: 912",
         "type": "Self-Dismounting",
         "material": "Stainless Steel",
         "finish": "Fine Polished",
-        "desc": "This hinge uses stainless steel material with fine polishing, ensuring durability and aesthetics."
+        "desc": "Premium hinge utilizing high-grade stainless steel with fine polished finish, ensuring exceptional durability and sophisticated aesthetics."
       },
       "913": {
         "name": "Model: 913",
         "type": "Fixed",
         "material": "Stainless Steel",
         "finish": "Fine Polished",
-        "desc": "This hinge is suitable for various furniture, ensuring stability and durability."
+        "desc": "Professional-grade hinge designed for various furniture applications, delivering consistent stability and long-term durability."
       },
       "922": {
         "name": "Model: 922",
         "type": "Self-Dismounting",
         "material": "Stainless Steel",
-        "feature": "Two-Stage Force",
+        "feature": "Dual-Stage Force",
         "finish": "Fine Polished",
-        "desc": "This hinge ensures smooth opening and closing experience, suitable for high-end furniture."
+        "desc": "High-end hinge ensuring smooth operation and precise control, specifically engineered for luxury furniture applications."
       },
       "923": {
         "name": "Model: 923",
         "type": "Fixed",
         "material": "Stainless Steel",
-        "feature": "Two-Stage Force",
+        "feature": "Dual-Stage Force",
         "finish": "Fine Polished",
-        "desc": "This hinge is suitable for heavy door panels, ensuring stability and durability."
+        "desc": "Heavy-duty hinge optimized for heavy door panels, providing exceptional stability and long-lasting durability."
       },
       "M1": {
         "name": "Model: M1",
         "type": "Fixed/Self-Dismounting",
         "material": "Stainless Steel/Cold-Rolled Steel",
-        "feature": "Three-Stage Force",
-        "desc": "This hinge features flexible design, suitable for various applications."
+        "feature": "Triple-Stage Force",
+        "desc": "Flagship hinge featuring innovative triple-stage damping system with flexible installation options, perfect for high-end applications requiring precise motion control and premium performance."
       },
       "M2": {
         "name": "Model: M2",
         "type": "Self-Dismounting",
         "material": "Stainless Steel/Cold-Rolled Steel",
-        "feature": "Three-Stage Force",
-        "desc": "This hinge features flexible design, suitable for various materials, ensuring flexible application."
+        "feature": "Triple-Stage Force",
+        "desc": "State-of-the-art hinge incorporating advanced triple-stage damping technology with self-dismounting design, delivering superior motion control and exceptional material compatibility."
       }
     }
   },
   "features": {
     "title": "Product Features",
     "quality": {
-      "title": "High-Quality Materials",
-      "desc": "Using premium materials to ensure product durability"
+      "title": "Premium Materials",
+      "desc": "Utilizing high-grade materials to ensure exceptional product durability"
     },
     "innovation": {
       "title": "Innovative Design",
-      "desc": "Unique structure, enhanced user experience"
+      "desc": "Unique structural engineering enhancing user experience"
     },
     "buffer": {
       "title": "Buffer Technology",
-      "desc": "Unique red buffer device for silent and smooth closing"
+      "desc": "Proprietary red buffer mechanism delivering silent and smooth closing action"
     },
     "engineering": {
       "title": "Precision Engineering",
-      "desc": "Each component is precisely designed and manufactured to ensure excellent performance"
+      "desc": "Each component precisely designed and manufactured to ensure superior performance"
     }
   },
   "technical": {
     "title": "Technical Advantages",
     "subtitle": "Precision Craftsmanship, Superior Quality",
-    "description": "Our stainless steel hinges utilize advanced engineering design and precision manufacturing processes. Each component undergoes strict quality control to ensure product durability and stability.",
+    "description": "Our stainless steel hinges incorporate advanced engineering design and precision manufacturing processes. Each component undergoes rigorous quality control to ensure product durability and operational stability.",
     "features": [
-      "High-strength stainless steel material with strong corrosion resistance",
-      "Precision machining ensures perfect fit of each component",
-      "Innovative design achieves silent and smooth operation",
-      "Long-lasting durability suitable for various environments"
+      "High-strength stainless steel construction with superior corrosion resistance",
+      "Precision machining ensuring perfect component fit and alignment",
+      "Innovative design achieving whisper-quiet and smooth operation",
+      "Extended durability suitable for diverse environmental conditions"
     ]
   },
   "about": {
     "title": "About Guangdong Remon Hardware Industrial Co., Ltd.",
-    "content1": "Guangdong Remon Hardware Industrial Co., Ltd., established in 1986, is a professional enterprise specializing in the research and development, production, and sales of furniture hardware accessories. Since its establishment, we have always adhered to the philosophy of 'Quality First, Innovation Development,' committed to providing high-quality products and excellent service to our customers.",
-    "content2": "We possess advanced production equipment and a professional technical team, with products covering multiple series including slide rails and hinges. Through continuous technological innovation and process improvement, our products have won a good reputation in the market.",
-    "content3": "The company focuses on product quality management and has established a comprehensive quality control system. We look forward to establishing long-term cooperative relationships with you, developing together, and creating the future."
+    "content1": "Established in 1986, Guangdong Remon Hardware Industrial Co., Ltd. is a professional enterprise specializing in the research and development, manufacturing, and distribution of furniture hardware accessories. Since our inception, we have consistently upheld the philosophy of 'Quality First, Innovation-Driven Development,' dedicating ourselves to providing premium products and exceptional service to our valued customers.",
+    "content2": "Our facility is equipped with state-of-the-art production equipment and staffed by a professional technical team, with product lines encompassing multiple series including slide rails and hinges. Through continuous technological innovation and process optimization, our products have earned an outstanding reputation in the market.",
+    "content3": "The company maintains a strong focus on product quality management and has established a comprehensive quality control system. We look forward to building long-term collaborative partnerships with you, growing together, and creating the future."
   },
   "contact": {
     "title": "Contact Us",
     "start": "Get in Touch",
     "name": "Name",
     "email": "Email",
-    "company": "Company",
-    "phone": "Phone",
+    "company": "Company Name",
+    "phone": "Phone Number",
     "intention": "Message",
-    "submit": "Send Message",
-    "success": "Success! We will contact you soon."
+    "submit": "Send",
+    "success": "Successfully sent! We will contact you soon."
   },
   "footer": {
     "copyright": "© 2024 Guangdong Remon. All rights reserved.",
-    "address": "Address: Beihe Industrial Zone, Pandong Town, Jiedong District, Jieyang City, Guangdong Province"
-  }
+    "address": "Address: Beihe Industrial Zone, Jieyang City, Guangdong Province, China"
+  },
+  "watch_video": "Watch Video",
+  "video_not_supported": "Your browser does not support video playback"
 } 
