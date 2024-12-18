@@ -1859,19 +1859,64 @@
 
             videoBtn.addEventListener('click', function() {
                 videoModal.style.display = 'block';
+                // 开始播放视频并进入全屏
+                video.play().then(() => {
+                    if (video.requestFullscreen) {
+                        video.requestFullscreen();
+                    } else if (video.webkitRequestFullscreen) { /* Safari */
+                        video.webkitRequestFullscreen();
+                    } else if (video.msRequestFullscreen) { /* IE11 */
+                        video.msRequestFullscreen();
+                    }
+                }).catch((error) => {
+                    console.log("播放失败:", error);
+                });
             });
 
             closeBtn.addEventListener('click', function() {
                 videoModal.style.display = 'none';
                 video.pause();
+                // 退出全屏
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen();
+                }
             });
 
             window.addEventListener('click', function(event) {
                 if (event.target == videoModal) {
                     videoModal.style.display = 'none';
                     video.pause();
+                    // 退出全屏
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) { /* Safari */
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) { /* IE11 */
+                        document.msExitFullscreen();
+                    }
                 }
             });
+
+            // 监听全屏变化事件
+            document.addEventListener('fullscreenchange', exitHandler);
+            document.addEventListener('webkitfullscreenchange', exitHandler);
+            document.addEventListener('mozfullscreenchange', exitHandler);
+            document.addEventListener('MSFullscreenChange', exitHandler);
+
+            function exitHandler() {
+                if (!document.fullscreenElement && 
+                    !document.webkitIsFullScreen && 
+                    !document.mozFullScreen && 
+                    !document.msFullscreenElement) {
+                    // 退出全屏时关闭视频和模态框
+                    videoModal.style.display = 'none';
+                    video.pause();
+                }
+            }
         });
     </script>
 </body>
