@@ -660,6 +660,18 @@
             transform: rotate(180deg);
         }
 
+        /* 主卡片背景色 */
+        .hinge-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+        }
+
+        .dark .hinge-card {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+        }
+
+        /* 展开内容的背景色 - 调整为更明显的对比色 */
         .hinge-content {
             max-height: 0;
             opacity: 0;
@@ -669,9 +681,57 @@
             margin-top: 1rem;
         }
 
-        .hinge-content.expanded {
-            max-height: 3000px;
-            opacity: 1;
+        .hinge-content.expanded > div {
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            background-color: #f5f5f5; /* 浅灰色背景 */
+        }
+
+        .dark .hinge-content.expanded > div {
+            background-color: #1a1f2d; /* 深色模式下的背景色 */
+        }
+
+        /* 展开内容的容器背景色 */
+        .hinge-content > div {
+            background-color: #edf2f7 !important; /* 更浅的灰色背景 */
+        }
+
+        .dark .hinge-content > div {
+            background-color: #1a202c !important; /* 更深的暗色背景 */
+        }
+
+        /* 展开内容中的产品卡片背景色 */
+        .hinge-content .product-card {
+            background-color: #ffffff !important; /* 纯白色背景 */
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dark .hinge-content .product-card {
+            background-color: #2d3748 !important; /* 较浅的暗色背景 */
+            border: 1px solid #4a5568;
+        }
+
+        .hinge-content .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .dark .hinge-content .product-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 展开状态下的内容区域样式 */
+        .hinge-content.expanded > div {
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 添加微妙的阴影 */
+        }
+
+        .dark .hinge-content.expanded > div {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 深色模式下的阴影 */
         }
 
         .hinge-category {
@@ -844,6 +904,47 @@
         .dark .product-card p {
             color: #9ca3af !important;
         }
+
+        .hinge-content.expanded {
+            max-height: 3000px;
+            opacity: 1;
+        }
+
+        /* 展开状态下的内容区域圆角和内边距 */
+        .hinge-content.expanded > div {
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* 展开内容中的产品卡片背景色 */
+        .hinge-content .product-card {
+            background-color: #ffffff !important; /* 浅色模式下的卡片背景色 */
+            border: 1px solid #e5e7eb;
+        }
+
+        .dark .hinge-content .product-card {
+            background-color: #1f2937 !important; /* 深色模式下的卡片背景色 */
+            border: 1px solid #374151;
+        }
+
+        /* 展开内容的容器背景色 */
+        .hinge-content > div {
+            background-color: #f3f4f6; /* 浅色模式下的容器背景色 */
+        }
+
+        .dark .hinge-content > div {
+            background-color: #111827; /* 深色模式下的容器背景色 */
+        }
+
+        /* 修改产品卡片在展开内容中的背景色 */
+        .hinge-content .bg-white.product-card {
+            background-color: #ffffff !important; /* 浅色模式下的卡片背景色 */
+        }
+
+        .dark .hinge-content .bg-white.product-card {
+            background-color: #1f2937 !important; /* 深色模式下的卡片背景色 */
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
@@ -859,9 +960,10 @@
                 <button type="button" class="nav-button" data-section="features" data-i18n="nav.features">特性</button>
                 <button type="button" class="nav-button" data-section="technical" data-i18n="nav.technical">技术优势</button>
                 <button type="button" class="nav-button" data-section="about" data-i18n="nav.about">关于我们</button>
-                <!-- 暗黑模式切换按钮移到语言切换前面 -->
-                <button type="button" id="darkModeToggle" class="nav-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="切换暗黑模式">
+                <!-- 暗黑模式切换按钮 -->
+                <button type="button" id="darkModeToggle" class="nav-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center" aria-label="切换显示模式">
                     <i class="fas fa-sun dark:fa-moon" aria-hidden="true"></i>
+                    <span class="ml-2 text-gray-600 dark:text-gray-200 mode-text">切换到暗黑模式</span>
                 </button>
                 <!-- 语言切换下拉菜单 -->
                 <div class="language-dropdown" id="languageDropdown">
@@ -916,10 +1018,10 @@
             <button type="button" class="nav-button block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700" data-section="features" data-i18n="nav.features">特性</button>
             <button type="button" class="nav-button block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700" data-section="technical" data-i18n="nav.technical">技术优势</button>
             <button type="button" class="nav-button block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700" data-section="about" data-i18n="nav.about">关于我们</button>
-            <!-- 暗黑模式切换按钮 -->
+            <!-- 移动端暗黑模式切换按钮 -->
             <button type="button" id="mobileDarkModeToggle" class="nav-button block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700">
                 <i class="fas fa-sun dark:fa-moon mr-2 text-gray-600 dark:text-gray-400" aria-hidden="true"></i>
-                <span data-i18n="nav.darkMode">切换暗黑模式</span>
+                <span class="mode-text">切换到暗黑模式</span>
             </button>
             <!-- 移动端语言切换 -->
             <div class="px-4 py-2">
@@ -1025,10 +1127,10 @@
                             </div>
                         </div>
                         <div class="hinge-content">
-                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                            <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                     <!-- 产品 1 -->
-                                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
+                                    <div class="p-6 rounded-lg shadow-md product-card">
                                         <img src="./TP/CP/铰链/一段力液压铰链/817 固装 冷轧钢.webp" alt="817 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-black dark:text-white" data-i18n="products.hinges_list.817.name">型号: 817</h3>
                                         <p class="text-black dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.817.type">固装</span></p>
@@ -1036,9 +1138,9 @@
                                         <p class="text-black dark:text-gray-400" data-i18n="products.hinges_list.817.desc">这款铰链具有良好的强度和耐用性，适合各种家具应用。</p>
                                     </div>
                                     <!-- 产品 2 -->
-                                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
+                                    <div class="p-6 rounded-lg shadow-md product-card">
                                         <img src="./TP/CP/铰链/一段力液压铰链/817QH 固装 冷轧钢 枪黑.webp" alt="817QH 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
-                                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.817QH.name">型号: 817QH</h3>
+                                        <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.817QH.name">型号: 817QH</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.817QH.type">固装</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.817QH.material">冷轧钢</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.color">颜色：</span><span data-i18n="products.hinges_list.817QH.color">枪黑</span></p>
@@ -1084,7 +1186,7 @@
                             </div>
                         </div>
                         <div class="hinge-content">
-                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                            <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                     <!-- 产品 1 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
@@ -1147,7 +1249,7 @@
                             </div>
                         </div>
                         <div class="hinge-content">
-                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                            <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                     <!-- 产品 1 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
@@ -1161,7 +1263,7 @@
                                     <!-- 产品 2 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
                                         <img src="./TP/CP/铰链/零角度二段力铰链/M2 三段力 功能可选 自卸 三维可调 材质可选 不锈钢 冷轧钢.webp" alt="M2 三段力" class="w-full h-auto object-contain mb-4">
-                                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.M2.name">型号: M2</h3>
+                                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.M2.name">��号: M2</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M2.feature">三段力</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.M2.type">自卸</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.M2.material">不锈钢/冷轧钢可选</span></p>
@@ -1518,11 +1620,28 @@
                 updateDarkMode(shouldEnableDarkMode());
             }
 
-            // 暗黑模式切���按钮事件
-            $('#darkModeToggle, #mobileDarkModeToggle').on('click', function() {
+            // 暗黑模式切换事件
+            document.getElementById('darkModeToggle').addEventListener('click', function() {
                 const isDark = !document.documentElement.classList.contains('dark');
-                updateDarkMode(isDark);
+                document.documentElement.classList.toggle('dark');
+                localStorage.theme = isDark ? 'dark' : 'light';
+                updateDarkModeText(isDark);
             });
+
+            document.getElementById('mobileDarkModeToggle').addEventListener('click', function() {
+                const isDark = !document.documentElement.classList.contains('dark');
+                document.documentElement.classList.toggle('dark');
+                localStorage.theme = isDark ? 'dark' : 'light';
+                updateDarkModeText(isDark);
+            });
+
+            // 更新暗黑模式文本
+            function updateDarkModeText(isDark) {
+                const modeTexts = document.querySelectorAll('.mode-text');
+                modeTexts.forEach(text => {
+                    text.textContent = isDark ? '切换到白天模式' : '切换到暗黑模式';
+                });
+            }
 
             // 联系表单相关的事件处理
             const modal = document.getElementById('contactModal');
