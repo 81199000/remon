@@ -5,8 +5,7 @@
     "features": "特性",
     "technical": "技術優勢",
     "about": "關於我們",
-    "darkMode": "切換暗色模式",
-    "lightMode": "切換亮色模式"
+    "darkMode": "切換深/淺主題"
   },
   "hero": {
     "title1": "賦能家居",

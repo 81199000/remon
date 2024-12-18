@@ -1,12 +1,11 @@
 {
-  "title": "광동 레몬 하드웨어 산업 유한공사",
+  "title": "광동일명오금실업유한공사",
   "nav": {
     "products": "제품",
     "features": "특징",
-    "technical": "기술",
+    "technical": "기술 우위",
     "about": "회사 소개",
-    "darkMode": "다크 모드",
-    "lightMode": "라이트 모드"
+    "darkMode": "라이트/다크 테마 전환"
   },
   "hero": {
     "title1": "주거 생활의 혁신",

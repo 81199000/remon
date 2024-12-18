@@ -1,12 +1,11 @@
 {
-  "title": "広東日明金属工業有限公司",
+  "title": "広東日明五金実業有限公司",
   "nav": {
     "products": "製品",
     "features": "特徴",
-    "technical": "技術",
+    "technical": "技術優位性",
     "about": "会社概要",
-    "darkMode": "ダークモード切替",
-    "lightMode": "ライトモード切替"
+    "darkMode": "ライト/ダークテーマ切替"
   },
   "hero": {
     "title1": "住まいに力を",

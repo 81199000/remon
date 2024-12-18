@@ -5,8 +5,7 @@
     "features": "Features",
     "technical": "Technical",
     "about": "About",
-    "darkMode": "Toggle Dark Mode",
-    "lightMode": "Toggle Light Mode"
+    "darkMode": "Toggle Light/Dark Theme"
   },
   "hero": {
     "title1": "Empowering Home Living",

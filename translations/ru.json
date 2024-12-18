@@ -1,12 +1,11 @@
 {
-  "title": "Гуандун Римэн Металлургическая Промышленная Компания",
+  "title": "Guangdong Remon Hardware Industry Co., Ltd.",
   "nav": {
-    "products": "Продукция",
+    "products": "Продукты",
     "features": "Особенности",
     "technical": "Технологии",
-    "about": "О компании",
-    "darkMode": "Тёмная тема",
-    "lightMode": "Светлая тема"
+    "about": "О нас",
+    "darkMode": "Переключить светлую/тёмную тему"
   },
   "hero": {
     "title1": "Улучшаем жилье",

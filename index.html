@@ -960,10 +960,9 @@
                 <button type="button" class="nav-button" data-section="features" data-i18n="nav.features">特性</button>
                 <button type="button" class="nav-button" data-section="technical" data-i18n="nav.technical">技术优势</button>
                 <button type="button" class="nav-button" data-section="about" data-i18n="nav.about">关于我们</button>
-                <!-- 暗黑模式切换按钮 -->
-                <button type="button" id="darkModeToggle" class="nav-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center" aria-label="切换显示模式">
+                <!-- 暗黑模式切换按钮移到语言切换前面 -->
+                <button type="button" id="darkModeToggle" class="nav-button p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="切换深/浅主题">
                     <i class="fas fa-sun dark:fa-moon" aria-hidden="true"></i>
-                    <span class="ml-2 text-gray-600 dark:text-gray-200 mode-text">切换到暗黑模式</span>
                 </button>
                 <!-- 语言切换下拉菜单 -->
                 <div class="language-dropdown" id="languageDropdown">
@@ -1018,10 +1017,10 @@
             <button type="button" class="nav-button block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700" data-section="features" data-i18n="nav.features">特性</button>
             <button type="button" class="nav-button block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700" data-section="technical" data-i18n="nav.technical">技术优势</button>
             <button type="button" class="nav-button block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700" data-section="about" data-i18n="nav.about">关于我们</button>
-            <!-- 移动端暗黑模式切换按钮 -->
+            <!-- 暗黑模式切换按钮 -->
             <button type="button" id="mobileDarkModeToggle" class="nav-button block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700">
                 <i class="fas fa-sun dark:fa-moon mr-2 text-gray-600 dark:text-gray-400" aria-hidden="true"></i>
-                <span class="mode-text">切换到暗黑模式</span>
+                <span data-i18n="nav.darkMode">切换深/浅主题</span>
             </button>
             <!-- 移动端语言切换 -->
             <div class="px-4 py-2">
@@ -1620,28 +1619,11 @@
                 updateDarkMode(shouldEnableDarkMode());
             }
 
-            // 暗黑模式切换事件
-            document.getElementById('darkModeToggle').addEventListener('click', function() {
+            // 暗黑模式切���按钮事件
+            $('#darkModeToggle, #mobileDarkModeToggle').on('click', function() {
                 const isDark = !document.documentElement.classList.contains('dark');
-                document.documentElement.classList.toggle('dark');
-                localStorage.theme = isDark ? 'dark' : 'light';
-                updateDarkModeText(isDark);
+                updateDarkMode(isDark);
             });
-
-            document.getElementById('mobileDarkModeToggle').addEventListener('click', function() {
-                const isDark = !document.documentElement.classList.contains('dark');
-                document.documentElement.classList.toggle('dark');
-                localStorage.theme = isDark ? 'dark' : 'light';
-                updateDarkModeText(isDark);
-            });
-
-            // 更新暗黑模式文本
-            function updateDarkModeText(isDark) {
-                const modeTexts = document.querySelectorAll('.mode-text');
-                modeTexts.forEach(text => {
-                    text.textContent = isDark ? '切换到白天模式' : '切换到暗黑模式';
-                });
-            }
 
             // 联系表单相关的事件处理
             const modal = document.getElementById('contactModal');
@@ -1733,8 +1715,21 @@
             });
 
             // 移动端菜单
-            $('#menuToggle').on('click', function() {
+            $('#menuToggle').on('click', function(e) {
+                e.stopPropagation(); // 阻止事件冒泡
                 $('#mobileMenu').toggleClass('hidden');
+            });
+
+            // 点击移动端菜单内部不关闭
+            $('#mobileMenu').on('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // 点击页面其他地方关闭移动端菜单
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('#menuToggle').length) {
+                    $('#mobileMenu').addClass('hidden');
+                }
             });
 
             // 视频源切换函数
