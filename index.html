@@ -601,6 +601,46 @@
         }
 
         /* 铰链展开/收缩动画样式 */
+        .hinge-card {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hinge-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .expand-indicator {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hinge-card:hover .expand-indicator {
+            opacity: 1;
+        }
+
+        .expand-indicator i {
+            transition: transform 0.3s ease;
+        }
+
+        .hinge-card.expanded .expand-indicator i {
+            transform: rotate(180deg);
+        }
+
         .hinge-content {
             max-height: 0;
             opacity: 0;
@@ -646,22 +686,6 @@
                 left: auto !important;
                 right: auto !important;
             }
-        }
-
-        .hinge-card {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hinge-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .dark .hinge-card:hover {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .rotate-icon {
@@ -913,8 +937,10 @@
                         <div class="hinge-card bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 group">
                             <div class="relative">
                                 <img src="./TP/CP/铰链/一段力液压铰链/817 固装 冷轧钢.webp" alt="一段力液压铰链" class="w-full h-64 object-cover mb-4 rounded-lg">
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-chevron-down rotate-icon text-white opacity-0 group-hover:opacity-100 text-2xl"></i>
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
+                                <div class="expand-indicator">
+                                    <span data-i18n="common.expand">点击展开</span>
+                                    <i class="fas fa-chevron-down"></i>
                                 </div>
                             </div>
                             <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type1">一段力液压铰链</h3>
@@ -966,8 +992,10 @@
                         <div class="hinge-card bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 group">
                             <div class="relative">
                                 <img src="./TP/CP/铰链/二段力液压铰链/827 二段力 固装 冷轧钢.webp" alt="二段力液压铰链" class="w-full h-64 object-cover mb-4 rounded-lg">
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-chevron-down rotate-icon text-white opacity-0 group-hover:opacity-100 text-2xl"></i>
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
+                                <div class="expand-indicator">
+                                    <span data-i18n="common.expand">点击展开</span>
+                                    <i class="fas fa-chevron-down"></i>
                                 </div>
                             </div>
                             <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type2">二段力液压铰链</h3>
@@ -1023,8 +1051,10 @@
                         <div class="hinge-card bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 group">
                             <div class="relative">
                                 <img src="./TP/CP/铰链/零角度二段力铰链/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="零角度二段力铰链" class="w-full h-64 object-cover mb-4 rounded-lg">
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-chevron-down rotate-icon text-white opacity-0 group-hover:opacity-100 text-2xl"></i>
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
+                                <div class="expand-indicator">
+                                    <span data-i18n="common.expand">点击展开</span>
+                                    <i class="fas fa-chevron-down"></i>
                                 </div>
                             </div>
                             <h3 class="text-xl font-semibold mb-2 text-center" data-i18n="products.hinges_categories.type3">三段力液压铰链</h3>
@@ -1548,23 +1578,28 @@
                 card.addEventListener('click', function() {
                     const category = this.closest('.hinge-category');
                     const content = category.querySelector('.hinge-content');
-                    const icon = this.querySelector('.rotate-icon');
+                    const expandIndicator = this.querySelector('.expand-indicator span');
                     
                     // 关闭其他展开的内容
                     document.querySelectorAll('.hinge-content').forEach(otherContent => {
                         if (otherContent !== content && otherContent.classList.contains('expanded')) {
                             otherContent.classList.remove('expanded');
-                            const otherIcon = otherContent.closest('.hinge-category').querySelector('.rotate-icon');
-                            otherIcon.classList.remove('expanded');
+                            const otherCard = otherContent.closest('.hinge-category').querySelector('.hinge-card');
+                            otherCard.classList.remove('expanded');
+                            const otherIndicator = otherCard.querySelector('.expand-indicator span');
+                            otherIndicator.setAttribute('data-i18n', 'common.expand');
+                            otherIndicator.textContent = '点击展开';
                         }
                     });
                     
                     // 切换当前内容
                     content.classList.toggle('expanded');
-                    icon.classList.toggle('expanded');
+                    this.classList.toggle('expanded');
                     
-                    // 如果展开，更新翻译并滚动到内容区域
+                    // 更新展开指示器文本
                     if (content.classList.contains('expanded')) {
+                        expandIndicator.setAttribute('data-i18n', 'common.collapse');
+                        expandIndicator.textContent = '点击收起';
                         // 更新展开内容中的翻译
                         $(content).find('[data-i18n]').localize();
                         
@@ -1575,7 +1610,21 @@
                                 behavior: 'smooth'
                             });
                         }, 100);
+                    } else {
+                        expandIndicator.setAttribute('data-i18n', 'common.expand');
+                        expandIndicator.textContent = '点击展开';
                     }
+                });
+
+                // 添加鼠标悬停效果
+                card.addEventListener('mouseenter', function() {
+                    const expandIndicator = this.querySelector('.expand-indicator');
+                    expandIndicator.style.opacity = '1';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    const expandIndicator = this.querySelector('.expand-indicator');
+                    expandIndicator.style.opacity = '0';
                 });
             });
         });
