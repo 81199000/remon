@@ -7,6 +7,10 @@
     "about": "About",
     "darkMode": "Toggle Light/Dark Theme"
   },
+  "common": {
+    "expand": "Click to Expand",
+    "collapse": "Click to Collapse"
+  },
   "hero": {
     "title1": "Empowering Home Living",
     "title2": "Refreshing Experience",
