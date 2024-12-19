@@ -872,7 +872,8 @@
                             card.classList.remove('expanded');
                             const expandIndicator = card.querySelector('.expand-indicator span');
                             expandIndicator.setAttribute('data-i18n', 'common.expand');
-                            expandIndicator.textContent = '点击展开';
+                            // 使用i18next进行翻译
+                            expandIndicator.textContent = i18next.t('common.expand');
                         }
                     });
                 }
@@ -895,7 +896,8 @@
                             otherCard.classList.remove('expanded');
                             const otherIndicator = otherCard.querySelector('.expand-indicator span');
                             otherIndicator.setAttribute('data-i18n', 'common.expand');
-                            otherIndicator.textContent = '点击展开';
+                            // 使用i18next进行翻译
+                            otherIndicator.textContent = i18next.t('common.expand');
                         }
                     });
                     
@@ -906,7 +908,8 @@
                     // 更新展开指示器文本
                     if (content.classList.contains('expanded')) {
                         expandIndicator.setAttribute('data-i18n', 'common.collapse');
-                        expandIndicator.textContent = '点击收起';
+                        // 使用i18next进行翻译
+                        expandIndicator.textContent = i18next.t('common.collapse');
                         // 更新展开内容中的翻译
                         $(content).find('[data-i18n]').localize();
                         
@@ -919,7 +922,8 @@
                         }, 100);
                     } else {
                         expandIndicator.setAttribute('data-i18n', 'common.expand');
-                        expandIndicator.textContent = '点击展开';
+                        // 使用i18next进行翻译
+                        expandIndicator.textContent = i18next.t('common.expand');
                     }
                 });
 
