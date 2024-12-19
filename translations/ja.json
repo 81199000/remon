@@ -216,5 +216,9 @@
     "address": "住所：広東省揭陽市揭東区磐東鎮北河工業区"
   },
   "watch_video": "動画を見る",
-  "video_not_supported": "お使いのブラウザは動画再生に対応していません"
+  "video_not_supported": "お使いのブラウザは動画再生に対応していません",
+  "common": {
+    "expand": "クリックして展開",
+    "collapse": "クリックして折りたたむ"
+  }
 } 

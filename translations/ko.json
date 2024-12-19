@@ -216,5 +216,9 @@
     "address": "주소: 베이허 산업단지, 지에양시, 광동성, 중국"
   },
   "watch_video": "동영상 보기",
-  "video_not_supported": "브라우저가 동영상 재생을 지원하지 않습니다"
+  "video_not_supported": "브라우저가 동영상 재생을 지원하지 않습니다",
+  "common": {
+    "expand": "클릭하여 펼치기",
+    "collapse": "클릭하여 접기"
+  }
 } 
