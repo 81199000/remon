@@ -1,9 +1,14 @@
-/* 自定义样式 */
+/* ========================================
+   REMON - 广东日明五金实业有限公司
+   整理后的样式（去除重复规则）
+   ======================================== */
+
+/* === 基础布局 === */
 .nav-height {
     height: 60px;
 }
 
-/* 导航按钮样式 */
+/* === 导航按钮 === */
 .nav-button {
     position: relative;
     z-index: 60;
@@ -14,6 +19,7 @@
     font-size: 1rem;
     color: #4B5563;
     transition: color 0.3s, transform 0.3s;
+    overflow: hidden;
 }
 
 .nav-button::after {
@@ -41,7 +47,7 @@
     transform: scale(0.95);
 }
 
-/* 导航栏样式 */
+/* === 导航栏 === */
 header {
     position: fixed;
     top: 0;
@@ -51,25 +57,18 @@ header {
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     z-index: 50;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 background-color 0.3s ease,
                 box-shadow 0.3s ease;
 }
 
-/* 向上滚动时显示，向下滚动时隐藏 */
 header.nav-hidden {
     transform: translateY(-100%);
 }
 
-/* 滚动一定距离后改变导航栏样式 */
 header.nav-scrolled {
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.dark header.nav-scrolled {
-    background-color: rgba(17, 24, 39, 0.98);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 nav {
@@ -82,13 +81,13 @@ nav {
     width: auto;
 }
 
-/* 添加RTL支持 */
+/* === RTL 支持 === */
 [dir="rtl"] {
     direction: rtl;
     text-align: right;
 }
 
-/* 语言切换下拉菜单样式 */
+/* === 语言切换下拉菜单 === */
 .language-dropdown {
     position: relative;
     display: inline-block;
@@ -145,7 +144,7 @@ nav {
     margin-top: 8px;
     background-color: #fff;
     min-width: 160px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     z-index: 1001;
     border: 1px solid #e5e7eb;
@@ -160,6 +159,20 @@ nav {
     display: block;
     transform: scale(1);
     opacity: 1;
+}
+
+.language-dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    transform: rotate(45deg);
+    border-left: 1px solid #e5e7eb;
+    border-top: 1px solid #e5e7eb;
+    z-index: 999;
 }
 
 .language-option {
@@ -190,214 +203,18 @@ nav {
     background-color: #e5e7eb;
 }
 
-/* 添加小三角箭头 */
-.language-dropdown-content::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    right: 20px;
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    transform: rotate(45deg);
-    border-left: 1px solid #e5e7eb;
-    border-top: 1px solid #e5e7eb;
-    z-index: 999;
+/* === Hero 背景图 === */
+.hero-bg {
+    background-image: url('../TP/衣柜1.webp');
 }
 
-/* 响应式样式 */
-@media (max-width: 640px) {
-    .logo-size {
-        height: 200px;
-    }
-    
-    #hero h1, #hero h2 {
-        font-size: 2.5rem;
-        line-height: 1.2;
-        margin-bottom: 1rem;
-    }
-    
-    #hero p {
-        font-size: 1.5rem;
+@media (min-width: 768px) {
+    .hero-bg {
+        background-image: url('../TP/衣柜.webp');
     }
 }
 
-@media (max-width: 360px) {
-    .logo-size {
-        height: 150px;
-    }
-    
-    #hero h1, #hero h2 {
-        font-size: 2rem;
-    }
-    
-    .nav-height {
-        height: 50px;
-    }
-}
-
-@media (max-width: 640px) {
-    .product-card {
-        padding: 0.5rem;
-    }
-    
-    .product-card h3 {
-        font-size: 1.1rem;
-    }
-    
-    .product-card p {
-        font-size: 0.9rem;
-    }
-}
-
-/* 修改暗黑模式样式 */
-.dark body {
-    background-color: #111827;
-    color: #f3f4f6;
-}
-
-/* Logo 切换相关样式 */
-.logo-light {
-    display: block !important;
-}
-
-.logo-dark {
-    display: none !important;
-}
-
-.dark .logo-light {
-    display: none !important;
-}
-
-.dark .logo-dark {
-    display: block !important;
-}
-
-.dark header {
-    background-color: rgba(17, 24, 39, 0.85);
-    border-bottom: 1px solid rgba(75, 85, 99, 0.3);
-}
-
-.dark .nav-button {
-    color: #e5e7eb;
-}
-
-.dark .nav-button:hover {
-    color: #ffffff;
-    background-color: rgba(75, 85, 99, 0.2);
-}
-
-/* 修改卡片和背景颜色 */
-.dark .bg-white {
-    background-color: #1f2937;
-}
-
-.dark .text-gray-900 {
-    color: #f3f4f6;
-}
-
-.dark .shadow-md {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 
-                0 2px 4px -1px rgba(0, 0, 0, 0.1);
-}
-
-.dark #features,
-.dark #technical {
-    background-color: #111827;
-}
-
-.dark .language-dropdown-content {
-    background-color: #1f2937;
-    border-color: #374151;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-}
-
-.dark .language-option {
-    color: #f3f4f6;
-}
-
-.dark .language-option:hover {
-    background-color: #374151;
-}
-
-.dark .globe-icon-wrapper {
-    background-color: #1f2937;
-    border-color: #374151;
-    color: #f3f4f6;
-}
-
-.dark .globe-icon-wrapper:hover {
-    background-color: #374151;
-}
-
-.dark #mobileMenu {
-    background-color: #1f2937;
-    border-top: 1px solid rgba(75, 85, 99, 0.3);
-}
-
-.dark #mobileLangSelect {
-    background-color: #1f2937;
-    color: #f3f4f6;
-    border-color: #374151;
-}
-
-.dark footer {
-    background-color: #0f172a;
-    border-top: 1px solid rgba(75, 85, 99, 0.2);
-}
-
-.dark input,
-.dark textarea {
-    background-color: #1f2937;
-    color: #f3f4f6;
-    border-color: #374151;
-}
-
-.dark input:focus,
-.dark textarea:focus {
-    border-color: #3b82f6;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-}
-
-/* 产品卡片悬停效果 */
-.dark .product-card {
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.dark .product-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.4);
-}
-
-/* 特性图标背景色调整 */
-.dark .bg-blue-100 {
-    background-color: rgba(59, 130, 246, 0.1);
-}
-
-.dark .bg-green-100 {
-    background-color: rgba(16, 185, 129, 0.1);
-}
-
-.dark .bg-red-100 {
-    background-color: rgba(239, 68, 68, 0.1);
-}
-
-.dark .bg-yellow-100 {
-    background-color: rgba(245, 158, 11, 0.1);
-}
-
-/* 按钮样式优化 */
-.dark button[type="submit"] {
-    background-color: #3b82f6;
-    transition: background-color 0.2s;
-}
-
-.dark button[type="submit"]:hover {
-    background-color: #2563eb;
-}
-
-/* Hero 区域文字渐入动画 */
+/* === Hero 文字渐入动画 === */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -409,24 +226,19 @@ nav {
     }
 }
 
-#hero h1 {
-    animation: fadeInUp 0.8s ease-out;
+#hero h1 { animation: fadeInUp 0.8s ease-out; }
+#hero h2 { animation: fadeInUp 0.8s ease-out 0.2s both; }
+#hero img { animation: fadeInUp 0.8s ease-out 0.4s both; }
+#hero p   { animation: fadeInUp 0.8s ease-out 0.6s both; }
+
+/* === 产品区域背景色 === */
+#products, #hinges {
+    background-color: #f8f9fa;
 }
 
-#hero h2 {
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-}
-
-#hero img {
-    animation: fadeInUp 0.8s ease-out 0.4s both;
-}
-
-#hero p {
-    animation: fadeInUp 0.8s ease-out 0.6s both;
-}
-
-/* 产品卡片悬停动画 */
+/* === 产品卡片（统一） === */
 .product-card {
+    background-color: #ffffff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -435,11 +247,6 @@ nav {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.dark .product-card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* 产品图片悬停效果 */
 .product-card img {
     transition: transform 0.3s ease;
 }
@@ -448,140 +255,37 @@ nav {
     transform: scale(1.05);
 }
 
-/* 特性图标动画 */
-@keyframes iconPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
+.product-card h3 {
+    color: #000000;
 }
 
-.feature-icon {
-    transition: transform 0.3s ease;
+.product-card p {
+    color: #000000;
 }
 
-.feature-icon:hover {
-    animation: iconPulse 1s infinite;
-}
-
-/* 滚动显示动画 */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.scroll-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 暗黑模式切换动画 */
-.dark-mode-transition {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-/* 图标旋转动画 */
-#darkModeToggle i, #mobileDarkModeToggle i {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#darkModeToggle:hover i, #mobileDarkModeToggle:hover i {
-    transform: rotate(360deg) scale(1.1);
-}
-
-/* 表单输入框动画 */
-input, textarea {
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input:focus, textarea:focus {
-    transform: translateY(-2px);
-}
-
-/* 提交按钮动画 */
-button[type="submit"] {
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-button[type="submit"]:hover {
-    transform: translateY(-2px);
-}
-
-button[type="submit"]:active {
-    transform: translateY(1px);
-}
-
-/* 产品区域背景色 */
-#products, #hinges {
-    background-color: #f8f9fa;
-}
-
-.dark #products, .dark #hinges {
-    background-color: #1a1f2d;
-}
-
-/* 产品卡片在暗黑模式下的背景色调整 */
-.dark .product-card {
-    background-color: #1f2937;
-    border: 1px solid rgba(75, 85, 99, 0.2);
-}
-
-.dark .product-card:hover {
-    border-color: rgba(75, 85, 99, 0.4);
-}
-
-/* 波纹效果样式 */
-.nav-button {
-    position: relative;
-    overflow: hidden;
-}
-
-.ripple {
-    position: absolute;
-    background: rgba(59, 130, 246, 0.3);
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple 0.6s linear;
-    pointer-events: none;
-}
-
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-/* 暗黑模式波纹效果适配 */
-.dark .nav-button::after {
-    background: #60a5fa;
-}
-
-.dark .nav-button:hover {
-    color: #60a5fa;
-}
-
-.dark .ripple {
-    background: rgba(96, 165, 250, 0.3);
-}
-
-/* 铰链展开/收缩动画样式 */
+/* === 铰链卡片展开/收缩 === */
 .hinge-card {
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
 }
 
 .hinge-card:hover {
     transform: translateY(-5px);
+}
+
+.hinge-category {
+    width: 100%;
+}
+
+.hinge-category h3 {
+    color: #000000;
+}
+
+.hinge-category p {
+    color: #000000;
 }
 
 .expand-indicator {
@@ -606,18 +310,9 @@ button[type="submit"]:active {
 }
 
 @keyframes pulse {
-    0% {
-        box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
-        transform: scale(1.05);
-    }
-    100% {
-        box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
-        transform: scale(1);
-    }
+    0%   { box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3); transform: scale(1); }
+    50%  { box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5); transform: scale(1.05); }
+    100% { box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3); transform: scale(1); }
 }
 
 .hinge-card.expanded .expand-indicator {
@@ -633,18 +328,7 @@ button[type="submit"]:active {
     transform: rotate(180deg);
 }
 
-/* 主卡片背景色 */
-.hinge-card {
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-}
-
-.dark .hinge-card {
-    background-color: #1f2937;
-    border: 1px solid #374151;
-}
-
-/* 展开内容的背景色 */
+/* === 铰链展开内容 === */
 .hinge-content {
     max-height: 0;
     opacity: 0;
@@ -654,48 +338,15 @@ button[type="submit"]:active {
     margin-top: 1rem;
 }
 
-.hinge-content.expanded > div {
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin-top: 1rem;
-    background-color: #f5f5f5;
+.hinge-content.expanded {
+    max-height: 3000px;
+    opacity: 1;
 }
 
-.dark .hinge-content.expanded > div {
-    background-color: #1a1f2d;
-}
-
-/* 展开内容的容器背景色 */
 .hinge-content > div {
-    background-color: #edf2f7 !important;
+    background-color: #edf2f7;
 }
 
-.dark .hinge-content > div {
-    background-color: #1a202c !important;
-}
-
-/* 展开内容中的产品卡片背景色 */
-.hinge-content .product-card {
-    background-color: #ffffff !important;
-    border: 1px solid #e2e8f0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dark .hinge-content .product-card {
-    background-color: #2d3748 !important;
-    border: 1px solid #4a5568;
-}
-
-.hinge-content .product-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.dark .hinge-content .product-card:hover {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
-}
-
-/* 展开状态下的内容区域样式 */
 .hinge-content.expanded > div {
     border-radius: 0.5rem;
     padding: 1.5rem;
@@ -703,27 +354,27 @@ button[type="submit"]:active {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.dark .hinge-content.expanded > div {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.hinge-content .product-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
 }
 
-.hinge-category {
-    width: 100%;
+.hinge-content .product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* 移除之前的定位相关样式 */
+.hinge-content .bg-white {
+    background-color: #ffffff;
+}
+
+/* RTL 铰链定位重置 */
 [dir="ltr"] .hinge-category:nth-child(2) .hinge-content,
 [dir="ltr"] .hinge-category:nth-child(3) .hinge-content,
 [dir="rtl"] .hinge-category:nth-child(2) .hinge-content,
 [dir="rtl"] .hinge-category:nth-child(3) .hinge-content {
     left: auto;
     right: auto;
-}
-
-@media (max-width: 768px) {
-    .hinge-content {
-        width: 100%;
-    }
 }
 
 .rotate-icon {
@@ -734,21 +385,48 @@ button[type="submit"]:active {
     transform: rotate(180deg);
 }
 
-/* 指标旋转动画 */
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* === 特性图标动画 === */
+@keyframes iconPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
-/* 产品卡片在暗黑模式下的背景色调整 */
-.dark .product-card {
-    background-color: #1f2937;
+.feature-icon {
+    transition: transform 0.3s ease;
 }
 
+.feature-icon:hover {
+    animation: iconPulse 1s infinite;
+}
+
+/* === 滚动显示动画 === */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === 波纹效果 === */
+.ripple {
+    position: absolute;
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to { transform: scale(4); opacity: 0; }
+}
+
+/* === 视频模态框 === */
 .video-container {
     margin: 20px 0;
     text-align: center;
@@ -777,7 +455,7 @@ button[type="submit"]:active {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
 }
 
@@ -803,19 +481,215 @@ button[type="submit"]:active {
     height: auto;
 }
 
-/* RTL支持 */
+/* === Logo 切换 === */
+.logo-light { display: block !important; }
+.logo-dark  { display: none !important; }
+
+/* === 暗黑模式切换按钮动画 === */
+#darkModeToggle i, #mobileDarkModeToggle i {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#darkModeToggle:hover i, #mobileDarkModeToggle:hover i {
+    transform: rotate(360deg) scale(1.1);
+}
+
+/* === 表单样式 === */
+input, textarea {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    transform: translateY(-2px);
+}
+
+button[type="submit"] {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+/* === RTL 视频按钮 === */
 [dir="rtl"] .video-btn i {
     margin-right: 0;
     margin-left: 8px;
 }
 
-/* 修改展开后的产品卡片样式 */
-.product-card h3 {
-    color: #000000;
+/* ========================================
+   响应式
+   ======================================== */
+@media (max-width: 640px) {
+    .logo-size { height: 200px; }
+
+    #hero h1, #hero h2 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    #hero p { font-size: 1.5rem; }
+
+    .product-card { padding: 0.5rem; }
+    .product-card h3 { font-size: 1.1rem; }
+    .product-card p { font-size: 0.9rem; }
 }
 
-.product-card p {
-    color: #000000;
+@media (max-width: 768px) {
+    .hinge-content { width: 100%; }
+}
+
+@media (max-width: 360px) {
+    .logo-size { height: 150px; }
+    #hero h1, #hero h2 { font-size: 2rem; }
+    .nav-height { height: 50px; }
+}
+
+/* ========================================
+   暗黑模式（统一）
+   ======================================== */
+.dark body {
+    background-color: #111827;
+    color: #f3f4f6;
+}
+
+.dark .logo-light { display: none !important; }
+.dark .logo-dark  { display: block !important; }
+
+.dark header {
+    background-color: rgba(17, 24, 39, 0.85);
+    border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.dark header.nav-scrolled {
+    background-color: rgba(17, 24, 39, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark .nav-button {
+    color: #e5e7eb;
+}
+
+.dark .nav-button:hover {
+    color: #60a5fa;
+    background-color: rgba(75, 85, 99, 0.2);
+}
+
+.dark .nav-button::after {
+    background: #60a5fa;
+}
+
+.dark .ripple {
+    background: rgba(96, 165, 250, 0.3);
+}
+
+.dark .bg-white {
+    background-color: #1f2937;
+}
+
+.dark .text-gray-900 {
+    color: #f3f4f6;
+}
+
+.dark .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2),
+                0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.dark #features,
+.dark #technical {
+    background-color: #111827;
+}
+
+.dark #products, .dark #hinges {
+    background-color: #1a1f2d;
+}
+
+/* 暗黑 - 语言下拉 */
+.dark .language-dropdown-content {
+    background-color: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.dark .language-option {
+    color: #f3f4f6;
+}
+
+.dark .language-option:hover {
+    background-color: #374151;
+}
+
+.dark .globe-icon-wrapper {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #f3f4f6;
+}
+
+.dark .globe-icon-wrapper:hover {
+    background-color: #374151;
+}
+
+/* 暗黑 - 移动端菜单 */
+.dark #mobileMenu {
+    background-color: #1f2937;
+    border-top: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.dark #mobileLangSelect {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border-color: #374151;
+}
+
+/* 暗黑 - 页脚 */
+.dark footer {
+    background-color: #0f172a;
+    border-top: 1px solid rgba(75, 85, 99, 0.2);
+}
+
+/* 暗黑 - 表单 */
+.dark input,
+.dark textarea {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border-color: #374151;
+}
+
+.dark input:focus,
+.dark textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.dark button[type="submit"] {
+    background-color: #3b82f6;
+    transition: background-color 0.2s;
+}
+
+.dark button[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+/* 暗黑 - 产品卡片（统一） */
+.dark .product-card {
+    background-color: #1f2937;
+    border: 1px solid rgba(75, 85, 99, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .product-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(75, 85, 99, 0.4);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .dark .product-card h3 {
@@ -826,13 +700,10 @@ button[type="submit"]:active {
     color: #9ca3af;
 }
 
-/* 确保主标题和描述文字颜色正确 */
-.hinge-category h3 {
-    color: #000000;
-}
-
-.hinge-category p {
-    color: #000000;
+/* 暗黑 - 铰链卡片 */
+.dark .hinge-card {
+    background-color: #1f2937;
+    border: 1px solid #374151;
 }
 
 .dark .hinge-category h3 {
@@ -843,78 +714,30 @@ button[type="submit"]:active {
     color: #9ca3af;
 }
 
-/* 展开内容的背景色 */
-.hinge-content .bg-white {
-    background-color: #ffffff;
+/* 暗黑 - 铰链展开内容 */
+.dark .hinge-content > div {
+    background-color: #1a202c;
+}
+
+.dark .hinge-content.expanded > div {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark .hinge-content .product-card {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+}
+
+.dark .hinge-content .product-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
 }
 
 .dark .hinge-content .bg-white {
     background-color: #1f2937;
 }
 
-/* 产品卡片的背景色 */
-.product-card {
-    background-color: #ffffff;
-}
-
-.dark .product-card {
-    background-color: #1f2937;
-}
-
-/* 确保文字颜色正确 */
-.product-card h3 {
-    color: #000000 !important;
-}
-
-.product-card p {
-    color: #000000 !important;
-}
-
-.dark .product-card h3 {
-    color: #ffffff !important;
-}
-
-.dark .product-card p {
-    color: #9ca3af !important;
-}
-
-.hinge-content.expanded {
-    max-height: 3000px;
-    opacity: 1;
-}
-
-/* 展开状态下的内容区域圆角和内边距 */
-.hinge-content.expanded > div {
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin-top: 1rem;
-}
-
-/* 展开内容中的产品卡片背景色 */
-.hinge-content .product-card {
-    background-color: #ffffff !important;
-    border: 1px solid #e5e7eb;
-}
-
-.dark .hinge-content .product-card {
-    background-color: #1f2937 !important;
-    border: 1px solid #374151;
-}
-
-/* 展开内容的容器背景色 */
-.hinge-content > div {
-    background-color: #f3f4f6;
-}
-
-.dark .hinge-content > div {
-    background-color: #111827;
-}
-
-/* 修改产品卡片在展开内容中的背景色 */
-.hinge-content .bg-white.product-card {
-    background-color: #ffffff !important;
-}
-
-.dark .hinge-content .bg-white.product-card {
-    background-color: #1f2937 !important;
-} 
+/* 暗黑 - 特性图标背景 */
+.dark .bg-blue-100   { background-color: rgba(59, 130, 246, 0.1); }
+.dark .bg-green-100  { background-color: rgba(16, 185, 129, 0.1); }
+.dark .bg-red-100    { background-color: rgba(239, 68, 68, 0.1); }
+.dark .bg-yellow-100 { background-color: rgba(245, 158, 11, 0.1); }

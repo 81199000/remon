@@ -5,23 +5,29 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="title">广东日明五金实业有限公司</title>
+    <!-- SEO -->
+    <meta name="description" content="广东日明五金实业有限公司 — 专业生产铰链、滑轨等五金产品，提供静音缓冲解决方案。">
+    <meta property="og:title" content="广东日明五金实业有限公司 | REMON">
+    <meta property="og:description" content="专业生产铰链、滑轨等五金产品，极致静音，缓冲专家。">
+    <meta property="og:image" content="./TP/日明logo.png">
+    <meta property="og:type" content="website">
     <!-- 添加网站图标 -->
     <link rel="icon" type="image/x-icon" href="./TP/日明logo.png">
-    <!-- 先加载 jQuery -->
+    <!-- jQuery（同步加载，内联脚本依赖） -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- i18next 相关库 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.10/i18next.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/1.3.1/i18nextHttpBackend.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
+    <!-- i18next 相关库（defer，依赖顺序保持） -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.10/i18next.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/1.3.1/i18nextHttpBackend.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- 自定义样式 -->
     <link rel="stylesheet" href="css/styles.css">
-    <!-- 自定义脚本 -->
-    <script src="js/i18n.js"></script>
-    <script src="js/video.js"></script>
+    <!-- 自定义脚本（defer，依赖顺序保持） -->
+    <script defer src="js/i18n.js"></script>
+    <script defer src="js/video.js"></script>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
     <header>
@@ -120,15 +126,8 @@
     <main>
         <section id="hero" class="pt-24 pb-12 px-4 relative" style="min-height: 100vh; overflow: hidden;">
             <div class="absolute inset-0">
-                <div class="hidden md:block" style="background-image: url('./TP/衣柜.webp'); background-size: cover; background-repeat: no-repeat; background-position: center; height: 100%;">
-                    <div class="bg-black bg-opacity-50 h-full w-full flex flex-col items-center justify-center">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white" data-i18n="hero.title1">赋能家居</h1>
-                        <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-white" data-i18n="hero.title2">焕新体验</h2>
-                        <img src="./TP/ui/笑脸.png" alt="笑脸" class="w-auto h-10 mb-6" style="object-fit: contain; background-color: transparent;">
-                        <p class="text-xl md:text-2xl lg:text-3xl mb-8 text-white" data-i18n="hero.subtitle">极致静音，缓冲专家</p>
-                    </div>
-                </div>
-                <div class="block md:hidden" style="background-image: url('./TP/衣柜1.webp'); background-size: cover; background-repeat: no-repeat; background-position: center; height: 100%;">
+                <!-- hero-bg: 桌面用衣柜.webp，移动端用衣柜1.webp，通过 CSS media query 切换 -->
+                <div class="hero-bg" style="background-size: cover; background-repeat: no-repeat; background-position: center; height: 100%;">
                     <div class="bg-black bg-opacity-50 h-full w-full flex flex-col items-center justify-center">
                         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white" data-i18n="hero.title1">赋能家居</h1>
                         <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-white" data-i18n="hero.title2">焕新体验</h2>
@@ -148,7 +147,7 @@
                         <div class="hinge-card bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 group">
                             <div class="flex flex-col md:flex-row gap-8 items-center">
                                 <div class="relative w-full md:w-1/3">
-                                    <img src="./TP/CP/铰链/零角度二段力铰链/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="三段力液压铰链" class="w-full h-64 object-cover rounded-lg">
+                                    <img loading="lazy" src="./TP/CP/铰链/零角度二段力铰链/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="三段力液压铰链" class="w-full h-64 object-cover rounded-lg">
                                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
                                 </div>
                                 <div class="w-full md:w-2/3 space-y-4">
@@ -166,7 +165,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                     <!-- 产品 1 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/零角度二段力铰链/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="M1 三段力 零角度缓冲" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/零角度二段力铰链/M1 三段力 功能可选 固装 自卸 材质可选 不锈钢 冷轧钢 零角度缓冲.webp" alt="M1 三段力 零角度缓冲" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.M1.name">型号: M1</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M1.feature">三段力</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.M1.type">固装/自卸可选</span></p>
@@ -175,7 +174,7 @@
                                     </div>
                                     <!-- 产品 2 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/零角度二段力铰链/M2 三段力 功能可选 自卸 三维可调 材质可选 不锈钢 冷轧钢.webp" alt="M2 三段力" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/零角度二段力铰链/M2 三段力 功能可选 自卸 三维可调 材质可选 不锈钢 冷轧钢.webp" alt="M2 三段力" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.M2.name">型号: M2</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.M2.feature">三段力</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.M2.type">自卸</span></p>
@@ -199,7 +198,7 @@
                         <div class="hinge-card bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 group">
                             <div class="flex flex-col md:flex-row gap-8 items-center">
                                 <div class="relative w-full md:w-1/3">
-                                    <img src="./TP/CP/铰链/二段力液压铰链/827 二段力 固装 冷轧钢.webp" alt="二段力液压铰链" class="w-full h-64 object-cover rounded-lg">
+                                    <img loading="lazy" src="./TP/CP/铰链/二段力液压铰链/827 二段力 固装 冷轧钢.webp" alt="二段力液压铰链" class="w-full h-64 object-cover rounded-lg">
                                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
                                 </div>
                                 <div class="w-full md:w-2/3 space-y-4">
@@ -217,7 +216,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                     <!-- 产品 1 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/二段力液压铰链/827 二段力 固装 冷轧钢.webp" alt="827 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/二段力液压铰链/827 二段力 固装 冷轧钢.webp" alt="827 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.827.name">型号: 827</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827.feature">二段力</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.827.type">固装</span></p>
@@ -226,7 +225,7 @@
                                     </div>
                                     <!-- 产品 2 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/二段力液压铰链/827QH  二段力  固装 冷轧钢 枪黑.webp" alt="827QH 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/二段力液压铰链/827QH  二段力  固装 冷轧钢 枪黑.webp" alt="827QH 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.827QH.name">型号: 827QH</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.827QH.feature">二段力</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.827QH.type">固装</span></p>
@@ -236,7 +235,7 @@
                                     </div>
                                     <!-- 产品 3 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/二段力液压铰链/828 二段力 自卸 冷轧钢.webp" alt="828 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/二段力液压铰链/828 二段力 自卸 冷轧钢.webp" alt="828 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.828.name">型号: 828</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.828.feature">二段力</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.828.type">自卸</span></p>
@@ -245,7 +244,7 @@
                                     </div>
                                     <!-- 产品 4 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/二段力液压铰链/828QH 二段力 自卸 冷轧钢.webp" alt="828QH 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/二段力液压铰链/828QH 二段力 自卸 冷轧钢.webp" alt="828QH 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.828QH.name">型号: 828QH</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.828QH.feature">二段力</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.828QH.type">自卸</span></p>
@@ -262,7 +261,7 @@
                         <div class="hinge-card bg-white p-6 rounded-lg shadow-md transform transition-all duration-300 group">
                             <div class="flex flex-col md:flex-row gap-8 items-center">
                                 <div class="relative w-full md:w-1/3">
-                                    <img src="./TP/CP/铰链/一段力液压铰链/817 固装 冷轧钢.webp" alt="一段力液压铰链" class="w-full h-64 object-cover rounded-lg">
+                                    <img loading="lazy" src="./TP/CP/铰链/一段力液压铰链/817 固装 冷轧钢.webp" alt="一段力液压铰链" class="w-full h-64 object-cover rounded-lg">
                                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
                                 </div>
                                 <div class="w-full md:w-2/3 space-y-4">
@@ -280,7 +279,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                     <!-- 产品 1 -->
                                     <div class="p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/一段力液压铰链/817 固装 冷轧钢.webp" alt="817 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/一段力液压铰链/817 固装 冷轧钢.webp" alt="817 固装 冷轧钢" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-black dark:text-white" data-i18n="products.hinges_list.817.name">型号: 817</h3>
                                         <p class="text-black dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.817.type">固装</span></p>
                                         <p class="text-black dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.817.material">冷轧钢</span></p>
@@ -288,7 +287,7 @@
                                     </div>
                                     <!-- 产品 2 -->
                                     <div class="p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/一段力液压铰链/817QH 固装 冷轧钢 枪黑.webp" alt="817QH 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/一段力液压铰链/817QH 固装 冷轧钢 枪黑.webp" alt="817QH 固装 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2" data-i18n="products.hinges_list.817QH.name">型号: 817QH</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.type">装法：</span><span data-i18n="products.hinges_list.817QH.type">固装</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.817QH.material">冷轧钢</span></p>
@@ -297,7 +296,7 @@
                                     </div>
                                     <!-- 产品 3 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/一段力液压铰链/818 自卸 冷轧钢.webp" alt="818 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/一段力液压铰链/818 自卸 冷轧钢.webp" alt="818 自卸 冷轧钢" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.818.name">型号: 818</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.818.feature">自卸</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.818.material">冷轧钢</span></p>
@@ -305,7 +304,7 @@
                                     </div>
                                     <!-- 产品 4 -->
                                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md product-card">
-                                        <img src="./TP/CP/铰链/一段力液压铰链/818QH 自卸 冷轧钢 枪黑.webp" alt="818QH 自卸 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
+                                        <img loading="lazy" src="./TP/CP/铰链/一段力液压铰链/818QH 自卸 冷轧钢 枪黑.webp" alt="818QH 自卸 冷轧钢 枪黑" class="w-full h-auto object-contain mb-4">
                                         <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white" data-i18n="products.hinges_list.818QH.name">型号: 818QH</h3>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.function">功能：</span><span data-i18n="products.hinges_list.818QH.feature">自卸</span></p>
                                         <p class="text-gray-600 dark:text-gray-400"><span data-i18n="products.common_labels.material">材质：</span><span data-i18n="products.hinges_list.818QH.material">冷轧钢</span></p>
@@ -326,7 +325,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- 产品 1 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                        <img src="./TP/CP/滑轨/白色镀锌缓冲滑轨.webp" alt="白色镀锌缓冲滑轨" class="w-full h-auto object-contain mb-4">
+                        <img loading="lazy" src="./TP/CP/滑轨/白色镀锌缓冲滑轨.webp" alt="白色镀锌缓冲滑轨" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-semibold mb-2" data-i18n="products.slides.white_zinc.name">白色镀锌缓冲滑轨</h3>
                         <p><span data-i18n="products.dimensions">尺寸可选</span>：<span data-i18n="products.slides.white_zinc.dimensions">4515, 4512</span></p>
                         <p><span data-i18n="products.colors">颜色可选</span>：<span data-i18n="products.slides.white_zinc.colors">电泳黑, 镀彩锌</span></p>
@@ -334,7 +333,7 @@
                     </div>
                     <!-- 产品 2 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                        <img src="./TP/CP/滑轨/不锈钢静音三节轨.webp" alt="不锈钢静音三节轨" class="w-full h-auto object-contain mb-4">
+                        <img loading="lazy" src="./TP/CP/滑轨/不锈钢静音三节轨.webp" alt="不锈钢静音三节轨" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-semibold mb-2" data-i18n="products.slides.stainless_steel.name">不锈钢静音三节轨</h3>
                         <p><span data-i18n="products.dimensions">尺寸可选</span>：<span data-i18n="products.slides.stainless_steel.dimensions">4515, 4512</span></p>
                         <p><span data-i18n="products.colors">颜色可选</span>：<span data-i18n="products.slides.stainless_steel.colors">电泳黑, 镀彩锌</span></p>
@@ -342,7 +341,7 @@
                     </div>
                     <!-- 产品 3 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                        <img src="./TP/CP/滑轨/黑色反弹封漆滑轨.webp" alt="黑色反弹封漆滑轨" class="w-full h-auto object-contain mb-4">
+                        <img loading="lazy" src="./TP/CP/滑轨/黑色反弹封漆滑轨.webp" alt="黑色反弹封漆滑轨" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-semibold mb-2" data-i18n="products.slides.black_rebound.name">黑色反弹封漆滑轨</h3>
                         <p><span data-i18n="products.dimensions">尺寸可选</span>：<span data-i18n="products.slides.black_rebound.dimensions">4515, 4512</span></p>
                         <p><span data-i18n="products.colors">颜色可选</span>：<span data-i18n="products.slides.black_rebound.colors">电泳黑, 镀彩锌</span></p>
@@ -350,7 +349,7 @@
                     </div>
                     <!-- 产品 4 -->
                     <div class="bg-white p-6 rounded-lg shadow-md product-card">
-                        <img src="./TP/CP/滑轨/黑色静音三节轨.webp" alt="黑色静音三节轨" class="w-full h-auto object-contain mb-4">
+                        <img loading="lazy" src="./TP/CP/滑轨/黑色静音三节轨.webp" alt="黑色静音三节轨" class="w-full h-auto object-contain mb-4">
                         <h3 class="text-xl font-semibold mb-2" data-i18n="products.slides.black_silent.name">黑色静音三节轨</h3>
                         <p><span data-i18n="products.dimensions">尺寸可选</span>：<span data-i18n="products.slides.black_silent.dimensions">4515, 4512</span></p>
                         <p><span data-i18n="products.colors">颜色可选</span>：<span data-i18n="products.slides.black_silent.colors">电泳黑, 镀彩锌</span></p>
@@ -420,7 +419,7 @@
                 <h2 class="text-3xl font-semibold text-center mb-8" data-i18n="technical.title">技术优势</h2>
                 <div class="flex flex-col md:flex-row items-center justify-between">
                     <div class="md:w-1/2 mb-8 md:mb-0">
-                        <img src="./TP/不锈钢分解图.png" alt="不锈钢铰链分解图" class="w-full max-w-md mx-auto" style="display: block;">
+                        <img src="./TP/不锈钢分解图.png" alt="不锈钢铰链分解图" class="w-full max-w-md mx-auto" loading="lazy" style="display: block;">
                     </div>
                     <div class="md:w-1/2 md:pl-8">
                         <h3 class="text-2xl font-semibold mb-4" data-i18n="technical.subtitle">精密工艺，卓越品质</h3>
@@ -523,136 +522,6 @@
         $(document).ready(function() {
             console.log('DOM loaded');
 
-            // ���始化i18next
-            i18next
-                .use(i18nextHttpBackend)
-                .use(i18nextBrowserLanguageDetector)
-                .init({
-                    fallbackLng: 'zh-CN',
-                    supportedLngs: ['zh-CN', 'zh-TW', 'en', 'ja', 'ko', 'ru', 'hi', 'ar'],
-                    load: 'currentOnly',
-                    debug: true,
-                    ns: ['translation'],
-                    defaultNS: 'translation',
-                    backend: {
-                        loadPath: './translations/{{lng}}.json',
-                        allowMultiLoading: false,
-                        crossDomain: false,
-                        withCredentials: false,
-                        requestOptions: {
-                            cache: 'default'
-                        }
-                    },
-                    detection: {
-                        order: ['querystring', 'localStorage', 'navigator'],
-                        caches: ['localStorage'],
-                        lookupQuerystring: 'lng',
-                        lookupLocalStorage: 'i18nextLng'
-                    }
-                }).then(function() {
-                    // 初始化 jquery-i18next
-                    jqueryI18next.init(i18next, $, {
-                        useOptionsAttr: true
-                    });
-                    
-                    // 添加调试日志
-                    console.log('Current language:', i18next.language);
-                    console.log('Loaded resources:', i18next.store.data);
-                    
-                    // 更新所有翻译元素，包括铰链分类
-                    $('[data-i18n]').localize();
-                    
-                    // 更新UI和视频源
-                    updateLanguageUI();
-                    updateVideoSource(i18next.language || 'zh-CN');
-                });
-
-            // 语言切换按钮点击事件
-            $(document).on('click', '.language-option', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                const lang = $(this).data('lang');
-                console.log('Language option clicked:', lang);
-                
-                if (lang) {
-                    // 如果是切换到简体中文，直接使用内置资源
-                    if (lang === 'zh-CN') {
-                        i18next.changeLanguage(lang).then(function() {
-                            console.log('Changed to default Chinese language');
-                            updateLanguageUI();
-                            $('.language-dropdown-content').removeClass('show');
-                            localStorage.setItem('i18nextLng', lang);
-                        });
-                    } else {
-                        // 其他语言需要加载语言文件
-                        localStorage.removeItem('i18nextLng');
-                        i18next.removeResourceBundle(i18next.language);
-                        
-                        i18next.changeLanguage(lang).then(function() {
-                            console.log('Language successfully changed to:', lang);
-                            updateLanguageUI();
-                            $('.language-dropdown-content').removeClass('show');
-                            localStorage.setItem('i18nextLng', lang);
-                        }).catch(function(err) {
-                            console.error('Error changing language:', err);
-                        });
-                    }
-                }
-            });
-
-            // 移动端语言切换
-            $('#mobileLangSelect').on('change', function() {
-                const lang = $(this).val();
-                console.log('Mobile language select changed:', lang);
-                
-                if (lang) {
-                    // 先清除缓存
-                    localStorage.removeItem('i18nextLng');
-                    i18next.removeResourceBundle(i18next.language);
-                    
-                    // 然后切换语言
-                    i18next.changeLanguage(lang).then(function() {
-                        console.log('Mobile language successfully changed to:', lang);
-                        updateLanguageUI();
-                        // 保存语言选择到 localStorage
-                        localStorage.setItem('i18nextLng', lang);
-                    }).catch(function(err) {
-                        console.error('Error changing mobile language:', err);
-                    });
-                }
-            });
-
-            // 更新UI函数
-            function updateLanguageUI() {
-                const currentLang = i18next.language;
-                console.log('Updating UI for language:', currentLang);
-                
-                // 强制重新加载翻译
-                i18next.reloadResources(currentLang).then(() => {
-                    // 更新所有翻译元素，包括铰链分类
-                    $('[data-i18n]').localize();
-                    
-                    // 更新选中状态
-                    $('.language-option .fa-check').addClass('opacity-0');
-                    $(`.language-option[data-lang="${currentLang}"] .fa-check`).removeClass('opacity-0');
-                    
-                    // 更新移动端选择框
-                    $('#mobileLangSelect').val(currentLang);
-                    
-                    // 更新文档方向（针对阿拉伯语）
-                    if (currentLang === 'ar') {
-                        document.documentElement.setAttribute('dir', 'rtl');
-                    } else {
-                        document.documentElement.setAttribute('dir', 'ltr');
-                    }
-
-                    // 更新 HTML lang 属性
-                    document.documentElement.setAttribute('lang', currentLang);
-                    
-                    console.log('UI update completed for language:', currentLang);
-                });
-            }
-
             // 语言下拉菜单切换
             $('.globe-icon-wrapper').on('click', function(e) {
                 e.preventDefault();
@@ -695,7 +564,7 @@
                 updateDarkMode(shouldEnableDarkMode());
             }
 
-            // 暗黑模式切���按钮事件
+            // 暗黑模式切换按钮事件
             $('#darkModeToggle, #mobileDarkModeToggle').on('click', function() {
                 const isDark = !document.documentElement.classList.contains('dark');
                 updateDarkMode(isDark);
@@ -814,25 +683,7 @@
                 }
             });
 
-            // 视频源切换函数
-            function updateVideoSource(lang) {
-                const videoSource = document.getElementById('videoSource');
-                const video = document.getElementById('productVideo');
-                
-                console.log('Updating video source for language:', lang);
-                
-                // 根据语言选择视频源
-                if (lang === 'zh-CN' || lang === 'zh-TW') {
-                    videoSource.src = './TP/视频/M2介绍.mp4';
-                } else {
-                    videoSource.src = './TP/视频/M2介绍-英文版.mp4';
-                }
-                
-                // 重新加载视频
-                video.load();
-            }
-
-            // 在语言切换时更新视频源
+            // 在语言切换时更新视频源（updateVideoSource 由 js/video.js 提供）
             $(document).on('click', '.language-option', function(e) {
                 const lang = $(this).data('lang');
                 if (lang) {
@@ -840,7 +691,7 @@
                 }
             });
 
-            // 移动端语言切换
+            // 移动端语言切换时更新视频源
             $('#mobileLangSelect').on('change', function() {
                 const lang = $(this).val();
                 if (lang) {
@@ -848,8 +699,28 @@
                 }
             });
 
-            // 删除这行，因为我们已经在 i18next 初始化完成后调用了
-            // updateVideoSource(i18next.language);
+            // 导航滚动隐藏/显示（.nav-hidden / .nav-scrolled）
+            let lastScrollTop = 0;
+            const $header = $('header');
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // 滚动超过80px时切换 nav-scrolled 样式
+                if (scrollTop > 80) {
+                    $header.addClass('nav-scrolled');
+                } else {
+                    $header.removeClass('nav-scrolled');
+                }
+
+                // 下滑超过80px时隐藏导航，上滑时显示
+                if (scrollTop > lastScrollTop && scrollTop > 80) {
+                    $header.addClass('nav-hidden');
+                } else {
+                    $header.removeClass('nav-hidden');
+                }
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, { passive: true });
         });
 
         // 铰链展开/收缩功能
@@ -937,73 +808,6 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoBtn = document.querySelector('.video-btn');
-            const videoModal = document.getElementById('videoModal');
-            const closeBtn = document.querySelector('.close-btn');
-            const video = document.getElementById('productVideo');
-
-            videoBtn.addEventListener('click', function() {
-                videoModal.style.display = 'block';
-                // 开始播放视频并进入全屏
-                video.play().then(() => {
-                    if (video.requestFullscreen) {
-                        video.requestFullscreen();
-                    } else if (video.webkitRequestFullscreen) { /* Safari */
-                        video.webkitRequestFullscreen();
-                    } else if (video.msRequestFullscreen) { /* IE11 */
-                        video.msRequestFullscreen();
-                    }
-                }).catch((error) => {
-                    console.log("播放失败:", error);
-                });
-            });
-
-            closeBtn.addEventListener('click', function() {
-                videoModal.style.display = 'none';
-                video.pause();
-                // 退出全屏
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) { /* Safari */
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) { /* IE11 */
-                    document.msExitFullscreen();
-                }
-            });
-
-            window.addEventListener('click', function(event) {
-                if (event.target == videoModal) {
-                    videoModal.style.display = 'none';
-                    video.pause();
-                    // 退出全屏
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.webkitExitFullscreen) { /* Safari */
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) { /* IE11 */
-                        document.msExitFullscreen();
-                    }
-                }
-            });
-
-            // 监听全屏变化事件
-            document.addEventListener('fullscreenchange', exitHandler);
-            document.addEventListener('webkitfullscreenchange', exitHandler);
-            document.addEventListener('mozfullscreenchange', exitHandler);
-            document.addEventListener('MSFullscreenChange', exitHandler);
-
-            function exitHandler() {
-                if (!document.fullscreenElement && 
-                    !document.webkitIsFullScreen && 
-                    !document.mozFullScreen && 
-                    !document.msFullscreenElement) {
-                    // 退出全屏时关闭视频和模态框
-                    videoModal.style.display = 'none';
-                    video.pause();
-                }
-            }
-        });
     </script>
 </body>
 </html>
